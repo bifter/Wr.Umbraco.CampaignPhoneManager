@@ -229,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDataProcessorTest.cs" />
+    <Compile Include="Criteria\CriteriaProcessorTest.cs" />
     <Compile Include="Criteria\QuerystringCriteriaTest.cs" />
     <Compile Include="Data\DefaultMockData.cs" />
     <Compile Include="Data\XPathDataProviderTest.cs" />

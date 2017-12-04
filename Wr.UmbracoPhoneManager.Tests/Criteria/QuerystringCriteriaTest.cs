@@ -19,8 +19,9 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             });
             var mockData = DefaultMockData.MockDataProvider();
 
-            // Act
             var criteria = new QuerystringCriteria(mockData.Object, mockQuerystring.Object);
+
+            // Act
             var results = criteria.MatchingRecords();
 
             // Assert

@@ -15,7 +15,7 @@
         /// <param name="content"></param>
         /// <param name="model"></param>
         /// <returns>OutputModel. Phone manager phonenumber data</returns>
-        public static OutputModel PhoneManager(this IPublishedContent content, OutputModel model = null)
+        public static OutputModel CampaignPhoneManager(this IPublishedContent content, OutputModel model = null)
         {
             if (model != null)
             {

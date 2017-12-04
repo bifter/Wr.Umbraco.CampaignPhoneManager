@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Wr.UmbracoPhoneManager.Models
 {
-
+    /// <summary>
+    /// Vague clone of the PhoneManager doctype
+    /// </summary>
     public class DocTypeModel
     {
         public DefaultSettings DefaultSettings { get; set; }
@@ -18,6 +18,9 @@ namespace Wr.UmbracoPhoneManager.Models
         }
     }
 
+    /// <summary>
+    /// Vague clone of the PhoneManager default settings fields
+    /// </summary>
     public class DefaultSettings
     {
         public string DefaultCampaignQuerystringKey { get; set; }
@@ -40,17 +43,23 @@ namespace Wr.UmbracoPhoneManager.Models
         }
     }
 
+    /// <summary>
+    /// Vague clone of the PhoneNumber Umbraco doctype
+    /// </summary>
     public class PhoneNumber
     {
-        public bool doNotPersist { get; set; }
+        public string Id { get; set; }
+        public bool doNotPersistAcrossVisits { get; set; }
         public string phoneNumber { get; set; }
         public int persistDurationOverride { get; set; }
         public string referrer { get; set; }
         public string campaignCode { get; set; }
         public string entryPage { get; set; }
-        public bool overwritePersistingNumber { get; set; }
+        public bool overwritePersistingItem { get; set; }
         public string altMarketingCode { get; set; }
         public int priorityOrder { get; set; }
+        public string useAltCampaignQuerystringKey { get; set; }
+        public DateTime lastUsedDate { get; set; }
 
         /// <summary>
         /// Checks if the PhoneNumber data is usable
@@ -71,7 +80,7 @@ namespace Wr.UmbracoPhoneManager.Models
         public bool IsValidToSaveAsCookie()
         {
             if (IsValid())
-                return !doNotPersist;
+                return !doNotPersistAcrossVisits;
 
             return false;
         }

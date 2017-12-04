@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Wr.UmbracoPhoneManager.Models;
 
-namespace Wr.UmbracoPhoneManager.Providers.Cookie
+namespace Wr.UmbracoPhoneManager.Providers
 {
     public interface ICookieProvider
     {
