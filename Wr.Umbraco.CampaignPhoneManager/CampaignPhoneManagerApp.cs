@@ -4,7 +4,7 @@ using Wr.Umbraco.CampaignPhoneManager.Providers;
 
 namespace Wr.Umbraco.CampaignPhoneManager
 {
-    public class CampaignPhoneManager
+    public class CampaignPhoneManagerApp
     {
         private CookieProvider _cookieProvider;
         private readonly IDataProvider _dataProvider;
@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
         /// <summary>
         /// Processes the current request to find a relevant phone number to output 
         /// </summary>
-        public CampaignPhoneManager()
+        public CampaignPhoneManagerApp()
         {
             _cookieProvider = new CookieProvider(new HttpContextCookieProviderSource());
             _dataProvider = new XPathDataProvider(new XPathDataProviderSource_UmbracoTypedContent());
@@ -29,7 +29,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             _umbracoProvider = new UmbracoProvider();
         }
 
-        public CampaignPhoneManager(CookieProvider cookieProvider, IDataProvider dataProvider, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
+        public CampaignPhoneManagerApp(CookieProvider cookieProvider, IDataProvider dataProvider, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
         {
             _cookieProvider = cookieProvider;
             _dataProvider = dataProvider;
@@ -73,8 +73,8 @@ namespace Wr.Umbraco.CampaignPhoneManager
         {
             var requestInfo = new CampaignDetail()
             {
-                referrer = _referrerProvider.GetReferrerOrNone(),
-                entryPage = _umbracoProvider.GetCurrentPageId()
+                Referrer = _referrerProvider.GetReferrerOrNone(),
+                EntryPage = _umbracoProvider.GetCurrentPageId()
             };
             
             var foundNumber = _dataProvider.GetMatchingRecordFromPhoneManager(requestInfo, _querystringProvider.GetCleansedQueryStrings());
@@ -94,7 +94,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 bool useExisitingCookieForSession = true; // let's assume we will want to use the existing cookie
 
-                if ((foundRecord?.IsValidToSaveAsCookie() ?? false) && (foundRecord?.overwritePersistingItem ?? false)) // foundRecordFromCriteria needs persisting and it should override any exisiting cookie
+                if ((foundRecord?.IsValidToSaveAsCookie() ?? false) && (foundRecord?.OverwritePersistingItem ?? false)) // foundRecordFromCriteria needs persisting and it should override any exisiting cookie
                 {
                     useExisitingCookieForSession = false; // don't use the cookie as the _foundRecordFromCriteria has requested to overwrite any exisiting cookie
                 }
@@ -112,16 +112,16 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
-                    PhoneNumber = foundRecord.phoneNumber,
-                    CampaignCode = foundRecord.campaignCode,
-                    AltMarketingCode = foundRecord.altMarketingCode
+                    PhoneNumber = foundRecord.PhoneNumber,
+                    CampaignCode = foundRecord.CampaignCode,
+                    AltMarketingCode = foundRecord.AltMarketingCode
                 };
 
                 if (foundRecord.IsValidToSaveAsCookie()) // it is requesting to be persisted via a cookie
                 {
                     result.OutputCookieHolder = new CookieHolder()
                     {
-                        Expires = DateTime.Today.AddDays((foundRecord.persistDurationOverride > 0) ? foundRecord.persistDurationOverride : _dataProvider.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
+                        Expires = DateTime.Today.AddDays((foundRecord.PersistDurationOverride > 0) ? foundRecord.PersistDurationOverride : _dataProvider.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
                         Model = result.OutputModelResult
                     };
                 }

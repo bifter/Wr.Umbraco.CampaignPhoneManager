@@ -28,7 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
                 return;
             }
 
-            var phoneManagerResult = new CampaignPhoneManager().ProcessRequest();
+            var phoneManagerResult = new CampaignPhoneManagerApp().ProcessRequest();
 
             // save the selected phone manager data in the IPublishedContent for use on the reqested page
             umbracoContext.PublishedContentRequest.PublishedContent.CampaignPhoneManager(phoneManagerResult);

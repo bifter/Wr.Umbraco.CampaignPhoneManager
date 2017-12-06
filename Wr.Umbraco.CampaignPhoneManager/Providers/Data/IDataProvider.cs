@@ -12,7 +12,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         /// Returns the default phone manager setting set in the admin settings panel
         /// </summary>
         /// <returns></returns>
-        DefaultSettings GetDefaultSettings();
+        CampaignPhoneManagerModel GetDefaultSettings();
 
         /// <summary>
         /// Return the best matching record from the phone manager

@@ -13,7 +13,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         /// </summary>
         /// <param name="xpath"></param>
         /// <returns></returns>
-        DefaultSettings LoadDefaultSettings(string xpath);
+        CampaignPhoneManagerModel LoadDefaultSettings(string xpath);
 
         /// <summary>
         /// Get data from the source data store

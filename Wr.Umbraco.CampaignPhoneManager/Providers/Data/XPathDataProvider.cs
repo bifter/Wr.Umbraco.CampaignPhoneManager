@@ -6,10 +6,12 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-
+    /// <summary>
+    /// Logic for all XPathDataProvider Sources
+    /// </summary>
     public class XPathDataProvider : IDataProvider
     {
-        private DefaultSettings _defaultSettings { get; set; }
+        private CampaignPhoneManagerModel _defaultSettings { get; set; }
         private IXPathDataProviderSource _xPathDataProviderSource { get; set; }
 
         public XPathDataProvider(IXPathDataProviderSource xPathDataProviderSource)
@@ -17,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             _xPathDataProviderSource = xPathDataProviderSource;
         }
 
-        public DefaultSettings GetDefaultSettings()
+        public CampaignPhoneManagerModel GetDefaultSettings()
         {
             if (_defaultSettings == null)
             {
@@ -26,7 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             return _defaultSettings;
         }
 
-        private DefaultSettings LoadDefaultSettings()
+        private CampaignPhoneManagerModel LoadDefaultSettings()
         {
             return _xPathDataProviderSource.LoadDefaultSettings("$ancestorOrSelf/ancestor-or-self::home[position()=1]//campaignPhoneManager");
         }
@@ -60,7 +62,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
                 var defaultQSValue = cleansedQuerystrings[GetDefaultSettings().DefaultCampaignQueryStringKey] ?? string.Empty;
                 if (!string.IsNullOrEmpty(defaultQSValue)) // default campaign qs key/value found
                 {
-                    var selector = string.Format("useAltCampaignQueryStringKey='' and campaignCode='{0}'", defaultQSValue);
+                    var selector = string.Format("not(useAltCampaignQueryStringKey/text()[normalize-space()]) and campaignCode='{0}'", defaultQSValue);
                     string xpath2 = string.Format(xpathBase, selector);
                     foundRecords.AddRange(_xPathDataProviderSource.GetDataByXPath(xpath2)); // add any matching records to the results
                 }
@@ -78,34 +80,33 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             }
 
             // referrer
-            if (!string.IsNullOrEmpty(requestInfoNotIncludingQueryStrings.referrer))
+            if (!string.IsNullOrEmpty(requestInfoNotIncludingQueryStrings.Referrer))
             {
-                referrerSelector = string.Format("(referrer='{0}')", requestInfoNotIncludingQueryStrings.referrer);
+                referrerSelector = string.Format("contains(referrer, '{0}')", requestInfoNotIncludingQueryStrings.Referrer.Replace("www.", ""));
 
                 string xpath = string.Format(xpathBase, referrerSelector);
                 foundRecords.AddRange(_xPathDataProviderSource.GetDataByXPath(xpath)); // add any matching records to the results
             }
 
             // entry page
-            if (!string.IsNullOrEmpty(requestInfoNotIncludingQueryStrings.entryPage))
+            if (!string.IsNullOrEmpty(requestInfoNotIncludingQueryStrings.EntryPage))
             {
-                entryPageSelector = string.Format("entryPage='{0}'", requestInfoNotIncludingQueryStrings.entryPage);
+                entryPageSelector = string.Format("entryPage='{0}'", requestInfoNotIncludingQueryStrings.EntryPage);
 
                 string xpath = string.Format(xpathBase, entryPageSelector);
                 foundRecords.AddRange(_xPathDataProviderSource.GetDataByXPath(xpath)); // add any matching records to the results
             }
 
-
             // work out which record to use
-            // - group identical records, then order by group member count. We will want to use the first grouped item, as this will have the most matching criteria
+            // - group identical records (using the Id property), then order by group member count. We will want to use the first grouped item, as this will have the most matching criteria
             var priorityList = (from rec in foundRecords
-                                group rec by rec into gr // group duplicate records
+                                group rec by rec.Id into gr // group duplicate records
                                 orderby gr.Count() descending // order by the group item count. The most number of duplicate records, the higher the priority, so we will want the first record in the list
-                                orderby gr.First().priorityOrder descending // then order by the priority of a member of the group. 'First' is chosen for convenience and also as all groups will have at least one member
-                                select gr.First()
-                                ).FirstOrDefault(); // get the first item in each group
+                                orderby gr.First().PriorityOrder descending // then order by the priority of a member of the group. 'First' is chosen for convenience and also as all groups will have at least one member
+                                select gr.First() // get the first item in each group
+                                ).FirstOrDefault(); // return the first group
 
-            return (priorityList != null) ? priorityList : new CampaignDetail();
+            return priorityList;
         }
     }
 }

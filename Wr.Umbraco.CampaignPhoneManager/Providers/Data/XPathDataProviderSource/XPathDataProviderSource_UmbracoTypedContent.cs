@@ -15,11 +15,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
         }
 
-        public DefaultSettings LoadDefaultSettings(string xpath)
+        public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
             var content = _umbracoHelper.TypedContentAtXPath(xpath);
 
-            var result = new DefaultSettings();
+            var result = new CampaignPhoneManagerModel();
 
             foreach (var item in content)
             {
@@ -27,7 +27,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
                 result.DefaultPhoneNumber = item.GetPropertyValue<string>("defaultPhoneNumber");
             }
 
-            return new DefaultSettings();
+            return new CampaignPhoneManagerModel();
         }
 
         public List<CampaignDetail> GetDataByXPath(string xpath)
@@ -59,19 +59,19 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         {
             CampaignDetail result = new CampaignDetail()
             {
-                id = content.Id.ToString(),
-                entryPage = content.GetPropertyValue<string>("entryPage"),
-                altMarketingCode = content.GetPropertyValue<string>("altMarketingCode"),
-                campaignCode = content.GetPropertyValue<string>("campaignCode"),
-                overwritePersistingItem = content.GetPropertyValue<bool>("overwritePersistingItem"),
-                doNotPersistAcrossVisits = content.GetPropertyValue<bool>("doNotPersistAcrossVisits"),
-                persistDurationOverride = content.GetPropertyValue<int>("persistDurationOverride"),
-                phoneNumber = content.GetPropertyValue<string>("phoneNumber"),
-                referrer = content.GetPropertyValue<string>("referrer"),
-                useAltCampaignQueryStringKey = content.GetPropertyValue<string>("useAltCampaignQueryStringKey")
+                Id = content.Id.ToString(),
+                EntryPage = content.GetPropertyValue<string>("entryPage"),
+                AltMarketingCode = content.GetPropertyValue<string>("altMarketingCode"),
+                CampaignCode = content.GetPropertyValue<string>("campaignCode"),
+                OverwritePersistingItem = content.GetPropertyValue<bool>("overwritePersistingItem"),
+                DoNotPersistAcrossVisits = content.GetPropertyValue<bool>("doNotPersistAcrossVisits"),
+                PersistDurationOverride = content.GetPropertyValue<int>("persistDurationOverride"),
+                PhoneNumber = content.GetPropertyValue<string>("phoneNumber"),
+                Referrer = content.GetPropertyValue<string>("referrer"),
+                UseAltCampaignQueryStringKey = content.GetPropertyValue<string>("useAltCampaignQueryStringKey")
             };
 
-            if (string.IsNullOrEmpty(result.phoneNumber)) // not a valid record if there is no telephone number
+            if (string.IsNullOrEmpty(result.PhoneNumber)) // not a valid record if there is no telephone number
                 return null;
 
             return result;
