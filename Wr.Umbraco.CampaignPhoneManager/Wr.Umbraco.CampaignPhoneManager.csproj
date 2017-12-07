@@ -247,6 +247,7 @@
     <Compile Include="AppConstants.cs" />
     <Compile Include="Events\UmbracoApplicationEvents.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
+    <Compile Include="Extensions\PropertyExtensions.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Models\CookieHolder.cs" />
     <Compile Include="Models\CampaignPhoneManagerModel.cs" />

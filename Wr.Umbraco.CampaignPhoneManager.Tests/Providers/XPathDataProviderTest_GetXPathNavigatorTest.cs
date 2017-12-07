@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers;
+using static Wr.Umbraco.CampaignPhoneManager.XmlHelper;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 {
@@ -10,13 +11,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
     public class XPathDataProviderTest_GetXPathNavigatorTest
     {
         [TestMethod]
-        public void XPathDataProvider_GetXPathNavigator_LoadDefaultSettings_WithAllProperties_ReturnValid()
+        public void XPathDataProvider_GetXPathNavigator_LoaddataModel_WithAllProperties_ReturnValid()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>() { new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -24,19 +25,19 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var act = method.GetDefaultSettings();
 
             // Assert
-            Assert.IsTrue(act.DefaultPhoneNumber == defaultSettings.DefaultPhoneNumber);
-            Assert.IsTrue(act.DefaultCampaignQueryStringKey == defaultSettings.DefaultCampaignQueryStringKey);
-            Assert.IsTrue(act.DefaultPersistDurationInDays == defaultSettings.DefaultPersistDurationInDays);
+            Assert.IsTrue(act.DefaultPhoneNumber == dataModel.DefaultPhoneNumber);
+            Assert.IsTrue(act.DefaultCampaignQueryStringKey == dataModel.DefaultCampaignQueryStringKey);
+            Assert.IsTrue(act.DefaultPersistDurationInDays == dataModel.DefaultPersistDurationInDays);
         }
 
         [TestMethod]
-        public void XPathDataProvider_GetXPathNavigator_LoadDefaultSettings_WithDefaultValueForMissingPropertyDefaultPersistDurationInDays_ReturnValid()
+        public void XPathDataProvider_GetXPathNavigator_LoaddataModel_WithDefaultValueForMissingPropertyDefaultPersistDurationInDays_ReturnValid()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>() { new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -44,19 +45,19 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var act = method.GetDefaultSettings();
 
             // Assert
-            Assert.IsTrue(act.DefaultPhoneNumber == defaultSettings.DefaultPhoneNumber);
-            Assert.IsTrue(act.DefaultCampaignQueryStringKey == defaultSettings.DefaultCampaignQueryStringKey);
+            Assert.IsTrue(act.DefaultPhoneNumber == dataModel.DefaultPhoneNumber);
+            Assert.IsTrue(act.DefaultCampaignQueryStringKey == dataModel.DefaultCampaignQueryStringKey);
             Assert.IsTrue(act.DefaultPersistDurationInDays == 30);
         }
 
         [TestMethod]
-        public void XPathDataProvider_GetXPathNavigator_LoadDefaultSettings_WithEmptyDefaultPhoneNumber_ReturnValid()
+        public void XPathDataProvider_GetXPathNavigator_LoaddataModel_WithEmptyDefaultPhoneNumber_ReturnValid()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>() { new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -68,13 +69,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         }
 
         [TestMethod]
-        public void XPathDataProvider_GetXPathNavigator_LoadDefaultSettings_WithMissingDefaultPhoneNumber_ReturnValid()
+        public void XPathDataProvider_GetXPathNavigator_LoaddataModel_WithMissingDefaultPhoneNumber_ReturnValid()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>() { new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -90,10 +91,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithNoRequestParameters_ReturnEmptyModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>() { new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -111,14 +112,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidDefaultSettingQueryStringValue_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "dummy" }
+                new CampaignDetail() { Id="1201",  PhoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                new CampaignDetail() { Id="1202",  PhoneNumber = "0800 222 2222", CampaignCode = "dummy" }
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -139,15 +140,15 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidDefaultSettingQueryStringValue_TestWithValidUseAltCampaignQueryStringKey_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "testcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
-                new CampaignDetail() { PhoneNumber = "0800 222 4444", CampaignCode = "testcode", UseAltCampaignQueryStringKey="asdasd" }
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
+                new CampaignDetail() { Id="1203", PhoneNumber = "0800 222 4444", CampaignCode = "testcode", UseAltCampaignQueryStringKey="asdasd" }
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -168,14 +169,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidUseAltCampaignQueryStringKeyQueryStringValue_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode", UseAltCampaignQueryStringKey="altqskey" },
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode", UseAltCampaignQueryStringKey="altqskey" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -196,14 +197,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidExactReferrerMatch_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer="www.mydomain.com" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer="www.mydomain.com" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -223,14 +224,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidPartialReferrerMatch_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer="mydomain.com" },
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer="mydomain.com" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 2222", CampaignCode = "dummy" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -250,15 +251,15 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithMultipleValidMatch_ReturnExactModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 6666", CampaignCode = "testcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 2222", CampaignCode = "testcode", Referrer="mydomain.com" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 6666", CampaignCode = "testcode" },
+                new CampaignDetail() { Id="1203", PhoneNumber = "0800 222 2222", CampaignCode = "testcode", Referrer="mydomain.com" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -279,14 +280,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithNonValidEntryPage_ReturnNoModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 6666", CampaignCode = "dummy" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 6666", CampaignCode = "dummy" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -305,14 +306,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidEntryPage_ReturnNoModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
-                new CampaignDetail() { PhoneNumber = "0800 222 6666", CampaignCode = "dummy", EntryPage = "home" },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode" },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 6666", CampaignCode = "dummy", EntryPage = "home" },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 
@@ -332,14 +333,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithValidEntryPage_WithValidReferrer_TestPriorityOrder_ReturnValidModel()
         {
             // Arrange
-            var defaultSettings = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            List<CampaignDetail> phoneNumbers = new List<CampaignDetail>()
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
             {
-                new CampaignDetail() { PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer = "mydomain.com", PriorityOrder=10 },
-                new CampaignDetail() { PhoneNumber = "0800 222 6666", CampaignCode = "dummy", EntryPage = "home", PriorityOrder=11 },
+                new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "altcode", Referrer = "mydomain.com", PriorityOrder=10 },
+                new CampaignDetail() { Id="1202", PhoneNumber = "0800 222 6666", CampaignCode = "dummy", EntryPage = "home", PriorityOrder=11 },
             };
 
-            var testPhoneManagerData = DataHelpers.GeneratePhoneManagerTestDataString(defaultSettings, phoneNumbers);
+            var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
             var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
 

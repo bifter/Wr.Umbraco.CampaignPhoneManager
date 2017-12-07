@@ -5,6 +5,9 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
+    /// <summary>
+    /// Data source access using Umbraco TypedContentAtXPath methods
+    /// </summary>
     public class XPathDataProviderSource_UmbracoTypedContent : IXPathDataProviderSource
     {
 
@@ -23,8 +26,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
 
             foreach (var item in content)
             {
-                result.DefaultCampaignQueryStringKey = item.GetPropertyValue<string>("campaignQueryStringKey");
-                result.DefaultPhoneNumber = item.GetPropertyValue<string>("defaultPhoneNumber");
+                result.DefaultCampaignQueryStringKey = item.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultCampaignQueryStringKey);
+                result.DefaultPhoneNumber = item.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPhoneNumber);
             }
 
             return new CampaignPhoneManagerModel();
@@ -39,8 +42,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
 
             return new List<CampaignDetail>();
         }
-
-       
 
         private List<CampaignDetail> ConvertIPublishedContentToModel(IEnumerable<IPublishedContent> content)
         {
@@ -60,15 +61,15 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             CampaignDetail result = new CampaignDetail()
             {
                 Id = content.Id.ToString(),
-                EntryPage = content.GetPropertyValue<string>("entryPage"),
-                AltMarketingCode = content.GetPropertyValue<string>("altMarketingCode"),
-                CampaignCode = content.GetPropertyValue<string>("campaignCode"),
-                OverwritePersistingItem = content.GetPropertyValue<bool>("overwritePersistingItem"),
-                DoNotPersistAcrossVisits = content.GetPropertyValue<bool>("doNotPersistAcrossVisits"),
-                PersistDurationOverride = content.GetPropertyValue<int>("persistDurationOverride"),
-                PhoneNumber = content.GetPropertyValue<string>("phoneNumber"),
-                Referrer = content.GetPropertyValue<string>("referrer"),
-                UseAltCampaignQueryStringKey = content.GetPropertyValue<string>("useAltCampaignQueryStringKey")
+                EntryPage = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.EntryPage),
+                AltMarketingCode = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.AltMarketingCode),
+                CampaignCode = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.CampaignCode),
+                OverwritePersistingItem = content.GetPropertyValue<bool>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.OverwritePersistingItem),
+                DoNotPersistAcrossVisits = content.GetPropertyValue<bool>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.DoNotPersistAcrossVisits),
+                PersistDurationOverride = content.GetPropertyValue<int>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PersistDurationOverride),
+                PhoneNumber = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PhoneNumber),
+                Referrer = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Referrer),
+                UseAltCampaignQueryStringKey = content.GetPropertyValue<string>(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey)
             };
 
             if (string.IsNullOrEmpty(result.PhoneNumber)) // not a valid record if there is no telephone number

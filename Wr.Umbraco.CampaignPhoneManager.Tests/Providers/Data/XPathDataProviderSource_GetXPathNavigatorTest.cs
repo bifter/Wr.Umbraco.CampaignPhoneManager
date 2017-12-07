@@ -12,7 +12,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         private string _testPhoneManagerData;
         public XPathDataProviderSource_GetXPathNavigatorTest(string testPhoneManagerData)
         {
-            _testPhoneManagerData = testPhoneManagerData;
+            _testPhoneManagerData = testPhoneManagerData.Replace("<?xml version=\"1.0\"?>", "");
         }
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)

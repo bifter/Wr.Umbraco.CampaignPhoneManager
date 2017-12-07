@@ -6,51 +6,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
 {
     public static class DataHelpers
     {
-        public static string GeneratePhoneManagerTestDataString(CampaignPhoneManagerModel defaultSettings, List<CampaignDetail> phoneNumbers)
-        {
-            string phoneManager_Start = "<campaignPhoneManager id=\"1152\" key=\"ee64b6fe-21dc-445c-9256-1d5497f91383\" parentID=\"1103\" level=\"2\" creatorID=\"0\" sortOrder=\"5\" createDate=\"2017-11-13T12:20:43\" updateDate=\"2017-11-27T17:38:26\" nodeName=\"Phone manager\" urlName=\"phone-manager\" path=\"-1,1103,1152\" isDoc=\"\" nodeType=\"1151\" creatorName=\"Joe Bloggs\" writerName=\"Joe Bloggs\" writerID=\"0\" template=\"0\" nodeTypeAlias=\"phoneManager\">";
-            string phoneManager_End = "</campaignPhoneManager>";
-            string phoneNumber_Start = "<campaignDetail id=\"{0}\" key=\"8b0d2b79-f219-47c0-9c44-a6dc9620{0}\" parentID=\"1152\" level=\"3\" creatorID=\"0\" sortOrder=\"0\" createDate=\"2017-11-27T17:37:57\" updateDate=\"2017-11-27T17:37:57\" nodeName=\"Test number\" urlName=\"test-number\" path=\"-1,1103,1152,1201\" isDoc=\"\" nodeType=\"1150\" creatorName=\"Joe Bloggs\" writerName=\"Joe Bloggs\" writerID=\"0\" template=\"0\" nodeTypeAlias=\"phoneNumber\">";
-            string phoneNumber_End = "</campaignDetail>";
-            int startingId = 1201;
-
-            if (defaultSettings != null && phoneNumbers != null)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append(phoneManager_Start);
-
-                // Add default settings - use null to not show element at all
-                sb.Append(FormatProperty(defaultSettings.DefaultPhoneNumber, "<defaultPhoneNumber>{0}</defaultPhoneNumber>"));
-                sb.Append(FormatProperty(defaultSettings.DefaultCampaignQueryStringKey, "<defaultCampaignQueryStringKey>{0}</defaultCampaignQueryStringKey>"));
-                sb.Append(FormatProperty(defaultSettings.DefaultPersistDurationInDays, "<defaultPersistDurationInDays>{0}</defaultPersistDurationInDays>"));
-
-                foreach (var item in phoneNumbers)
-                {
-                    sb.AppendFormat(phoneNumber_Start, startingId.ToString());
-
-                    // Add phoneNumber properties
-                    sb.Append(FormatProperty(item.PhoneNumber, "<phoneNumber>{0}</phoneNumber>"));
-                    sb.Append(FormatProperty(item.DoNotPersistAcrossVisits, "<doNotPersistAcrossVisits>{0}</doNotPersistAcrossVisits>"));
-                    sb.Append(FormatProperty(item.PersistDurationOverride, "<persistDurationOverride>{0}</persistDurationOverride>"));
-                    sb.Append(FormatProperty(item.Referrer, "<referrer>{0}</referrer>"));
-                    sb.Append(FormatProperty(item.CampaignCode, "<campaignCode>{0}</campaignCode>"));
-                    sb.Append(FormatProperty(item.EntryPage, "<entryPage>{0}</entryPage>"));
-                    sb.Append(FormatProperty(item.OverwritePersistingItem, "<overwritePersistingItem>{0}</overwritePersistingItem>"));
-                    sb.Append(FormatProperty(item.AltMarketingCode, "<altMarketingCode>{0}</altMarketingCode>"));
-                    sb.Append(FormatProperty(item.PriorityOrder, "<priorityOrder>{0}</priorityOrder>"));
-                    sb.Append(FormatProperty(item.UseAltCampaignQueryStringKey, "<useAltCampaignQueryStringKey>{0}</useAltCampaignQueryStringKey>"));
-
-                    sb.Append(phoneNumber_End);
-                    startingId++; // increment phoneNumber id
-                }
-                sb.Append(phoneManager_End);
-
-                return sb.ToString();
-            }
-
-            return string.Empty;
-        }
-
         /// <summary>
         /// Format the property automatically
         /// </summary>

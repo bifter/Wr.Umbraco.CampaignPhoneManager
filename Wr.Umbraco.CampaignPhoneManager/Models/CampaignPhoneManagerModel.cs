@@ -6,22 +6,25 @@ using System.Xml.Serialization;
 namespace Wr.Umbraco.CampaignPhoneManager.Models
 {
     /// <summary>
-    /// Clone of the PhoneManager doctype
+    /// Clone of the campaignPhoneManager doctype
     /// </summary>
 
     [Serializable()]
-    [XmlRoot("campaignPhoneManager")]
+    [XmlRoot(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager)]
     public class CampaignPhoneManagerModel
     {
-        [XmlElement("defaultCampaignQueryStringKey")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultCampaignQueryStringKey)]
+        [DefaultValue("")]
         public string DefaultCampaignQueryStringKey { get; set; }
 
-        [XmlElement("defaultPhoneNumber")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPhoneNumber)]
+        [DefaultValue("")]
         public string DefaultPhoneNumber { get; set; }
 
         [XmlIgnore]
         private int _defaultPersistDurationInDays;
-        [XmlElement("defaultPersistDurationInDays")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPersistDurationInDays)]
+        [DefaultValue(0)]
         public int DefaultPersistDurationInDays
         {
             get
@@ -37,7 +40,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
             }
         }
 
-        [XmlArray("campaignDetail")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignDetail)]
         public List<CampaignDetail> CampaignDetail { get; set; }
 
         public CampaignPhoneManagerModel()
@@ -47,77 +50,51 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
     }
 
     /// <summary>
-    /// Clone of the PhoneManager default settings fields
+    /// Clone of the campaignDetail Umbraco doctype
     /// </summary>
-    /*public class DefaultSettings
-    {
-        public string DefaultCampaignQueryStringKey { get; set; }
-        public string DefaultPhoneNumber { get; set; }
 
-        private int _defaultPersistDurationInDays;
-        public int DefaultPersistDurationInDays
-        {
-            get
-            {
-                if (_defaultPersistDurationInDays > 0)
-                    return _defaultPersistDurationInDays;
-
-                return 30; // default to 30 days if no default has been set in the phone manager settings
-            }
-            set
-            {
-                _defaultPersistDurationInDays = value;
-            }
-        }
-    }*/
-
-    /// <summary>
-    /// Clone of the PhoneNumber Umbraco doctype
-    /// </summary>
-    [Serializable()]
-    [XmlRoot("campaignDetail", IsNullable = true)]
     public class CampaignDetail
     {
-        [XmlAttribute("id")]
+        [XmlAttribute(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Id)]
         [DefaultValue("")]
         public string Id { get; set; }
 
-        [XmlElement("doNotPersistAcrossVisits")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.DoNotPersistAcrossVisits)]
         [DefaultValue(false)]
         public bool DoNotPersistAcrossVisits { get; set; }
 
-        [XmlElement("phoneNumber")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PhoneNumber)]
         [DefaultValue("")]
         public string PhoneNumber { get; set; }
 
-        [XmlElement("persistDurationOverride")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PersistDurationOverride)]
         [DefaultValue(0)]
         public int PersistDurationOverride { get; set; }
 
-        [XmlElement("referrer")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Referrer)]
         [DefaultValue("")]
         public string Referrer { get; set; }
 
-        [XmlElement("campaignCode")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.CampaignCode)]
         public string CampaignCode { get; set; }
 
-        [XmlElement("entryPage")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.EntryPage)]
         [DefaultValue("")]
         public string EntryPage { get; set; }
 
-        [XmlElement("overwritePersistingItem")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.OverwritePersistingItem)]
         [DefaultValue(false)]
         public bool OverwritePersistingItem { get; set; }
 
-        [XmlElement("altMarketingCode")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.AltMarketingCode)]
         [DefaultValue("")]
         public string AltMarketingCode { get; set; }
 
-        [XmlElement("priorityOrder")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PriorityOrder)]
         [DefaultValue(0)]
         public int PriorityOrder { get; set; }
 
-        [XmlElement("useAltCampaignQueryStringKey")]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey)]
         [DefaultValue("")]
         public string UseAltCampaignQueryStringKey { get; set; }
 

@@ -6,9 +6,11 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
+    /// <summary>
+    /// Data source using Umbracos GetXPathNavigator to get cached campaign phone manager content
+    /// </summary>
     public class XPathDataProviderSource_UmbracoGetXPathNavigator : IXPathDataProviderSource
     {
-
         private UmbracoHelper _umbracoHelper;
 
         public XPathDataProviderSource_UmbracoGetXPathNavigator()
