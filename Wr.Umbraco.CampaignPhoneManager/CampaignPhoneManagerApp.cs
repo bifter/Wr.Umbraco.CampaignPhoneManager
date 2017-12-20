@@ -1,4 +1,5 @@
 ﻿using System;
+using Wr.Umbraco.CampaignPhoneManager.Criteria;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers;
 
@@ -76,8 +77,8 @@ namespace Wr.Umbraco.CampaignPhoneManager
                 Referrer = _referrerProvider.GetReferrerOrNone(),
                 EntryPage = _umbracoProvider.GetCurrentPageId()
             };
-            
-            var foundNumber = _dataProvider.GetMatchingRecordFromPhoneManager(requestInfo, _querystringProvider.GetCleansedQueryStrings());
+
+            var foundNumber = new CriteriaProcessor().GetMatchingRecordFromPhoneManager();// _dataProvider.GetMatchingRecordFromPhoneManager(requestInfo, _querystringProvider.GetCleansedQueryStrings());
 
             return null;
         }

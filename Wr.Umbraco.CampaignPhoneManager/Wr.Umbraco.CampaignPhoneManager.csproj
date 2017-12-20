@@ -245,7 +245,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
+    <Compile Include="Criteria\AvailableCriteria.cs" />
+    <Compile Include="Criteria\CriteriaProcessor.cs" />
+    <Compile Include="Criteria\ICampaignPhoneManagerCriteria.cs" />
+    <Compile Include="Criteria\QueryString\QueryStringCriteria.cs" />
+    <Compile Include="Criteria\QueryString\QueryStringCriteria_DataSource_XPath.cs" />
     <Compile Include="Events\UmbracoApplicationEvents.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
     <Compile Include="Extensions\PropertyExtensions.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
@@ -260,6 +266,7 @@
     <Compile Include="Providers\Cookie\CookieProvider.cs" />
     <Compile Include="Providers\Data\IDataProvider.cs" />
     <Compile Include="Providers\Data\XPathDataProvider.cs" />
+    <Compile Include="Providers\Data\XPathDataProviderBase.cs" />
     <Compile Include="Providers\Data\XPathDataProviderSource\IXPathDataProviderSource.cs" />
     <Compile Include="Providers\Data\XPathDataProviderSource\XPathDataProviderSource_UmbracoGetXPathNavigator.cs" />
     <Compile Include="Providers\Data\XPathDataProviderSource\XPathDataProviderSource_UmbracoTypedContent.cs" />
@@ -274,7 +281,10 @@
     <Compile Include="Providers\Umbraco\IUmbracoProvider.cs" />
     <Compile Include="Providers\Umbraco\UmbracoProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Criteria\EntryPage\" />
+    <Folder Include="Criteria\Referrer\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

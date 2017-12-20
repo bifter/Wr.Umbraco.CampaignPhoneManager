@@ -11,7 +11,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
 
     [Serializable()]
     [XmlRoot(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager)]
-    public class CampaignPhoneManagerModel
+    public partial class CampaignPhoneManagerModel
     {
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultCampaignQueryStringKey)]
         [DefaultValue("")]
@@ -53,7 +53,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
     /// Clone of the campaignDetail Umbraco doctype
     /// </summary>
 
-    public class CampaignDetail
+    public partial class CampaignDetail
     {
         [XmlAttribute(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Id)]
         [DefaultValue("")]
@@ -102,7 +102,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
         /// Checks if the PhoneNumber data is usable
         /// </summary>
         /// <returns>bool</returns>
-        public bool IsValid()
+        public virtual bool IsValid()
         {           
             if (!string.IsNullOrEmpty(PhoneNumber)) // needs a minimum of a phone number
                 return true;
@@ -114,7 +114,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
         /// Checks if the PhoneNumber data is usable, and wants to be persisted (i.e. in a cookie)
         /// </summary>
         /// <returns>bool</returns>
-        public bool IsValidToSaveAsCookie()
+        public virtual bool IsValidToSaveAsCookie()
         {
             if (IsValid())
                 return !DoNotPersistAcrossVisits;

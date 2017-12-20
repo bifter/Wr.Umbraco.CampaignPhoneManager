@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
@@ -20,7 +21,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         /// <param name="requestInfo"></param>
         /// <param name="queryString"></param>
         /// <returns></returns>
-        CampaignDetail GetMatchingRecordFromPhoneManager(CampaignDetail requestInfo, NameValueCollection cleansedQuerystrings);
+        List<CampaignDetail> GetMatchingRecordsFromPhoneManager();// CampaignDetail requestInfo, NameValueCollection cleansedQuerystrings);
 
     }
     
