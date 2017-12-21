@@ -25,12 +25,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             return _defaultSettings;
         }
 
-        /*public virtual List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
-        {
-            throw new NotImplementedException("Virtual Method 'GetMatchingRecordsFromPhoneManager' not overridden.");
-        }*/
-
-        public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
+        public virtual CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
             var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()
                             .Select(xpath).Cast<XPathNavigator>().FirstOrDefault();
@@ -39,8 +34,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
 
             return (result != null) ? result : new CampaignPhoneManagerModel();
         }
-
-
 
         public virtual List<CampaignDetail> GetDataByXPath(string xpath)
         {

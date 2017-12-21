@@ -28,6 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         /// </summary>
         private static void CompileCriteriaList()
         {
+
             var type = typeof(ICampaignPhoneManagerCriteria);
             var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetLoadableTypes())

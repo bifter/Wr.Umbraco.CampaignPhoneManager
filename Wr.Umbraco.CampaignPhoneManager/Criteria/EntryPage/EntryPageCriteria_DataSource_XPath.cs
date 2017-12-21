@@ -2,7 +2,7 @@
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers;
 
-namespace Wr.Umbraco.CampaignPhoneManager.Criteria.EntryPage
+namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class EntryPageCriteria_DataSource_XPath : XPathDataProviderBase, IDataProvider
     {

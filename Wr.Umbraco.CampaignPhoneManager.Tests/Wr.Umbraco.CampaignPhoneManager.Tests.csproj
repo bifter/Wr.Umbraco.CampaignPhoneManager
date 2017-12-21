@@ -230,6 +230,7 @@
   <ItemGroup>
     <Compile Include="CampaignPhoneManagerAppTest.cs" />
     <Compile Include="CampaignPhoneManagerTest.cs" />
+    <Compile Include="Criteria\EntryPageCriteriaTest.cs" />
     <Compile Include="Data\DefaultMockData.cs" />
     <Compile Include="Helpers\DataHelpers.cs" />
     <Compile Include="Helpers\TestHelpers.cs" />

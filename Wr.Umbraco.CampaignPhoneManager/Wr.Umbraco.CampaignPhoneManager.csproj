@@ -246,6 +246,7 @@
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
     <Compile Include="Criteria\AvailableCriteria.cs" />
+    <Compile Include="Criteria\CriteriaDIHolder.cs" />
     <Compile Include="Criteria\CriteriaProcessor.cs" />
     <Compile Include="Criteria\EntryPage\EntryPageCriteria.cs" />
     <Compile Include="Criteria\EntryPage\EntryPageCriteria_DataSource_XPath.cs" />
