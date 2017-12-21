@@ -5,23 +5,17 @@ using Wr.Umbraco.CampaignPhoneManager.Providers;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public class QueryStringCriteria_DataSource_XPath : XPathDataProviderBase
+    public class QueryStringCriteria_DataSource_XPath : XPathDataProviderBase, IDataProvider
     {
-        //private readonly QueryStringProvider _querystringProvider;
         private readonly NameValueCollection _cleansedQueryStrings;
 
         public QueryStringCriteria_DataSource_XPath(NameValueCollection cleansedQueryStrings)
         {
-            //_querystringProvider = new QueryStringProvider(new HttpContextQueryStringProviderSource());
             _cleansedQueryStrings = cleansedQueryStrings;
         }
 
-        public override List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
+        public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
         {
-            // build up xpath query
-            string referrerSelector = string.Empty;
-            string entryPageSelector = string.Empty;
-
             List<CampaignDetail> foundRecords = new List<CampaignDetail>();
 
             // first process campaignCodes with the default CampaignQuerystringKey, i.e. with no useAltCampaignQuerystringKey
@@ -46,6 +40,5 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
             
             return foundRecords;
         }
-
     }
 }

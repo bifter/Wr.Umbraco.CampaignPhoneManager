@@ -247,6 +247,8 @@
     <Compile Include="AppConstants.cs" />
     <Compile Include="Criteria\AvailableCriteria.cs" />
     <Compile Include="Criteria\CriteriaProcessor.cs" />
+    <Compile Include="Criteria\EntryPage\EntryPageCriteria.cs" />
+    <Compile Include="Criteria\EntryPage\EntryPageCriteria_DataSource_XPath.cs" />
     <Compile Include="Criteria\ICampaignPhoneManagerCriteria.cs" />
     <Compile Include="Criteria\QueryString\QueryStringCriteria.cs" />
     <Compile Include="Criteria\QueryString\QueryStringCriteria_DataSource_XPath.cs" />
@@ -282,7 +284,6 @@
     <Compile Include="Providers\Umbraco\UmbracoProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Criteria\EntryPage\" />
     <Folder Include="Criteria\Referrer\" />
   </ItemGroup>
   <PropertyGroup>

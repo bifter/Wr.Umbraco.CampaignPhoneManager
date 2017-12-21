@@ -8,7 +8,7 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public abstract class XPathDataProviderBase : IDataProvider
+    public abstract class XPathDataProviderBase
     {
         internal const string baseXpath = "$ancestorOrSelf/ancestor-or-self::home[position()=1]//";
 
@@ -25,10 +25,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             return _defaultSettings;
         }
 
-        public virtual List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
+        /*public virtual List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
         {
-            throw new Exception("Virtual Method 'GetMatchingRecordsFromPhoneManager' not overridden.");
-        }
+            throw new NotImplementedException("Virtual Method 'GetMatchingRecordsFromPhoneManager' not overridden.");
+        }*/
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {

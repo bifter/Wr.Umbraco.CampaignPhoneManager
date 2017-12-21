@@ -6,7 +6,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class QueryStringCriteria : ICampaignPhoneManagerCriteria
     {
-        private IDataProvider _iQueryStringDataProvider;
+        private IDataProvider _iDataProvider;
         private readonly QueryStringProvider _querystringProvider;
 
         public QueryStringCriteria()
@@ -17,7 +17,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         public QueryStringCriteria(IDataProvider iQueryStringDataProvider, QueryStringProvider querystringProvider)
         {
             _querystringProvider = querystringProvider;
-            _iQueryStringDataProvider = iQueryStringDataProvider;
+            _iDataProvider = iQueryStringDataProvider;
         }
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
@@ -26,10 +26,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
             if (cleansedQueryStrings.Count > 0)
             {
-                if (_iQueryStringDataProvider == null)
-                    _iQueryStringDataProvider = new QueryStringCriteria_DataSource_XPath(cleansedQueryStrings);
+                if (_iDataProvider == null)
+                    _iDataProvider = new QueryStringCriteria_DataSource_XPath(cleansedQueryStrings);
 
-                return _iQueryStringDataProvider.GetMatchingRecordsFromPhoneManager();
+                return _iDataProvider.GetMatchingRecordsFromPhoneManager();
             }
 
             return new List<CampaignDetail>();
