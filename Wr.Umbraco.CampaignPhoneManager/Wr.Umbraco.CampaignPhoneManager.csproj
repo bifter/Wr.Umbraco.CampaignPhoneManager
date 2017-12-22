@@ -246,11 +246,12 @@
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
     <Compile Include="Criteria\AvailableCriteria.cs" />
-    <Compile Include="Criteria\CriteriaDIHolder.cs" />
+    <Compile Include="Criteria\CriteriaParameterHolder.cs" />
     <Compile Include="Criteria\CriteriaProcessor.cs" />
     <Compile Include="Criteria\EntryPage\EntryPageCriteria.cs" />
     <Compile Include="Criteria\EntryPage\EntryPageCriteria_DataSource_XPath.cs" />
     <Compile Include="Criteria\ICampaignPhoneManagerCriteria.cs" />
+    <Compile Include="Criteria\ICriteriaDataProvider.cs" />
     <Compile Include="Criteria\QueryString\QueryStringCriteria.cs" />
     <Compile Include="Criteria\QueryString\QueryStringCriteria_DataSource_XPath.cs" />
     <Compile Include="Events\UmbracoApplicationEvents.cs" />
@@ -268,11 +269,11 @@
     <Compile Include="Providers\Cookie\ICookieProviderSource.cs" />
     <Compile Include="Providers\Cookie\CookieProvider.cs" />
     <Compile Include="Providers\Data\IDataProvider.cs" />
+    <Compile Include="Providers\Data\IXPathCriteriaDataProvider.cs" />
     <Compile Include="Providers\Data\XPathDataProvider.cs" />
     <Compile Include="Providers\Data\XPathDataProviderBase.cs" />
     <Compile Include="Providers\Data\XPathDataProviderSource\IXPathDataProviderSource.cs" />
     <Compile Include="Providers\Data\XPathDataProviderSource\XPathDataProviderSource_UmbracoGetXPathNavigator.cs" />
-    <Compile Include="Providers\Data\XPathDataProviderSource\XPathDataProviderSource_UmbracoTypedContent.cs" />
     <Compile Include="Providers\QueryString\HttpContextQueryStringProviderSource.cs" />
     <Compile Include="Providers\QueryString\IQueryStringProviderSource.cs" />
     <Compile Include="Providers\QueryString\QueryStringProvider.cs" />

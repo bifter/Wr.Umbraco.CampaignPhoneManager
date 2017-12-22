@@ -12,15 +12,17 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     {
         internal const string baseXpath = "$ancestorOrSelf/ancestor-or-self::home[position()=1]//";
 
-        internal static string xpathHolder = string.Format("{0}{1}/{2}", baseXpath, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignDetail) + "[{0}]";
+        internal static string xpath4CampaignDetailHolder = string.Format("{0}{1}/{2}", baseXpath, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignDetail) + "[{0}]";
 
-        private CampaignPhoneManagerModel _defaultSettings { get; set; }
+        public static string xpath4DefaultCampaignPhoneManagerSettings = string.Format("{0}{1}", baseXpath, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager);
+
+        /*private CampaignPhoneManagerModel _defaultSettings { get; set; }
 
         public CampaignPhoneManagerModel GetDefaultSettings()
         {
             if (_defaultSettings == null)
             {
-                _defaultSettings = LoadDefaultSettings(string.Format("{0}{1}", baseXpath, AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignPhoneManager));
+                _defaultSettings = LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
             }
             return _defaultSettings;
         }
@@ -43,7 +45,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             List<CampaignDetail> result = XmlHelper.XPathNavigatorToModel(navigatorResult);
 
             return (result != null) ? result.ToList() : new List<CampaignDetail>();
-        }
+        }*/
 
     }
 }

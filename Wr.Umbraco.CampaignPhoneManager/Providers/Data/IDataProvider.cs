@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
@@ -9,6 +9,12 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// </summary>
     public interface IDataProvider
     {
+        /// <summary>
+        /// Return the interface to discover all associated Criteria classes
+        /// </summary>
+        /// <returns></returns>
+        Type InterfaceSelector();
+
         /// <summary>
         /// Returns the default phone manager setting set in the admin settings panel
         /// </summary>

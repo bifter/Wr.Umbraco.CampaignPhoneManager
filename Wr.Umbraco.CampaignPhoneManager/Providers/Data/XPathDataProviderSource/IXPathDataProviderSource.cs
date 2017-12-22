@@ -8,6 +8,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// </summary>
     public interface IXPathDataProviderSource
     {
+        CampaignPhoneManagerModel GetDefaultSettings();
+
         /// <summary>
         /// Get default settings from the source data store
         /// </summary>

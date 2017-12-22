@@ -9,13 +9,24 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// <summary>
     /// Data source using Umbracos GetXPathNavigator to get cached campaign phone manager content
     /// </summary>
-    public class XPathDataProviderSource_UmbracoGetXPathNavigator : IXPathDataProviderSource
+    public class XPathDataProviderSource_UmbracoGetXPathNavigator : XPathDataProviderBase, IXPathDataProviderSource
     {
         private UmbracoHelper _umbracoHelper;
 
         public XPathDataProviderSource_UmbracoGetXPathNavigator()
         {
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+        }
+
+        private CampaignPhoneManagerModel _defaultSettings { get; set; }
+
+        public CampaignPhoneManagerModel GetDefaultSettings()
+        {
+            if (_defaultSettings == null)
+            {
+                _defaultSettings = LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
+            }
+            return _defaultSettings;
         }
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)

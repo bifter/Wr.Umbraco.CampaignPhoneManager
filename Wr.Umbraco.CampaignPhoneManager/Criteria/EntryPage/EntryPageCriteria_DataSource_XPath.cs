@@ -4,13 +4,21 @@ using Wr.Umbraco.CampaignPhoneManager.Providers;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public class EntryPageCriteria_DataSource_XPath : XPathDataProviderBase, IDataProvider
+    public class EntryPageCriteria_DataSource_XPath : XPathDataProviderBase, IXPathCriteriaDataSource
     {
         private readonly string _entryPage;
+        private readonly IXPathDataProviderSource _dataSource;
 
-        public EntryPageCriteria_DataSource_XPath(string entryPage)
+        public EntryPageCriteria_DataSource_XPath(CriteriaParameterHolder criteriaParameters)
         {
-            _entryPage = entryPage;
+            _entryPage = criteriaParameters.RequestInfoNotIncludingQueryStrings.EntryPage;
+            _dataSource = new XPathDataProviderSource_UmbracoGetXPathNavigator();
+        }
+
+        public EntryPageCriteria_DataSource_XPath(CriteriaParameterHolder criteriaParameters, IXPathDataProviderSource dataSource)
+        {
+            _entryPage = criteriaParameters.RequestInfoNotIncludingQueryStrings.EntryPage;
+            _dataSource = dataSource;
         }
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
@@ -19,8 +27,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
             var entryPageSelector = string.Format("{0}='{1}'", AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.EntryPage, _entryPage);
 
-            string xpath = string.Format(xpathHolder, entryPageSelector);
-            foundRecords.AddRange(GetDataByXPath(xpath)); // add any matching records to the results
+            string xpath = string.Format(xpath4CampaignDetailHolder, entryPageSelector);
+            foundRecords.AddRange(_dataSource.GetDataByXPath(xpath)); // add any matching records to the results
 
             return foundRecords;
         }

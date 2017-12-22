@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using Wr.Umbraco.CampaignPhoneManager.Extensions;
+using Wr.Umbraco.CampaignPhoneManager.Providers;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public static class AvailableCriteria
+    public class AvailableCriteria
     {
-        private static readonly List<ICampaignPhoneManagerCriteria> CriteriaList = new List<ICampaignPhoneManagerCriteria>();
+        private readonly List<ICriteriaDataProvider> CriteriaList = new List<ICriteriaDataProvider>();
 
-        static AvailableCriteria()
+        public AvailableCriteria(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
         {
-            CompileCriteriaList();
+            CompileCriteriaList(criteriaParameters, iDataProvider);
         }
 
         /// <summary>
         /// Gets the available criteria
         /// </summary>
         /// <returns>Enumerable of available criteria</returns>
-        public static IEnumerable<ICampaignPhoneManagerCriteria> GetCriteriaList()
+        public IEnumerable<ICriteriaDataProvider> GetCriteriaList()
         {
             return CriteriaList;
         }
@@ -26,14 +27,15 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         /// <summary>
         /// Discover the loaded assemblies of type 'ICampaignPhoneManagerCriteria'
         /// </summary>
-        private static void CompileCriteriaList()
+        private void CompileCriteriaList(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
         {
 
-            var type = typeof(ICampaignPhoneManagerCriteria);
+            var type = iDataProvider.InterfaceSelector();// typeof(ICampaignPhoneManagerCriteria);
             var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a => !a.GlobalAssemblyCache)
                 .SelectMany(s => s.GetLoadableTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(x => Activator.CreateInstance(x) as ICampaignPhoneManagerCriteria);
+                .Select(x => Activator.CreateInstance(x, criteriaParameters) as ICriteriaDataProvider);
 
             foreach (var thisclass in criteriaClasses)
             {

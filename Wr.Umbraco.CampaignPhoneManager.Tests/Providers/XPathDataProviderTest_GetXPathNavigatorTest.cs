@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -39,7 +39,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -59,7 +59,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -77,7 +77,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -86,7 +86,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             Assert.IsTrue(string.IsNullOrEmpty(act.DefaultPhoneNumber));
         }
 
-
+        /*
         [TestMethod]
         public void XPathDataProvider_GetXPathNavigator_GetMatchingRecordFromPhoneManager_WithNoRequestParameters_ReturnEmptyModel()
         {
@@ -96,13 +96,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail();
             var queryStrings = new NameValueCollection();
 
             // Act
-            var foundPhoneNumber = method.GetMatchingRecordFromPhoneManager(requestInfo, queryStrings);
+            var foundPhoneNumber = method.GetMatchingRecordsFromPhoneManager(requestInfo, queryStrings);
 
             // Assert
             Assert.IsNull(foundPhoneNumber);
@@ -121,14 +121,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail();
             var queryStrings = new NameValueCollection();
             queryStrings.Add("fsource", "testcode");
 
             // Act
-            var foundPhoneNumber = method.GetMatchingRecordFromPhoneManager(requestInfo, queryStrings);
+            var foundPhoneNumber = method.GetMatchingRecordsFromPhoneManager(requestInfo, queryStrings);
 
             // Assert
             Assert.IsNotNull(foundPhoneNumber);
@@ -150,7 +150,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail();
             var queryStrings = new NameValueCollection();
@@ -178,7 +178,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail();
             var queryStrings = new NameValueCollection();
@@ -206,7 +206,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com" };
             var queryStrings = new NameValueCollection();
@@ -233,7 +233,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com" };
             var queryStrings = new NameValueCollection();
@@ -261,7 +261,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com" };
             var queryStrings = new NameValueCollection();
@@ -289,7 +289,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com", EntryPage = "home" };
             var queryStrings = new NameValueCollection();
@@ -315,7 +315,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com", EntryPage = "home" };
             var queryStrings = new NameValueCollection();
@@ -342,7 +342,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProvider(new XPathDataProviderSource_GetXPathNavigatorTest(testPhoneManagerData));
+            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
 
             var requestInfo = new CampaignDetail() { Referrer = "www.mydomain.com", EntryPage = "home" };
             var queryStrings = new NameValueCollection();
@@ -355,5 +355,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             Assert.IsNotNull(foundPhoneNumber);
             Assert.AreEqual(foundPhoneNumber.Id, "1202");
         }
+        */
     }
 }

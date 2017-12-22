@@ -10,22 +10,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         private IUmbracoProvider _umbracoProvider;
         private readonly string _entryPage;
 
-        public EntryPageCriteria()
+        public EntryPageCriteria(CriteriaParameterHolder criteriaParameters)
         {
-            _umbracoProvider = new UmbracoProvider();
-            _entryPage = _umbracoProvider.GetCurrentPageId();
-
-            _iDataProvider = new EntryPageCriteria_DataSource_XPath(_entryPage);
+            _iDataProvider = new XPathDataProvider(new EntryPageCriteria_DataSource_XPath(criteriaParameters));
         }
 
-        public EntryPageCriteria(CriteriaDIHolder criteriaDIHolder)
+        public EntryPageCriteria(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
         {
-            if (criteriaDIHolder != null)
-            {
-                _umbracoProvider = criteriaDIHolder.UmbracoProvider;
-                _entryPage = _umbracoProvider.GetCurrentPageId();
-                _iDataProvider = criteriaDIHolder.DataProvider;
-            }
+            _iDataProvider = iDataProvider;
         }
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()

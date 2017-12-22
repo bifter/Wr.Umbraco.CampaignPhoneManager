@@ -229,18 +229,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CampaignPhoneManagerAppTest.cs" />
-    <Compile Include="CampaignPhoneManagerTest.cs" />
+    <Compile Include="Criteria\CriteriaProcessorTest.cs" />
     <Compile Include="Criteria\EntryPageCriteriaTest.cs" />
-    <Compile Include="Data\DefaultMockData.cs" />
     <Compile Include="Helpers\DataHelpers.cs" />
     <Compile Include="Helpers\TestHelpers.cs" />
     <Compile Include="MockConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\Data\XPathDataProviderSource_GetXPathNavigatorTest.cs" />
-    <Compile Include="Providers\Data\XPathDataProviderSource_TestXml_OnlyForUnitTesting.cs" />
+    <Compile Include="Providers\Data\XPathDataProviderSource_GetXPathNavigatorMock.cs" />
     <Compile Include="Providers\QueryStringProviderTest.cs" />
     <Compile Include="Providers\XPathDataProviderTest_GetXPathNavigatorTest.cs" />
-    <Compile Include="Providers\XPathDataProviderTest_TestXml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -252,7 +249,9 @@
       <Name>Wr.Umbraco.CampaignPhoneManager</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -7,12 +7,23 @@ using Wr.Umbraco.CampaignPhoneManager.Providers;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 {
-    class XPathDataProviderSource_GetXPathNavigatorTest : IXPathDataProviderSource
+    class XPathDataProviderSource_GetXPathNavigatorMock : XPathDataProviderBase, IXPathDataProviderSource
     {
         private string _testPhoneManagerData;
-        public XPathDataProviderSource_GetXPathNavigatorTest(string testPhoneManagerData)
+        public XPathDataProviderSource_GetXPathNavigatorMock(string testPhoneManagerData)
         {
             _testPhoneManagerData = testPhoneManagerData.Replace("<?xml version=\"1.0\"?>", "");
+        }
+
+        private CampaignPhoneManagerModel _defaultSettings { get; set; }
+
+        public CampaignPhoneManagerModel GetDefaultSettings()
+        {
+            if (_defaultSettings == null)
+            {
+                _defaultSettings = LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
+            }
+            return _defaultSettings;
         }
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
