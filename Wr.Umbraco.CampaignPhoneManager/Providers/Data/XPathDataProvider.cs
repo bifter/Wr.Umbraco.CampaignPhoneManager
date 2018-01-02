@@ -7,17 +7,17 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// <summary>
     /// Logic for all XPathDataProvider Sources
     /// </summary>
-    public partial class XPathDataProvider : XPathDataProviderBase, IDataProvider
+    public class XPathDataProvider: XPathDataProviderBase, IDataProvider
     {
         private IXPathCriteriaDataProvider _dataProvider;
-        private IXPathDataProviderSource _dataSource;
+        private IXPathDataSource _dataSource;
 
         public XPathDataProvider()
         {
-            _dataSource = new XPathDataProviderSource_UmbracoGetXPathNavigator();
+            _dataSource = new XPathDataSource_UmbracoGetXPathNavigator();
         }
 
-        public XPathDataProvider(IXPathCriteriaDataProvider Provider)
+        public XPathDataProvider(IXPathCriteriaDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
         }
@@ -32,7 +32,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             return _dataSource.GetDefaultSettings();
         }
 
-        public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
+        public virtual List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
         {
             throw new NotImplementedException();
         }

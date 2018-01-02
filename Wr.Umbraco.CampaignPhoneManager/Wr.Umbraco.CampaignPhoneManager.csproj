@@ -249,11 +249,10 @@
     <Compile Include="Criteria\CriteriaParameterHolder.cs" />
     <Compile Include="Criteria\CriteriaProcessor.cs" />
     <Compile Include="Criteria\EntryPage\EntryPageCriteria.cs" />
-    <Compile Include="Criteria\EntryPage\EntryPageCriteria_DataSource_XPath.cs" />
     <Compile Include="Criteria\ICampaignPhoneManagerCriteria.cs" />
     <Compile Include="Criteria\ICriteriaDataProvider.cs" />
     <Compile Include="Criteria\QueryString\QueryStringCriteria.cs" />
-    <Compile Include="Criteria\QueryString\QueryStringCriteria_DataSource_XPath.cs" />
+    <Compile Include="Criteria\Referrer\ReferrerCriteria.cs" />
     <Compile Include="Events\UmbracoApplicationEvents.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
@@ -272,8 +271,8 @@
     <Compile Include="Providers\Data\IXPathCriteriaDataProvider.cs" />
     <Compile Include="Providers\Data\XPathDataProvider.cs" />
     <Compile Include="Providers\Data\XPathDataProviderBase.cs" />
-    <Compile Include="Providers\Data\XPathDataProviderSource\IXPathDataProviderSource.cs" />
-    <Compile Include="Providers\Data\XPathDataProviderSource\XPathDataProviderSource_UmbracoGetXPathNavigator.cs" />
+    <Compile Include="Providers\Data\XPathDataSource\IXPathDataSource.cs" />
+    <Compile Include="Providers\Data\XPathDataSource\XPathDataSource_UmbracoGetXPathNavigator.cs" />
     <Compile Include="Providers\QueryString\HttpContextQueryStringProviderSource.cs" />
     <Compile Include="Providers\QueryString\IQueryStringProviderSource.cs" />
     <Compile Include="Providers\QueryString\QueryStringProvider.cs" />
@@ -282,12 +281,15 @@
     <Compile Include="Providers\Referrer\ReferrerProvider.cs" />
     <Compile Include="Providers\Session\ISessionProvider.cs" />
     <Compile Include="Providers\Session\SessionProvider.cs" />
+    <Compile Include="Providers\Storage\IRepository.cs" />
+    <Compile Include="Providers\Storage\XPath\IXPathRepositoryImplementation_UmbracoXPathNavigator.cs" />
+    <Compile Include="Providers\Storage\XPath\IXPathRepositoryImplementation.cs" />
+    <Compile Include="Providers\Storage\XPath\XPathBase.cs" />
+    <Compile Include="Providers\Storage\XPath\XPathRepository.cs" />
     <Compile Include="Providers\Umbraco\IUmbracoProvider.cs" />
     <Compile Include="Providers\Umbraco\UmbracoProvider.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Criteria\Referrer\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

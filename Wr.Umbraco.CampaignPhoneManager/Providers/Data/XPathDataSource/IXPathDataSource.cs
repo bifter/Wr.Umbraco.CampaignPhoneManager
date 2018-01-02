@@ -6,7 +6,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// <summary>
     /// A separate Provider Source interface to allow easy unit testing
     /// </summary>
-    public interface IXPathDataProviderSource
+    public interface IXPathDataSource
     {
         CampaignPhoneManagerModel GetDefaultSettings();
 

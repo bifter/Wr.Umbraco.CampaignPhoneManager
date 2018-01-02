@@ -2,20 +2,20 @@
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
-namespace Wr.Umbraco.CampaignPhoneManager.Criteria
+namespace Wr.Umbraco.CampaignPhoneManager.Criteria.Referrer
 {
-    public class QueryStringCriteria : ICampaignPhoneManagerCriteria
+    public class ReferrerCriteria : ICampaignPhoneManagerCriteria
     {
         private IRepository _repository;
         private readonly CriteriaParameterHolder _criteriaParameters;
 
-        public QueryStringCriteria(CriteriaParameterHolder criteriaParameters)
+        public ReferrerCriteria(CriteriaParameterHolder criteriaParameters)
         {
             _criteriaParameters = criteriaParameters;
             _repository = new XPathRepository();
         }
 
-        public QueryStringCriteria(CriteriaParameterHolder criteriaParameters, IRepository repository)
+        public ReferrerCriteria(CriteriaParameterHolder criteriaParameters, IRepository repository)
         {
             _criteriaParameters = criteriaParameters;
             _repository = repository;
@@ -25,9 +25,9 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         {
             var cleansedQueryStrings = _criteriaParameters.CleansedQueryStrings;
 
-            if (cleansedQueryStrings.Count > 0)
+            if (!string.IsNullOrEmpty(_criteriaParameters.RequestInfo_NotIncludingQueryStrings.Referrer))
             {
-                return _repository.GetMatchingCriteriaRecords_QueryString(cleansedQueryStrings);
+                return _repository.GetMatchingCriteriaRecords_Referrer(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Referrer, _criteriaParameters.RequestInfo_NotIncludingQueryStrings.Referrer);
             }
 
             return new List<CampaignDetail>();

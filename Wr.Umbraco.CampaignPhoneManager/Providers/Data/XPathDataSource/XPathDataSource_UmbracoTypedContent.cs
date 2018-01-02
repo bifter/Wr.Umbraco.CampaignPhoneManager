@@ -8,12 +8,12 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// <summary>
     /// Data source access using Umbraco TypedContentAtXPath methods
     /// </summary>
-    public class XPathDataProviderSource_UmbracoTypedContent : IXPathDataProviderSource
+    public class XPathDataSource_UmbracoTypedContent : IXPathDataSource
     {
 
         private UmbracoHelper _umbracoHelper;
 
-        public XPathDataProviderSource_UmbracoTypedContent()
+        public XPathDataSource_UmbracoTypedContent()
         {
             _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
         }

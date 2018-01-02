@@ -76,7 +76,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             var criteriaParameters = new CriteriaParameterHolder()
             {
                  CleansedQueryStrings = _querystringProvider.GetCleansedQueryStrings(),
-                 RequestInfoNotIncludingQueryStrings =
+                 RequestInfo_NotIncludingQueryStrings =
                     new CampaignDetail()
                     {
                         EntryPage = _umbracoProvider.GetCurrentPageId(),

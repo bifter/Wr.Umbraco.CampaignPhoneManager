@@ -4,31 +4,10 @@ using System.Xml.XPath;
 using Umbraco.Web;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 
-namespace Wr.Umbraco.CampaignPhoneManager.Providers
+namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
 {
-    /// <summary>
-    /// Data source using Umbracos GetXPathNavigator to get cached campaign phone manager content
-    /// </summary>
-    public class XPathDataProviderSource_UmbracoGetXPathNavigator : XPathDataProviderBase, IXPathDataProviderSource
+    public class IXPathRepositoryImplementation_UmbracoXPathNavigator : IXPathRepositoryImplementation
     {
-        private UmbracoHelper _umbracoHelper;
-
-        public XPathDataProviderSource_UmbracoGetXPathNavigator()
-        {
-            _umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-        }
-
-        private CampaignPhoneManagerModel _defaultSettings { get; set; }
-
-        public CampaignPhoneManagerModel GetDefaultSettings()
-        {
-            if (_defaultSettings == null)
-            {
-                _defaultSettings = LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
-            }
-            return _defaultSettings;
-        }
-
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
             var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()

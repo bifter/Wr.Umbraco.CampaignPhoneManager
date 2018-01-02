@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Xml.XPath;
-using Umbraco.Web;
-using Wr.Umbraco.CampaignPhoneManager.Models;
-
-namespace Wr.Umbraco.CampaignPhoneManager.Providers
+﻿namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
 {
-    public abstract class XPathDataProviderBase
+    public abstract class XPathBase
     {
         internal const string baseXpath = "$ancestorOrSelf/ancestor-or-self::home[position()=1]//";
 

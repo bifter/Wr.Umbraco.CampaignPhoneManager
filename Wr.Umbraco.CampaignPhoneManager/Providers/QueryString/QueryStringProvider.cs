@@ -17,6 +17,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             _queryStringProviderSource = queryStringProviderSource;
         }
 
+        /// <summary>
+        /// To protect against malicious string injection - for XPath
+        /// </summary>
+        /// <returns></returns>
         public NameValueCollection GetCleansedQueryStrings()
         {
             var qs = _queryStringProviderSource.GetQueryStrings();

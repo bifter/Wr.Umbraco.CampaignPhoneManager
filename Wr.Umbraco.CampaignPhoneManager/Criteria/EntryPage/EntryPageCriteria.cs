@@ -1,30 +1,31 @@
 ﻿using System.Collections.Generic;
 using Wr.Umbraco.CampaignPhoneManager.Models;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class EntryPageCriteria : ICampaignPhoneManagerCriteria
     {
-        private IDataProvider _iDataProvider;
-        private IUmbracoProvider _umbracoProvider;
-        private readonly string _entryPage;
+        private IRepository _repository;
+        private readonly CriteriaParameterHolder _criteriaParameters;
 
         public EntryPageCriteria(CriteriaParameterHolder criteriaParameters)
         {
-            _iDataProvider = new XPathDataProvider(new EntryPageCriteria_DataSource_XPath(criteriaParameters));
+            _criteriaParameters = criteriaParameters;
+            _repository = new XPathRepository();
         }
 
-        public EntryPageCriteria(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
+        public EntryPageCriteria(CriteriaParameterHolder criteriaParameters, IRepository repository)
         {
-            _iDataProvider = iDataProvider;
+            _criteriaParameters = criteriaParameters;
+            _repository = repository;
         }
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
         {
-            if (!string.IsNullOrEmpty(_entryPage))
+            if (!string.IsNullOrEmpty(_criteriaParameters.RequestInfo_NotIncludingQueryStrings.EntryPage))
             {
-               return _iDataProvider.GetMatchingRecordsFromPhoneManager();
+               return _repository.GetMatchingRecords_Criteria_EntryPage(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.EntryPage, _criteriaParameters.RequestInfo_NotIncludingQueryStrings.EntryPage);
             }
 
             return new List<CampaignDetail>();

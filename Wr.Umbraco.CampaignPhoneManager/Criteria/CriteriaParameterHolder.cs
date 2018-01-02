@@ -5,7 +5,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public partial class CriteriaParameterHolder
     {
-        public CampaignDetail RequestInfoNotIncludingQueryStrings { get; set; }
+        public CampaignDetail RequestInfo_NotIncludingQueryStrings { get; set; }
+
+        /// <summary>
+        /// Included here mainly to allow for easier unit testing parts of the app
+        /// </summary>
         public NameValueCollection CleansedQueryStrings { get; set; }
     }
 }
