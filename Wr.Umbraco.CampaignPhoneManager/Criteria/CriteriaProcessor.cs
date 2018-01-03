@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Wr.Umbraco.CampaignPhoneManager.Models;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class CriteriaProcessor
     {
-        private IDataProvider _iDataProvider;
-        private CriteriaParameterHolder _criteriaParameters;
+        private readonly IRepository _repository;
+        private readonly CriteriaParameterHolder _criteriaParameters;
 
         public CriteriaProcessor(CriteriaParameterHolder criteriaParameters)
         {
-            _iDataProvider = new XPathDataProvider(); // default data provider
+            _repository = new XPathRepository(); // default data provider
             _criteriaParameters = criteriaParameters;
         }
 
-        public CriteriaProcessor(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider) // override default data provider
+        public CriteriaProcessor(CriteriaParameterHolder criteriaParameters, IRepository repository) // override default data provider
         {
-            _iDataProvider = iDataProvider;
+            _repository = repository;
             _criteriaParameters = criteriaParameters;
         }
 
@@ -27,9 +27,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
             List<CampaignDetail> foundRecords = new List<CampaignDetail>();
 
-            var availableCriteria = new AvailableCriteria(_criteriaParameters, _iDataProvider);
-
-            foreach (var item in availableCriteria.GetCriteriaList())
+            foreach (var item in AvailableCriteria.GetCriteriaList(_criteriaParameters, _repository))
             {
                 foundRecords.AddRange(item.GetMatchingRecordsFromPhoneManager());
             }

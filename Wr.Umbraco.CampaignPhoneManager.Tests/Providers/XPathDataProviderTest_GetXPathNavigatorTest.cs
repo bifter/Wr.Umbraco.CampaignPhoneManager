@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using Wr.Umbraco.CampaignPhoneManager.Models;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
+using Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage;
 using static Wr.Umbraco.CampaignPhoneManager.XmlHelper;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
@@ -15,11 +15,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         {
             // Arrange
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id="1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id="1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
             // Act
             var act = method.GetDefaultSettings();
@@ -35,11 +35,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         {
             // Arrange
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
             // Act
             var act = method.GetDefaultSettings();
@@ -55,11 +55,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         {
             // Arrange
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
             // Act
             var act = method.GetDefaultSettings();
@@ -73,11 +73,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         {
             // Arrange
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            var method = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
             // Act
             var act = method.GetDefaultSettings();

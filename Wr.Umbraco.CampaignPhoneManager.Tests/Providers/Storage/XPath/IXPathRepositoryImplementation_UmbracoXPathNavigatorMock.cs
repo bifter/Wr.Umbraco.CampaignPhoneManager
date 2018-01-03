@@ -1,29 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.XPath;
 using Wr.Umbraco.CampaignPhoneManager.Models;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
-namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
+namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage
 {
-    class XPathDataProviderSource_GetXPathNavigatorMock : XPathDataProviderBase, IXPathDataProviderSource
+    public class IXPathRepositoryImplementation_UmbracoXPathNavigatorMock : IXPathRepositoryImplementation
     {
-        private string _testPhoneManagerData;
-        public XPathDataProviderSource_GetXPathNavigatorMock(string testPhoneManagerData)
+        private readonly string _testPhoneManagerData;
+
+        public IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(string testPhoneManagerData)
         {
             _testPhoneManagerData = testPhoneManagerData.Replace("<?xml version=\"1.0\"?>", "");
-        }
-
-        private CampaignPhoneManagerModel _defaultSettings { get; set; }
-
-        public CampaignPhoneManagerModel GetDefaultSettings()
-        {
-            if (_defaultSettings == null)
-            {
-                _defaultSettings = LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
-            }
-            return _defaultSettings;
         }
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)

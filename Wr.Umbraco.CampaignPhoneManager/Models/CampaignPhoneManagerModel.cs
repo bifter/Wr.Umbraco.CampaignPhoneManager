@@ -63,9 +63,9 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
         [DefaultValue(false)]
         public bool DoNotPersistAcrossVisits { get; set; }
 
-        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PhoneNumber)]
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.TelephoneNumber)]
         [DefaultValue("")]
-        public string PhoneNumber { get; set; }
+        public string TelephoneNumber { get; set; }
 
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.PersistDurationOverride)]
         [DefaultValue(0)]
@@ -104,7 +104,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
         /// <returns>bool</returns>
         public virtual bool IsValid()
         {           
-            if (!string.IsNullOrEmpty(PhoneNumber)) // needs a minimum of a phone number
+            if (!string.IsNullOrEmpty(TelephoneNumber)) // needs a minimum of a phone number
                 return true;
 
             return false;

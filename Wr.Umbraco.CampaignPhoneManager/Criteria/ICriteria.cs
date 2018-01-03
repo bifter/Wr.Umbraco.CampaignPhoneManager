@@ -3,7 +3,7 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public interface ICriteriaDataProvider
+    public interface ICriteria
     {
         List<CampaignDetail> GetMatchingRecordsFromPhoneManager();
     }

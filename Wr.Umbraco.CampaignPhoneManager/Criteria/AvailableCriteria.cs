@@ -2,45 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using Wr.Umbraco.CampaignPhoneManager.Extensions;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public class AvailableCriteria
+    public static class AvailableCriteria
     {
-        private readonly List<ICriteriaDataProvider> CriteriaList = new List<ICriteriaDataProvider>();
+        private static IEnumerable<ICriteria> _criteriaList;
+        private static IRepository _repository;
 
-        public AvailableCriteria(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
-        {
-            CompileCriteriaList(criteriaParameters, iDataProvider);
-        }
+        static AvailableCriteria() { }
 
         /// <summary>
         /// Gets the available criteria
         /// </summary>
         /// <returns>Enumerable of available criteria</returns>
-        public IEnumerable<ICriteriaDataProvider> GetCriteriaList()
+        public static IEnumerable<ICriteria> GetCriteriaList(CriteriaParameterHolder criteriaParameters, IRepository repository)
         {
-            return CriteriaList;
+            if (_repository == null)
+                _repository = repository;
+
+            if (_criteriaList == null)
+                _criteriaList = CompileCriteriaList(criteriaParameters);
+
+            return _criteriaList;
         }
 
         /// <summary>
         /// Discover the loaded assemblies of type 'ICampaignPhoneManagerCriteria'
         /// </summary>
-        private void CompileCriteriaList(CriteriaParameterHolder criteriaParameters, IDataProvider iDataProvider)
+        private static IEnumerable<ICriteria> CompileCriteriaList(CriteriaParameterHolder criteriaParameters)
         {
 
-            var type = iDataProvider.InterfaceSelector();// typeof(ICampaignPhoneManagerCriteria);
+            var type = typeof(ICampaignPhoneManagerCriteria);
             var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(a => !a.GlobalAssemblyCache)
                 .SelectMany(s => s.GetLoadableTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(x => Activator.CreateInstance(x, criteriaParameters) as ICriteriaDataProvider);
+                .Select(x => Activator.CreateInstance(x, criteriaParameters, _repository) as ICriteria);
 
-            foreach (var thisclass in criteriaClasses)
-            {
-                CriteriaList.Add(thisclass);
-            }
+            return criteriaClasses?.ToList();
         }
     }
 }

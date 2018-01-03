@@ -2,6 +2,8 @@
 {
     public static class AppConstants
     {
+        public const string LastResortPhoneNumberPlaceholder = "XXX XXX XXXX";
+
         public static class SessionKeys
         {
             public const string PM_Session = "umbPMSess";
@@ -14,7 +16,6 @@
             public const string SubKey_CampaignCode = "umbPM_CC";
             public const string SubKey_AltMarketingCode = "umbPM_AMC";
         }
-
         
         public static class UmbracoDocTypeAliases
         {
@@ -31,7 +32,7 @@
             {
                 public const string Id = "id";
                 public const string DoNotPersistAcrossVisits = "doNotPersistAcrossVisits";
-                public const string PhoneNumber = "phoneNumber";
+                public const string TelephoneNumber = "telephoneNumber";
                 public const string PersistDurationOverride = "persistDurationOverride";
                 public const string Referrer = "referrer";
                 public const string CampaignCode = "campaignCode";

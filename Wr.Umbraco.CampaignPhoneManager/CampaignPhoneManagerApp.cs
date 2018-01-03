@@ -2,13 +2,14 @@
 using Wr.Umbraco.CampaignPhoneManager.Criteria;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager
 {
     public class CampaignPhoneManagerApp
     {
         private CookieProvider _cookieProvider;
-        private readonly IDataProvider _dataProvider;
+        private readonly IRepository _repository;
         private readonly QueryStringProvider _querystringProvider;
         private readonly ReferrerProvider _referrerProvider;
         private ISessionProvider _sessionProvider;
@@ -22,18 +23,19 @@ namespace Wr.Umbraco.CampaignPhoneManager
         /// </summary>
         public CampaignPhoneManagerApp()
         {
+            // default providers/repository
             _cookieProvider = new CookieProvider(new HttpContextCookieProviderSource());
-            _dataProvider = new XPathDataProvider();
+            _repository = new XPathRepository();
             _querystringProvider = new QueryStringProvider(new HttpContextQueryStringProviderSource());
             _referrerProvider = new ReferrerProvider(new HttpContextReferrerProviderSource());
             _sessionProvider = new SessionProvider();
             _umbracoProvider = new UmbracoProvider();
         }
 
-        public CampaignPhoneManagerApp(CookieProvider cookieProvider, IDataProvider dataProvider, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
+        public CampaignPhoneManagerApp(CookieProvider cookieProvider, IRepository repository, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
         {
             _cookieProvider = cookieProvider;
-            _dataProvider = dataProvider;
+            _repository = repository;
             _querystringProvider = querystringProvider;
             _referrerProvider = referrerProvider;
             _sessionProvider = sessionProvider;
@@ -84,7 +86,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
                     }
             };
 
-            var foundNumber = new CriteriaProcessor(criteriaParameters).GetMatchingRecordFromPhoneManager();// _dataProvider.GetMatchingRecordFromPhoneManager(requestInfo, _querystringProvider.GetCleansedQueryStrings());
+            var foundNumber = new CriteriaProcessor(criteriaParameters).GetMatchingRecordFromPhoneManager();
 
             return null;
         }
@@ -119,7 +121,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
-                    PhoneNumber = foundRecord.PhoneNumber,
+                    PhoneNumber = foundRecord.TelephoneNumber,
                     CampaignCode = foundRecord.CampaignCode,
                     AltMarketingCode = foundRecord.AltMarketingCode
                 };
@@ -128,7 +130,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
                 {
                     result.OutputCookieHolder = new CookieHolder()
                     {
-                        Expires = DateTime.Today.AddDays((foundRecord.PersistDurationOverride > 0) ? foundRecord.PersistDurationOverride : _dataProvider.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
+                        Expires = DateTime.Today.AddDays((foundRecord.PersistDurationOverride > 0) ? foundRecord.PersistDurationOverride : _repository.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
                         Model = result.OutputModelResult
                     };
                 }
@@ -137,11 +139,11 @@ namespace Wr.Umbraco.CampaignPhoneManager
             }
 
             // check if a default phone number has been set in the admin system
-            if (!string.IsNullOrEmpty(_dataProvider.GetDefaultSettings()?.DefaultPhoneNumber ?? string.Empty))
+            if (!string.IsNullOrEmpty(_repository.GetDefaultSettings()?.DefaultPhoneNumber ?? string.Empty))
             {
                 result.OutputModelResult = new OutputModel()
                 {
-                    PhoneNumber = _dataProvider.GetDefaultSettings()?.DefaultPhoneNumber
+                    PhoneNumber = _repository.GetDefaultSettings()?.DefaultPhoneNumber
                 };
                 result.OutputResultSource = OutputSource.DefaultNumberFromAdmin;
                 return result;
@@ -150,7 +152,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             // as a last resort, output placeholder phone number
             result.OutputModelResult = new OutputModel()
             {
-                PhoneNumber = "XXX XXX XXXX"
+                PhoneNumber = AppConstants.LastResortPhoneNumberPlaceholder
             };
 
             result.OutputResultSource = OutputSource.LastResortPlaceholder;

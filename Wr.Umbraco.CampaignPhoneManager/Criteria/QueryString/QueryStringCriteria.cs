@@ -23,14 +23,30 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
         {
+            List<CampaignDetail> foundRecords = new List<CampaignDetail>();
+
             var cleansedQueryStrings = _criteriaParameters.CleansedQueryStrings;
 
-            if (cleansedQueryStrings.Count > 0)
+            if (cleansedQueryStrings?.HasKeys() ?? false)
             {
-                return _repository.GetMatchingCriteriaRecords_QueryString(cleansedQueryStrings);
+                var foundDefaultCampaignQSValue = cleansedQueryStrings[_repository.GetDefaultSettings().DefaultCampaignQueryStringKey] ?? string.Empty;
+
+                if (!string.IsNullOrEmpty(foundDefaultCampaignQSValue))
+                {
+                    foundRecords.AddRange(_repository.GetMatchingCriteriaRecords_QueryString_UsingDefaultCampaignQSKey(
+                        foundDefaultCampaignQSValue,
+                        AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.CampaignCode,
+                        AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey, cleansedQueryStrings
+                        ));
+                }
+
+                foundRecords.AddRange(_repository.GetMatchingCriteriaRecords_QueryString_UsingAltCampaignQueryStringKey(
+                        AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.CampaignCode,
+                        AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey, cleansedQueryStrings
+                        ));
             }
 
-            return new List<CampaignDetail>();
+            return foundRecords;
         }
     }
 }

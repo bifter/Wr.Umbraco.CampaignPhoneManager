@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Wr.Umbraco.CampaignPhoneManager.Criteria;
 using Wr.Umbraco.CampaignPhoneManager.Models;
-using Wr.Umbraco.CampaignPhoneManager.Providers;
-using Wr.Umbraco.CampaignPhoneManager.Tests.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
+using Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage;
 using static Wr.Umbraco.CampaignPhoneManager.XmlHelper;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
@@ -18,18 +18,18 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            IXPathDataProviderSource _dataSource = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
                 CleansedQueryStrings = null,
-                RequestInfoNotIncludingQueryStrings = new CampaignDetail() {}
+                RequestInfo_NotIncludingQueryStrings = new CampaignDetail() {}
             };
 
-            var criteria = new EntryPageCriteria_DataSource_XPath(criteriaParameters, _dataSource);
+            var criteria = new EntryPageCriteria(criteriaParameters, _repository);
 
             // Act
             var results = criteria.GetMatchingRecordsFromPhoneManager();
@@ -45,18 +45,18 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", PhoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="Homepage" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="Homepage" } };
             var testPhoneManagerData = SerializeXml.ToString(dataModel);
 
-            IXPathDataProviderSource _dataSource = new XPathDataProviderSource_GetXPathNavigatorMock(testPhoneManagerData);
+            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
                 CleansedQueryStrings = null,
-                RequestInfoNotIncludingQueryStrings = new CampaignDetail() { EntryPage = dataModel.CampaignDetail.First().EntryPage }
+                RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { EntryPage = dataModel.CampaignDetail.First().EntryPage }
             };
 
-            var criteria = new EntryPageCriteria_DataSource_XPath(criteriaParameters, _dataSource);
+            var criteria = new EntryPageCriteria(criteriaParameters, _repository);
 
             // Act
             var results = criteria.GetMatchingRecordsFromPhoneManager();

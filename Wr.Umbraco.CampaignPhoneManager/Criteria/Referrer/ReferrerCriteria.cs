@@ -2,7 +2,7 @@
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
-namespace Wr.Umbraco.CampaignPhoneManager.Criteria.Referrer
+namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class ReferrerCriteria : ICampaignPhoneManagerCriteria
     {
@@ -22,9 +22,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria.Referrer
         }
 
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
-        {
-            var cleansedQueryStrings = _criteriaParameters.CleansedQueryStrings;
-
+        { 
             if (!string.IsNullOrEmpty(_criteriaParameters.RequestInfo_NotIncludingQueryStrings.Referrer))
             {
                 return _repository.GetMatchingCriteriaRecords_Referrer(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Referrer, _criteriaParameters.RequestInfo_NotIncludingQueryStrings.Referrer);
