@@ -5,16 +5,16 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
     public class CookieProvider
     {
-        ICookieProviderSource _cookieProviderSource;
+        ICookieImplementation _cookieImplementation;
 
         public CookieProvider()
         {
-            _cookieProviderSource = new HttpContextCookieProviderSource();
+            _cookieImplementation = new HttpContextCookieImplementation();
         }
 
-        public CookieProvider(ICookieProviderSource cookieProviderSource)
+        public CookieProvider(ICookieImplementation cookieImplementation)
         {
-            _cookieProviderSource = cookieProviderSource;
+            _cookieImplementation = cookieImplementation;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         /// <returns>Populated CookieHolder</returns>
         public CookieHolder GetCookie()
         {
-            var cookie = _cookieProviderSource.GetCookie(AppConstants.CookieKeys.CookieMainKey);
+            var cookie = _cookieImplementation.GetCookie(AppConstants.CookieKeys.CookieMainKey);
             if (cookie != null)
             {
                 if (cookie.HasKeys)
@@ -58,7 +58,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             cookie.Values[AppConstants.CookieKeys.SubKey_AltMarketingCode] = model.Model.AltMarketingCode;
             cookie.Expires = model.Expires;
 
-            _cookieProviderSource.SetCookie(cookie);
+            _cookieImplementation.SetCookie(cookie);
         }
     }
 }

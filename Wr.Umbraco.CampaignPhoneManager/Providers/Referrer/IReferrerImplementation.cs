@@ -3,7 +3,7 @@
     /// <summary>
     /// A separate Provider Source interface to allow easy unit testing
     /// </summary>
-    public interface IReferrerProviderSource
+    public interface IReferrerImplementation
     {
         /// <summary>
         /// Return the current referrer domain, not including local referrals

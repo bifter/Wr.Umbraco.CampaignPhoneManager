@@ -2,7 +2,7 @@
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public class HttpContextReferrerProviderSource : IReferrerProviderSource
+    public class HttpContextReferrerImplementation : IReferrerImplementation
     {
         public string GetReferrer()
         {

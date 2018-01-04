@@ -18,7 +18,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
             // Act
-            var results = criteria.GetCleansedQueryStrings();
+            var results = criteria.GetQueryStrings();
 
             // Assert
             Assert.IsNotNull(results);
@@ -33,7 +33,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
             // Act
-            var results = criteria.GetCleansedQueryStrings();
+            var results = criteria.GetQueryStrings();
 
             // Assert
             Assert.IsNotNull(results);
@@ -51,7 +51,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
             // Act
-            var results = criteria.GetCleansedQueryStrings();
+            var results = criteria.GetQueryStrings();
 
             // Assert
             Assert.IsTrue(results.Count == 1);
@@ -71,7 +71,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
             // Act
-            var results = criteria.GetCleansedQueryStrings();
+            var results = criteria.GetQueryStrings();
 
             // Assert
             Assert.IsTrue(results.Count == 1);
@@ -82,9 +82,9 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
 
         #region Mocks
 
-        public static Mock<IQueryStringProviderSource> MockQueryStringProviderSource(NameValueCollection querystrings)
+        public static Mock<IQueryStringImplementation> MockQueryStringProviderSource(NameValueCollection querystrings)
         {
-            var mock = new Mock<IQueryStringProviderSource>();
+            var mock = new Mock<IQueryStringImplementation>();
 
             mock.Setup(x => x.GetQueryStrings()).Returns(querystrings);
 

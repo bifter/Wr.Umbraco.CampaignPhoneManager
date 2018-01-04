@@ -17,7 +17,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id="1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
@@ -37,7 +37,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
@@ -57,7 +57,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 
@@ -75,7 +75,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             var method = new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testPhoneManagerData));
 

@@ -6,10 +6,12 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
     public class QueryStringCriteria : ICampaignPhoneManagerCriteria
     {
-        private IRepository _repository;
+        //private IRepository _repository;
         private readonly CriteriaParameterHolder _criteriaParameters;
 
-        public QueryStringCriteria(CriteriaParameterHolder criteriaParameters)
+        public QueryStringCriteria() { }
+
+        /*public QueryStringCriteria(CriteriaParameterHolder criteriaParameters)
         {
             _criteriaParameters = criteriaParameters;
             _repository = new XPathRepository();
@@ -19,9 +21,9 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         {
             _criteriaParameters = criteriaParameters;
             _repository = repository;
-        }
+        }*/
 
-        public List<CampaignDetail> GetMatchingRecordsFromPhoneManager()
+        public List<CampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)
         {
             List<CampaignDetail> foundRecords = new List<CampaignDetail>();
 

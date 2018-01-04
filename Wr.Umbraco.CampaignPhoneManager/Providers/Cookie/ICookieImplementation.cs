@@ -5,7 +5,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
     /// <summary>
     /// Inferface for Provider Source to allow for easy unit testing
     /// </summary>
-    public interface ICookieProviderSource
+    public interface ICookieImplementation
     {
         /// <summary>
         /// Get cookie data

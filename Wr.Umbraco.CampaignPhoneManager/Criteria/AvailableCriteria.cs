@@ -6,10 +6,10 @@ using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 {
-    public static class AvailableCriteria
+    public class AvailableCriteria
     {
-        private static IEnumerable<ICriteria> _criteriaList;
-        private static IRepository _repository;
+        private static IEnumerable<ICampaignPhoneManagerCriteria> _criteriaList;
+        //private static IRepository _repository;
 
         static AvailableCriteria() { }
 
@@ -17,13 +17,21 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         /// Gets the available criteria
         /// </summary>
         /// <returns>Enumerable of available criteria</returns>
-        public static IEnumerable<ICriteria> GetCriteriaList(CriteriaParameterHolder criteriaParameters, IRepository repository)
+        /*public static IEnumerable<ICampaignPhoneManagerCriteria> GetCriteriaList(CriteriaParameterHolder criteriaParameters, IRepository repository)
         {
             if (_repository == null)
                 _repository = repository;
 
             if (_criteriaList == null)
-                _criteriaList = CompileCriteriaList(criteriaParameters);
+                _criteriaList = CompileCriteriaList();
+
+            return _criteriaList;
+        }*/
+
+        public static IEnumerable<ICampaignPhoneManagerCriteria> GetCriteriaList()
+        {
+            if (_criteriaList == null)
+                _criteriaList = CompileCriteriaList();
 
             return _criteriaList;
         }
@@ -31,7 +39,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         /// <summary>
         /// Discover the loaded assemblies of type 'ICampaignPhoneManagerCriteria'
         /// </summary>
-        private static IEnumerable<ICriteria> CompileCriteriaList(CriteriaParameterHolder criteriaParameters)
+        /*private static IEnumerable<ICampaignPhoneManagerCriteria> CompileCriteriaList(CriteriaParameterHolder criteriaParameters)
         {
 
             var type = typeof(ICampaignPhoneManagerCriteria);
@@ -39,7 +47,20 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
                 .Where(a => !a.GlobalAssemblyCache)
                 .SelectMany(s => s.GetLoadableTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass)
-                .Select(x => Activator.CreateInstance(x, criteriaParameters, _repository) as ICriteria);
+                .Select(x => Activator.CreateInstance(x, criteriaParameters, _repository) as ICampaignPhoneManagerCriteria);
+
+            return criteriaClasses?.ToList();
+        }*/
+
+        private static IEnumerable<ICampaignPhoneManagerCriteria> CompileCriteriaList()
+        {
+
+            var type = typeof(ICampaignPhoneManagerCriteria);
+            var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a => !a.GlobalAssemblyCache)
+                .SelectMany(s => s.GetLoadableTypes())
+                .Where(p => type.IsAssignableFrom(p) && p.IsClass)
+                .Select(x => Activator.CreateInstance(x) as ICampaignPhoneManagerCriteria);
 
             return criteriaClasses?.ToList();
         }

@@ -233,6 +233,7 @@
     <Compile Include="Criteria\EntryPageCriteriaTest.cs" />
     <Compile Include="Criteria\QueryStringCriteriaTest.cs" />
     <Compile Include="Criteria\ReferrerCriteriaTest.cs" />
+    <Compile Include="Extensions\GeneralExtensionTest.cs" />
     <Compile Include="Helpers\DataHelpers.cs" />
     <Compile Include="Helpers\TestHelpers.cs" />
     <Compile Include="MockConstants.cs" />

@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -29,10 +29,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() {}
             };
 
-            var criteria = new EntryPageCriteria(criteriaParameters, _repository);
+            var criteria = new EntryPageCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);
@@ -46,7 +46,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="Homepage" } };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();// SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -56,10 +56,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { EntryPage = dataModel.CampaignDetail.First().EntryPage }
             };
 
-            var criteria = new EntryPageCriteria(criteriaParameters, _repository);
+            var criteria = new EntryPageCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);

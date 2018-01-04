@@ -65,7 +65,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
         {
             List<CampaignDetail> foundRecords = new List<CampaignDetail>();
 
-            var _selector = string.Format("{0}='{1}'", referrerPropertyAlias, referrer);
+            // look for records with the referrer property which match the end of the request referrer string
+            // i.e. if the incoming request referrer is 'www.domain.co.uk', then a record with 'domain.co.uk' in the referrer field would match
+
+            // 'ends-with' match. Note: XPath 1.0 doesn't implement 'ends-with' so we have to use substring workaround.
+            var _selector = string.Format("boolean(substring('{0}', string-length('{0}') - string-length({1}/text()) +1) = {1}/text())", referrer, referrerPropertyAlias);
+
+            // Basic match
+            //var _selector = string.Format("{0}='{1}'", referrerPropertyAlias, referrer);
 
             string xpath = string.Format(xpath4CampaignDetailHolder, _selector);
             foundRecords.AddRange(_xpathImplementation.GetDataByXPath(xpath)); // add any matching records to the results

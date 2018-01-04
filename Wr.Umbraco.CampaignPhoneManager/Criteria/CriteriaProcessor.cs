@@ -10,12 +10,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
         private readonly IRepository _repository;
         private readonly CriteriaParameterHolder _criteriaParameters;
 
-        public CriteriaProcessor(CriteriaParameterHolder criteriaParameters)
-        {
-            _repository = new XPathRepository(); // default data provider
-            _criteriaParameters = criteriaParameters;
-        }
-
         public CriteriaProcessor(CriteriaParameterHolder criteriaParameters, IRepository repository) // override default data provider
         {
             _repository = repository;
@@ -24,12 +18,11 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
         public CampaignDetail GetMatchingRecordFromPhoneManager()
         {
-
             List<CampaignDetail> foundRecords = new List<CampaignDetail>();
 
-            foreach (var item in AvailableCriteria.GetCriteriaList(_criteriaParameters, _repository))
+            foreach (var item in AvailableCriteria.GetCriteriaList())
             {
-                foundRecords.AddRange(item.GetMatchingRecordsFromPhoneManager());
+                foundRecords.AddRange(item.GetMatchingRecordsFromPhoneManager(_criteriaParameters, _repository));
             }
 
             // work out which record to use

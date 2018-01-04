@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -29,10 +29,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { }
             };
 
-            var criteria = new ReferrerCriteria(criteriaParameters, _repository);
+            var criteria = new ReferrerCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);
@@ -46,7 +46,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer="google.co.uk" } };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -56,10 +56,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "bing.com" }
             };
 
-            var criteria = new ReferrerCriteria(criteriaParameters, _repository);
+            var criteria = new ReferrerCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);
@@ -77,7 +77,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -87,10 +87,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "google.co.uk" }
             };
 
-            var criteria = new ReferrerCriteria(criteriaParameters, _repository);
+            var criteria = new ReferrerCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);
@@ -109,7 +109,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToString(dataModel);
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -119,15 +119,111 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "www.google.co.uk" }
             };
 
-            var criteria = new ReferrerCriteria(criteriaParameters, _repository);
+            var criteria = new ReferrerCriteria();
 
             // Act
-            var results = criteria.GetMatchingRecordsFromPhoneManager();
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
 
             // Assert
             Assert.IsNotNull(results);
             Assert.AreEqual(results.Count(), 1);
             Assert.AreEqual(results.First().Id, dataModel.CampaignDetail.First().Id);
+        }
+
+        [TestMethod]
+        public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainMatchingReferrer_ReturnsCorrectResult()
+        {
+            // Arrange
+            // generate test data
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
+            {
+                new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
+                new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
+            };
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+
+            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+
+            var criteriaParameters = new CriteriaParameterHolder()
+            {
+                CleansedQueryStrings = null,
+                RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "www.search.google.co.uk" }
+            };
+
+            var criteria = new ReferrerCriteria();
+
+            // Act
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
+
+            // Assert
+            Assert.IsNotNull(results);
+            Assert.AreEqual(results.Count(), 1);
+            Assert.AreEqual(results.First().Id, dataModel.CampaignDetail.First().Id);
+        }
+
+        [TestMethod]
+        public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainNotMatchingReferrer_ReturnsNoResult()
+        {
+            // Arrange
+            // generate test data
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
+            {
+                new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "www.google.co.uk" },
+                new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
+            };
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+
+            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+
+            var criteriaParameters = new CriteriaParameterHolder()
+            {
+                CleansedQueryStrings = null,
+                RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "www.search.google.co.uk" }
+            };
+
+            var criteria = new ReferrerCriteria();
+
+            // Act
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
+
+            // Assert
+            Assert.IsNotNull(results);
+            Assert.AreEqual(results.Count(), 0);
+        }
+
+        [TestMethod]
+        public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainWithMatchingReferrerAndCloseMatch_ReturnsCorrectResult()
+        {
+            // Arrange
+            // generate test data
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
+            {
+                new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "www.google.co.uk" },
+                new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" },
+                new CampaignDetail() { Id = "1203", TelephoneNumber = "8888 888 8888", CampaignCode = "testcode3", Referrer = "google.co.uk" }
+            };
+            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+
+            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+
+            var criteriaParameters = new CriteriaParameterHolder()
+            {
+                CleansedQueryStrings = null,
+                RequestInfo_NotIncludingQueryStrings = new CampaignDetail() { Referrer = "www.search.google.co.uk" }
+            };
+
+            var criteria = new ReferrerCriteria();
+
+            // Act
+            var results = criteria.GetMatchingRecordsFromPhoneManager(criteriaParameters, _repository);
+
+            // Assert
+            Assert.IsNotNull(results);
+            Assert.AreEqual(results.Count(), 1);
+            Assert.AreEqual(results.First().Id, "1203");
         }
     }
 }

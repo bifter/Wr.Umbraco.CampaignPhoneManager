@@ -24,10 +24,10 @@ namespace Wr.Umbraco.CampaignPhoneManager
         public CampaignPhoneManagerApp()
         {
             // default providers/repository
-            _cookieProvider = new CookieProvider(new HttpContextCookieProviderSource());
+            _cookieProvider = new CookieProvider(new HttpContextCookieImplementation());
             _repository = new XPathRepository();
-            _querystringProvider = new QueryStringProvider(new HttpContextQueryStringProviderSource());
-            _referrerProvider = new ReferrerProvider(new HttpContextReferrerProviderSource());
+            _querystringProvider = new QueryStringProvider(new HttpContextQueryStringImplementation());
+            _referrerProvider = new ReferrerProvider(new HttpContextReferrerImplementation());
             _sessionProvider = new SessionProvider();
             _umbracoProvider = new UmbracoProvider();
         }
@@ -74,11 +74,10 @@ namespace Wr.Umbraco.CampaignPhoneManager
         /// <returns>A found PhoneNumber</returns>
         private CampaignDetail FindMatchingPhoneManagerPhoneNumberUsingGatheredRequestInfo()
         {
-
             var criteriaParameters = new CriteriaParameterHolder()
             {
-                 CleansedQueryStrings = _querystringProvider.GetCleansedQueryStrings(),
-                 RequestInfo_NotIncludingQueryStrings =
+                CleansedQueryStrings = _querystringProvider.GetQueryStrings(),
+                RequestInfo_NotIncludingQueryStrings =
                     new CampaignDetail()
                     {
                         EntryPage = _umbracoProvider.GetCurrentPageId(),
@@ -86,9 +85,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
                     }
             };
 
-            var foundNumber = new CriteriaProcessor(criteriaParameters).GetMatchingRecordFromPhoneManager();
-
-            return null;
+            return new CriteriaProcessor(criteriaParameters, _repository).GetMatchingRecordFromPhoneManager();
         }
 
         /// <summary>

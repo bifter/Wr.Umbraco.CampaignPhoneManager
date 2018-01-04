@@ -1,22 +1,24 @@
-﻿namespace Wr.Umbraco.CampaignPhoneManager.Providers
+﻿using static Wr.Umbraco.CampaignPhoneManager.Helpers.ENums;
+
+namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
     public class ReferrerProvider
     {
-        IReferrerProviderSource _referrerProviderSource;
+        IReferrerImplementation _referrerImplementation;
 
         public ReferrerProvider()
         {
-            _referrerProviderSource = new HttpContextReferrerProviderSource();
+            _referrerImplementation = new HttpContextReferrerImplementation();
         }
 
-        public ReferrerProvider(IReferrerProviderSource referrerProviderSource)
+        public ReferrerProvider(IReferrerImplementation referrerImplementation)
         {
-            _referrerProviderSource = referrerProviderSource;
+            _referrerImplementation = referrerImplementation;
         }
 
         public string GetReferrer()
         {
-            return _referrerProviderSource.GetReferrer();
+            return _referrerImplementation.GetReferrer().ToSafeString(ProviderType.Referrer);
         }
 
         public string GetReferrerOrNone()

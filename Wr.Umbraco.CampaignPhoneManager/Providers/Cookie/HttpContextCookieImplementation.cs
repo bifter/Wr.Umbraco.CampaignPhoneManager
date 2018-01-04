@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Wr.Umbraco.CampaignPhoneManager.Models;
+﻿using System.Web;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public class HttpContextCookieProviderSource : ICookieProviderSource
+    public class HttpContextCookieImplementation : ICookieImplementation
     {
         HttpContext _httpContext;
 
-        public HttpContextCookieProviderSource()
+        public HttpContextCookieImplementation()
         {
             _httpContext = HttpContext.Current;
         }
