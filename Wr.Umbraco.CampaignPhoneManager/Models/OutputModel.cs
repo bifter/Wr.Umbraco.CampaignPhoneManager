@@ -3,7 +3,7 @@
     public partial class OutputModel
     {
         public string Id { get; set; }
-        public string PhoneNumber { get; set; }
+        public string TelephoneNumber { get; set; }
         public string CampaignCode { get; set; }
         public string AltMarketingCode { get; set; }
 
@@ -13,7 +13,7 @@
         /// <returns>bool</returns>
         public virtual bool IsValid()
         {
-            if (!string.IsNullOrEmpty(PhoneNumber)) // needs the minimum of a phone number
+            if (!string.IsNullOrEmpty(TelephoneNumber)) // needs the minimum of a phone number
                 return true;
 
             return false;

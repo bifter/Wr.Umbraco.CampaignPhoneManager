@@ -16,7 +16,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             var method = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -36,7 +36,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             var method = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -56,7 +56,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             var method = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -74,7 +74,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             var method = TestRepository.GetRepository(testPhoneManagerData);
 

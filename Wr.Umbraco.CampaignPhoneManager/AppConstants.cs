@@ -6,15 +6,15 @@
 
         public static class SessionKeys
         {
-            public const string PM_Session = "umbPMSess";
+            public const string PM_Session = "umbCPMSess";
         }
 
         public static class CookieKeys
         {
-            public const string CookieMainKey = "umbPMCookie";
-            public const string SubKey_PhoneNumber = "umbPM_PN";
-            public const string SubKey_CampaignCode = "umbPM_CC";
-            public const string SubKey_AltMarketingCode = "umbPM_AMC";
+            public const string CookieMainKey = "umbCPMCookie";
+            public const string SubKey_TelephoneNumber = "umbCPM_PN";
+            public const string SubKey_CampaignCode = "umbCPM_CC";
+            public const string SubKey_AltMarketingCode = "umbCPM_AMC";
         }
         
         public static class UmbracoDocTypeAliases
@@ -42,11 +42,6 @@
                 public const string PriorityOrder = "priorityOrder";
                 public const string UseAltCampaignQueryStringKey = "useAltCampaignQueryStringKey";
             }
-
-            public const string SubKey_PhoneNumber = "umbPM_PN";
-            public const string SubKey_CampaignCode = "umbPM_CC";
-            public const string SubKey_AltMarketingCode = "umbPM_AMC";
         }
-
     }
 }

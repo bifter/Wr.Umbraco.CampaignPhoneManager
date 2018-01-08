@@ -118,7 +118,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
-                    PhoneNumber = foundRecord.TelephoneNumber,
+                    TelephoneNumber = foundRecord.TelephoneNumber,
                     CampaignCode = foundRecord.CampaignCode,
                     AltMarketingCode = foundRecord.AltMarketingCode
                 };
@@ -140,7 +140,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
-                    PhoneNumber = _repository.GetDefaultSettings()?.DefaultPhoneNumber
+                    TelephoneNumber = _repository.GetDefaultSettings()?.DefaultPhoneNumber
                 };
                 result.OutputResultSource = OutputSource.DefaultNumberFromAdmin;
                 return result;
@@ -149,7 +149,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             // as a last resort, output placeholder phone number
             result.OutputModelResult = new OutputModel()
             {
-                PhoneNumber = AppConstants.LastResortPhoneNumberPlaceholder
+                TelephoneNumber = AppConstants.LastResortPhoneNumberPlaceholder
             };
 
             result.OutputResultSource = OutputSource.LastResortPlaceholder;

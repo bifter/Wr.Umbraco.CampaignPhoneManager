@@ -28,13 +28,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             {
                 if (cookie.HasKeys)
                 {
-                    if (!string.IsNullOrEmpty(cookie[AppConstants.CookieKeys.SubKey_PhoneNumber])) // a phone number is present
+                    if (!string.IsNullOrEmpty(cookie[AppConstants.CookieKeys.SubKey_TelephoneNumber])) // a phone number is present
                     {
                         var result = new CookieHolder();
                         result.Expires = cookie.Expires;
                         result.Model = new OutputModel()
                         {
-                            PhoneNumber = cookie[AppConstants.CookieKeys.SubKey_PhoneNumber],
+                            TelephoneNumber = cookie[AppConstants.CookieKeys.SubKey_TelephoneNumber],
                             CampaignCode = cookie[AppConstants.CookieKeys.SubKey_CampaignCode],
                             AltMarketingCode = cookie[AppConstants.CookieKeys.SubKey_AltMarketingCode]
                         };
@@ -53,7 +53,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         public void SetCookie(CookieHolder model)
         {
             HttpCookie cookie = new HttpCookie(AppConstants.CookieKeys.CookieMainKey);
-            cookie.Values[AppConstants.CookieKeys.SubKey_PhoneNumber] = model.Model.PhoneNumber;
+            cookie.Values[AppConstants.CookieKeys.SubKey_TelephoneNumber] = model.Model.TelephoneNumber;
             cookie.Values[AppConstants.CookieKeys.SubKey_CampaignCode] = model.Model.CampaignCode;
             cookie.Values[AppConstants.CookieKeys.SubKey_AltMarketingCode] = model.Model.AltMarketingCode;
             cookie.Expires = model.Expires;

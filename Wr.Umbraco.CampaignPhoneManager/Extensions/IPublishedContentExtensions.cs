@@ -5,7 +5,7 @@
 
     public static class IPublishedContentExtensions
     {
-        public static string _phoneNumber { get; set; }
+        public static string _telephoneNumber { get; set; }
         public static string _campaignCode { get; set; }
         public static string _altMarketingCode { get; set; }
 
@@ -19,14 +19,14 @@
         {
             if (model != null)
             {
-                _phoneNumber = model.PhoneNumber;
+                _telephoneNumber = model.TelephoneNumber;
                 _campaignCode = model.CampaignCode;
                 _altMarketingCode = model.AltMarketingCode;
             }
 
             return new OutputModel()
             {
-                PhoneNumber = _phoneNumber,
+                TelephoneNumber = _telephoneNumber,
                 CampaignCode = _campaignCode,
                 AltMarketingCode = _altMarketingCode
             };

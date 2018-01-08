@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -46,7 +46,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer="google.co.uk" } };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -77,7 +77,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -109,7 +109,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -141,7 +141,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -173,7 +173,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "www.google.co.uk" },
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
             };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 
@@ -205,7 +205,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
                 new CampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" },
                 new CampaignDetail() { Id = "1203", TelephoneNumber = "8888 888 8888", CampaignCode = "testcode3", Referrer = "google.co.uk" }
             };
-            var testPhoneManagerData = SerializeXml.ToXmlString(dataModel);
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 

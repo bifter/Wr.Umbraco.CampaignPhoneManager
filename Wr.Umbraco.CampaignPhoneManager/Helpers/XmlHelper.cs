@@ -111,7 +111,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
                 }
             }
 
-            public static String ToXmlString(Object oObject, bool incEncoding = false)
+            public static String ToXmlString2(Object oObject, bool incEncoding = false)
             {
                 var xns = new XmlSerializerNamespaces();
                 xns.Add(string.Empty, string.Empty); // remove default namespaces
