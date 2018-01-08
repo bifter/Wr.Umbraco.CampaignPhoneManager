@@ -238,11 +238,11 @@
     <Compile Include="Helpers\TestHelpers.cs" />
     <Compile Include="MockConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\MockProviders.cs" />
     <Compile Include="Providers\QueryStringProviderTest.cs" />
     <Compile Include="Providers\Storage\TestRepository.cs" />
     <Compile Include="Providers\Storage\XPath\IXPathRepositoryImplementation_UmbracoXPathNavigatorMock.cs" />
     <Compile Include="Providers\Storage\XPath\XPathRepository_XPathNavigatorTest.cs" />
-    <Compile Include="Providers\XPathDataProviderTest_GetXPathNavigatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

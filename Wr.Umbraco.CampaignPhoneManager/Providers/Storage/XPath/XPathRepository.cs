@@ -27,6 +27,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
             return _defaultSettings;
         }
 
+        public CampaignDetail GetCampaignDetailById(string id)
+        {
+            var selector = string.Format("@{0}={1}", AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Id, id); // id is an attribute so prefixing @
+            string xpath = string.Format(xpath4CampaignDetailHolder, selector);
+            return _xpathImplementation.GetDataByXPath<CampaignDetail>(xpath); // add any matching records to the results
+        }
+
         /// <summary>
         /// Matching QueryString records from storage
         /// </summary>
@@ -35,8 +42,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
         {
             // process campaignCodes with the default CampaignQuerystringKey, i.e. with no useAltCampaignQuerystringKey
             var selector = string.Format("(not({0}/text()[normalize-space()]) and {1}='{2}')", altCampaignQueryStringKeyAlias, campaignCodeAlias, foundDefaultCampaignQSValue);
-            string xpath2 = string.Format(xpath4CampaignDetailHolder, selector);
-            return _xpathImplementation.GetDataByXPath(xpath2); // add any matching records to the results
+            string xpath = string.Format(xpath4CampaignDetailHolder, selector);
+            return _xpathImplementation.GetDataByXPath(xpath); // add any matching records to the results
         }
 
         /// <summary>

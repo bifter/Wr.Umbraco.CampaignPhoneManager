@@ -269,11 +269,14 @@
     <Compile Include="Providers\Cookie\HttpContextCookieImplementation.cs" />
     <Compile Include="Providers\Cookie\ICookieImplementation.cs" />
     <Compile Include="Providers\Cookie\CookieProvider.cs" />
+    <Compile Include="Providers\Cookie\ICookieProvider.cs" />
     <Compile Include="Providers\QueryString\HttpContextQueryStringImplementation.cs" />
     <Compile Include="Providers\QueryString\IQueryStringImplementation.cs" />
+    <Compile Include="Providers\QueryString\IQueryStringProvider.cs" />
     <Compile Include="Providers\QueryString\QueryStringProvider.cs" />
     <Compile Include="Providers\Referrer\HttpContextReferrerImplementation.cs" />
     <Compile Include="Providers\Referrer\IReferrerImplementation.cs" />
+    <Compile Include="Providers\Referrer\IReferrerProvider.cs" />
     <Compile Include="Providers\Referrer\ReferrerProvider.cs" />
     <Compile Include="Providers\Session\ISessionProvider.cs" />
     <Compile Include="Providers\Session\SessionProvider.cs" />

@@ -19,16 +19,28 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage
 
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
+            return GetDataByXPath<CampaignPhoneManagerModel>(xpath);
+        }
+
+        /// <summary>
+        /// Generic method to return single instance of matching Type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
+        public T GetDataByXPath<T>(string xpath) where T : class, new()
+        {
             xpath = DataHelpers.UpdateXpathForTesting(xpath);
 
             var textReader = new StringReader(DataHelpers.GetContentXml(_testPhoneManagerData));
             var navigatorResult = new XPathDocument(textReader).CreateNavigator()
                                 .Select(xpath).Cast<XPathNavigator>().FirstOrDefault();
 
-            CampaignPhoneManagerModel result = XmlHelper.XPathNavigatorToModel<CampaignPhoneManagerModel>(navigatorResult);
+            T result = XmlHelper.XPathNavigatorToModel<T>(navigatorResult);
 
-            return (result != null) ? result : new CampaignPhoneManagerModel();
+            return (result != null) ? result : new T();
         }
+
 
         public List<CampaignDetail> GetDataByXPath(string xpath)
         {

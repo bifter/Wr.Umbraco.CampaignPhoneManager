@@ -8,7 +8,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
 {
     public class IXPathRepositoryImplementation_UmbracoXPathNavigator : IXPathRepositoryImplementation
     {
-        public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
+        /*public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
             var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()
                             .Select(xpath).Cast<XPathNavigator>().FirstOrDefault();
@@ -16,6 +16,27 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
             CampaignPhoneManagerModel result = XmlHelper.XPathNavigatorToModel<CampaignPhoneManagerModel>(navigatorResult);
 
             return (result != null) ? result : new CampaignPhoneManagerModel();
+        }*/
+
+        public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
+        {
+            return GetDataByXPath<CampaignPhoneManagerModel>(xpath);
+        }
+
+        /// <summary>
+        /// Generic method to return single instance of matching Type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
+        public T GetDataByXPath<T>(string xpath) where T : class, new()
+        {
+            var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()
+                            .Select(xpath).Cast<XPathNavigator>().FirstOrDefault();
+
+            T result = XmlHelper.XPathNavigatorToModel<T>(navigatorResult);
+
+            return (result != null) ? result : new T();
         }
 
         public List<CampaignDetail> GetDataByXPath(string xpath)

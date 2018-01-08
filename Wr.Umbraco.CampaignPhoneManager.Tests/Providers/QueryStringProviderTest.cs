@@ -13,7 +13,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithNullData_ReturnsNotNull()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockQueryStringProviderSource(null);
+            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(null);
 
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
@@ -28,7 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithEmptyData_ReturnsNotNull()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockQueryStringProviderSource(new NameValueCollection() { });
+            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection() { });
 
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
@@ -43,7 +43,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithValidData_ReturnsTrue()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockQueryStringProviderSource(new NameValueCollection
+            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection
             {
                  { MockConstants.DefaultData.DefaultCampaignQuerystringKey, MockConstants.MockTestPhoneNumberData.CampaignCode}
             });
@@ -63,7 +63,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithDangerousData_ReturnsTrue()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockQueryStringProviderSource(new NameValueCollection
+            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection
             {
                  { "dummykey", " 'or 1 = 1'"}
             });
@@ -78,19 +78,5 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
             Assert.IsTrue(results.GetKey(0) == "dummykey");
             Assert.IsTrue(results.GetValues("dummykey").First() == "or11");
         }
-
-
-        #region Mocks
-
-        public static Mock<IQueryStringImplementation> MockQueryStringProviderSource(NameValueCollection querystrings)
-        {
-            var mock = new Mock<IQueryStringImplementation>();
-
-            mock.Setup(x => x.GetQueryStrings()).Returns(querystrings);
-
-            return mock;
-        }
-
-        #endregion
     }
 }

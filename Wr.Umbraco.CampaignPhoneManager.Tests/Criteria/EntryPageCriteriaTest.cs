@@ -46,7 +46,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="Homepage" } };
-            var testPhoneManagerData = dataModel.ToXmlString();// dataModel.ToXmlString();
+            var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
 

@@ -12,7 +12,8 @@
         public static class CookieKeys
         {
             public const string CookieMainKey = "umbCPMCookie";
-            public const string SubKey_TelephoneNumber = "umbCPM_PN";
+            public const string SubKey_Id = "umbCPM_ID";
+            public const string SubKey_TelephoneNumber = "umbCPM_TN";
             public const string SubKey_CampaignCode = "umbCPM_CC";
             public const string SubKey_AltMarketingCode = "umbCPM_AMC";
         }
@@ -25,6 +26,7 @@
                 public const string DefaultCampaignQueryStringKey = "defaultCampaignQueryStringKey";
                 public const string DefaultPhoneNumber = "defaultPhoneNumber";
                 public const string DefaultPersistDurationInDays = "defaultPersistDurationInDays";
+                public const string GlobalDisableOverwritePersistingItems = "globalDisableOverwritePersistingItems";
                 public const string CampaignDetail = "campaignDetail";
             }
 

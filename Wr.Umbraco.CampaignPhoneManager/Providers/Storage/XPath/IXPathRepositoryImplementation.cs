@@ -8,6 +8,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
 
         CampaignPhoneManagerModel LoadDefaultSettings(string xpath);
 
+        T GetDataByXPath<T>(string xpath) where T : class, new();
 
         List<CampaignDetail> GetDataByXPath(string xpath);
     }

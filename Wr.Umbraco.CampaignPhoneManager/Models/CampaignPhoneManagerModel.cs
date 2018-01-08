@@ -40,6 +40,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
             }
         }
 
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.GlobalDisableOverwritePersistingItems)]
+        [DefaultValue(false)]
+        public bool GlobalDisableOverwritePersistingItems { get; set; }
+
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignDetail)]
         public List<CampaignDetail> CampaignDetail { get; set; }
 
@@ -52,7 +56,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Models
     /// <summary>
     /// Clone of the campaignDetail Umbraco doctype
     /// </summary>
-
+    [Serializable()]
+    [XmlRoot(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.CampaignDetail)]
     public partial class CampaignDetail
     {
         [XmlAttribute(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Id)]

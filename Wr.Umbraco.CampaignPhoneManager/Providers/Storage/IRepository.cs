@@ -8,6 +8,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
     {
         CampaignPhoneManagerModel GetDefaultSettings();
 
+        CampaignDetail GetCampaignDetailById(string id);
+
         List<CampaignDetail> GetMatchingRecords_Criteria_EntryPage(string keyAlias, string entrypage);
 
         List<CampaignDetail> GetMatchingCriteriaRecords_QueryString_UsingDefaultCampaignQSKey(string foundDefaultCampaignQSValue, string campaignCodeAlias, string altCampaignQueryStringKeyAlias, NameValueCollection cleansedQueryStrings);

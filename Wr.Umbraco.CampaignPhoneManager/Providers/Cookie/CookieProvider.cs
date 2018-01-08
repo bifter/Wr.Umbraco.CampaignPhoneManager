@@ -3,7 +3,7 @@ using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public class CookieProvider
+    public class CookieProvider : ICookieProvider
     {
         ICookieImplementation _cookieImplementation;
 
@@ -34,6 +34,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
                         result.Expires = cookie.Expires;
                         result.Model = new OutputModel()
                         {
+                            Id = cookie[AppConstants.CookieKeys.SubKey_Id],
                             TelephoneNumber = cookie[AppConstants.CookieKeys.SubKey_TelephoneNumber],
                             CampaignCode = cookie[AppConstants.CookieKeys.SubKey_CampaignCode],
                             AltMarketingCode = cookie[AppConstants.CookieKeys.SubKey_AltMarketingCode]
@@ -53,6 +54,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         public void SetCookie(CookieHolder model)
         {
             HttpCookie cookie = new HttpCookie(AppConstants.CookieKeys.CookieMainKey);
+            cookie.Values[AppConstants.CookieKeys.SubKey_Id] = model.Model.Id;
             cookie.Values[AppConstants.CookieKeys.SubKey_TelephoneNumber] = model.Model.TelephoneNumber;
             cookie.Values[AppConstants.CookieKeys.SubKey_CampaignCode] = model.Model.CampaignCode;
             cookie.Values[AppConstants.CookieKeys.SubKey_AltMarketingCode] = model.Model.AltMarketingCode;

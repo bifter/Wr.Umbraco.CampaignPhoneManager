@@ -13,9 +13,21 @@
         /// <returns>bool</returns>
         public virtual bool IsValid()
         {
-            if (!string.IsNullOrEmpty(TelephoneNumber)) // needs the minimum of a phone number
+            if (!string.IsNullOrEmpty(Id) && !string.IsNullOrEmpty(TelephoneNumber)) // needs the minimum of a id and telephone number
                 return true;
 
+            return false;
+        }
+
+        public bool MatchesFoundRecord(CampaignDetail campaignDetail)
+        {
+            if (campaignDetail != null && this != null)
+            {
+                if (CampaignCode == campaignDetail.CampaignCode && TelephoneNumber == campaignDetail.TelephoneNumber)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }

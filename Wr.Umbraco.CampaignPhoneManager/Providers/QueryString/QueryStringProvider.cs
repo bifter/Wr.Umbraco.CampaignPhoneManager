@@ -4,7 +4,7 @@ using static Wr.Umbraco.CampaignPhoneManager.Helpers.ENums;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public class QueryStringProvider
+    public class QueryStringProvider : IQueryStringProvider
     {
         IQueryStringImplementation _queryStringImplementation;
 

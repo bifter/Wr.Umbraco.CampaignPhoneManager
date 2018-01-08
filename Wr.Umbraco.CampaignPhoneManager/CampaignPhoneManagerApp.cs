@@ -50,11 +50,18 @@ namespace Wr.Umbraco.CampaignPhoneManager
             if (returnResult?.IsValid() ?? false)
                 return returnResult; // valid phone manager session exists so return it. No need to continue with next steps
 
-            // try and find a relevant phone number from the phone manager records based on the criteria's. Null if none found
-            var foundRecord = FindMatchingPhoneManagerPhoneNumberUsingGatheredRequestInfo();
-
             // load exisiting cookie if it exisits, null if not
             var exisitingCookie = _cookieProvider.GetCookie();
+
+            // if there is a valid cookie and the GlobalDisableOverwritePersistingItems admin setting is set then we don't need to look  For matching records in the system, we can just use the cookie info.
+            bool lookForMatchingRecord = true;
+            if ((exisitingCookie?.Model?.IsValid() ?? false) && (_repository.GetDefaultSettings()?.GlobalDisableOverwritePersistingItems ?? false))
+            {
+                lookForMatchingRecord = false;
+            }
+
+            // try and find a relevant phone number from the phone manager records based on the criteria's. Null if none found
+            var foundRecord = (lookForMatchingRecord) ? FindMatchingPhoneManagerPhoneNumberUsingGatheredRequestInfo() : new CampaignDetail();
 
             // pass all available data into the method which decides which data to use
             var logicBox = ProcessAllPotentialCandidatePhoneNumbers(exisitingCookie, foundRecord);
@@ -100,7 +107,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 bool useExisitingCookieForSession = true; // let's assume we will want to use the existing cookie
 
-                if ((foundRecord?.IsValidToSaveAsCookie() ?? false) && (foundRecord?.OverwritePersistingItem ?? false)) // foundRecordFromCriteria needs persisting and it should override any exisiting cookie
+                if ((foundRecord?.IsValidToSaveAsCookie() ?? false) && (foundRecord?.OverwritePersistingItem ?? false) && !exisitingCookie.Model.MatchesFoundRecord(foundRecord)) // foundRecordFromCriteria needs persisting and it should override any exisiting cookie
                 {
                     useExisitingCookieForSession = false; // don't use the cookie as the _foundRecordFromCriteria has requested to overwrite any exisiting cookie
                 }
@@ -118,6 +125,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
+                    Id = foundRecord.Id,
                     TelephoneNumber = foundRecord.TelephoneNumber,
                     CampaignCode = foundRecord.CampaignCode,
                     AltMarketingCode = foundRecord.AltMarketingCode
