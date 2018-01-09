@@ -2,21 +2,52 @@
 using System.Collections.Specialized;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 using Wr.Umbraco.CampaignPhoneManager.Providers;
+using Wr.Umbraco.CampaignPhoneManager.Providers.Storage;
+using Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Tests
 {
     public static class MockProviders
     {
-        public static Mock<CookieProvider> MockCookieProvider(CookieHolder model)
+        /// <summary>
+        /// Holder for CampaignPhoneManagerApp Parameters
+        /// </summary>
+        public class CampaignPhoneManagerAppParamHolder
         {
-            var mock = new Mock<CookieProvider>();
+            public readonly ICookieProvider CookieProvider;
+            public readonly IRepository RepositoryProvider;
+            public readonly QueryStringProvider QueryStringProvider;
+            public readonly ReferrerProvider ReferrerProvider;
+            public readonly ISessionProvider SessionProvider;
+            public readonly IUmbracoProvider UmbracoProvider;
+
+            public CampaignPhoneManagerAppParamHolder(CookieHolder cookieHolder, string repositoryTestPhoneManagerData, NameValueCollection queryStringCollection, string referrerString, OutputModel sessionModel, string umbracoCurrentPageId)
+            {
+                CookieProvider = CookieProvider(cookieHolder).Object;
+                RepositoryProvider = Repository(repositoryTestPhoneManagerData);
+                QueryStringProvider = new QueryStringProvider(QueryStringImplementation(queryStringCollection).Object);
+                ReferrerProvider = new ReferrerProvider(ReferrerImplementation(referrerString).Object);
+                SessionProvider = SessionProvider(sessionModel).Object;
+                UmbracoProvider = UmbracoProvider(umbracoCurrentPageId).Object;
+            }
+
+        }
+
+        public static IRepository Repository(string testdata)
+        {
+            return new XPathRepository(new IXPathRepositoryImplementation_UmbracoXPathNavigatorMock(testdata));
+        }
+
+        public static Mock<ICookieProvider> CookieProvider(CookieHolder model)
+        {
+            var mock = new Mock<ICookieProvider>();
 
             mock.Setup(x => x.GetCookie()).Returns(model);
 
             return mock;
         }
 
-        /*public static Mock<IQueryStringProvider> MockQueryStringProvider(NameValueCollection model)
+        /*public static Mock<IQueryStringProvider> QueryStringProvider(NameValueCollection model)
         {
             var mock = new Mock<IQueryStringProvider>();
 
@@ -25,7 +56,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             return mock;
         }*/
 
-        public static Mock<IQueryStringImplementation> MockQueryStringImplementation(NameValueCollection querystrings)
+        public static Mock<IQueryStringImplementation> QueryStringImplementation(NameValueCollection querystrings)
         {
             var mock = new Mock<IQueryStringImplementation>();
 
@@ -43,7 +74,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             return mock;
         }*/
 
-        public static Mock<IReferrerImplementation> MockReferrerImplementation(string model)
+        public static Mock<IReferrerImplementation> ReferrerImplementation(string model)
         {
             var mock = new Mock<IReferrerImplementation>();
 
@@ -52,7 +83,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             return mock;
         }
 
-        public static Mock<ISessionProvider> MockSessionProvider(OutputModel model)
+        public static Mock<ISessionProvider> SessionProvider(OutputModel model)
         {
             var mock = new Mock<ISessionProvider>();
 
@@ -61,7 +92,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             return mock;
         }
 
-        public static Mock<IUmbracoProvider> MockUmbracoProvider(string model)
+        public static Mock<IUmbracoProvider> UmbracoProvider(string model)
         {
             var mock = new Mock<IUmbracoProvider>();
 

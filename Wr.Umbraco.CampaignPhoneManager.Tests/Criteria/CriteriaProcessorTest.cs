@@ -21,7 +21,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
@@ -52,7 +52,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
@@ -84,7 +84,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
@@ -116,7 +116,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
@@ -150,7 +150,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {

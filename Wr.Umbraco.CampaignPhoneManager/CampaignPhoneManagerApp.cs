@@ -8,7 +8,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
 {
     public class CampaignPhoneManagerApp
     {
-        private CookieProvider _cookieProvider;
+        private ICookieProvider _cookieProvider;
         private readonly IRepository _repository;
         private readonly QueryStringProvider _querystringProvider;
         private readonly ReferrerProvider _referrerProvider;
@@ -32,7 +32,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             _umbracoProvider = new UmbracoProvider();
         }
 
-        public CampaignPhoneManagerApp(CookieProvider cookieProvider, IRepository repository, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
+        public CampaignPhoneManagerApp(ICookieProvider cookieProvider, IRepository repository, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
         {
             _cookieProvider = cookieProvider;
             _repository = repository;

@@ -13,7 +13,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithNullData_ReturnsNotNull()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(null);
+            var mockQueryStringProviderSource = MockProviders.QueryStringImplementation(null);
 
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
@@ -28,7 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithEmptyData_ReturnsNotNull()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection() { });
+            var mockQueryStringProviderSource = MockProviders.QueryStringImplementation(new NameValueCollection() { });
 
             var criteria = new QueryStringProvider(mockQueryStringProviderSource.Object);
 
@@ -43,7 +43,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithValidData_ReturnsTrue()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection
+            var mockQueryStringProviderSource = MockProviders.QueryStringImplementation(new NameValueCollection
             {
                  { MockConstants.DefaultData.DefaultCampaignQuerystringKey, MockConstants.MockTestPhoneNumberData.CampaignCode}
             });
@@ -63,7 +63,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers
         public void QueryStringProvider_GetCleansedQueryStrings_WithDangerousData_ReturnsTrue()
         {
             // Arrange
-            var mockQueryStringProviderSource = MockProviders.MockQueryStringImplementation(new NameValueCollection
+            var mockQueryStringProviderSource = MockProviders.QueryStringImplementation(new NameValueCollection
             {
                  { "dummykey", " 'or 1 = 1'"}
             });

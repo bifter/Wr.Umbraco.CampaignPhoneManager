@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace Wr.Umbraco.CampaignPhoneManager.Models
 {
     /// <summary>
-    /// Clone of the campaignPhoneManager doctype
+    /// Must match the campaignPhoneManager umbraco doctype
     /// </summary>
 
     [Serializable()]

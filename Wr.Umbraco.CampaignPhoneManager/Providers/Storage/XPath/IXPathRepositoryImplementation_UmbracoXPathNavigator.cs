@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using System.Xml.XPath;
 using Umbraco.Web;
 using Wr.Umbraco.CampaignPhoneManager.Models;
@@ -40,7 +41,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers.Storage
         }
 
         public List<CampaignDetail> GetDataByXPath(string xpath)
-        {
+        { 
             var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()
                             .Select(xpath).Cast<XPathNavigator>();
 

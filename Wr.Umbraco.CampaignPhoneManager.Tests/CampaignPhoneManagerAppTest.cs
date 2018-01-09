@@ -20,7 +20,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
+            var _dataProvider = MockProviders.Repository(testPhoneManagerData);
 
             // generate the required result
             var correctResult = new FinalResultModel()
@@ -50,7 +50,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
+            var _dataProvider = MockProviders.Repository(testPhoneManagerData);
 
             // generate the required result
             var correctResult = new FinalResultModel()
@@ -79,7 +79,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
+            var _dataProvider = MockProviders.Repository(testPhoneManagerData);
 
             var foundRecord = new CampaignDetail() { Id = "1201", TelephoneNumber = "FOUND PHONENUMBER" };
             // generate the required result
@@ -110,7 +110,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
+            var _dataProvider = MockProviders.Repository(testPhoneManagerData);
 
             var foundRecord = new CampaignDetail() { Id = "1201", TelephoneNumber = "FOUND PHONENUMBER" };
 
@@ -153,7 +153,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
+            var _dataProvider = MockProviders.Repository(testPhoneManagerData);
 
             var foundRecord = new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", OverwritePersistingItem = true };
 
@@ -198,55 +198,110 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
         }
 
         [TestMethod]
-        public void CampaignPhoneManagerApp_ProcessRequest_WithCookie_WithFoundPhoneNumberWithPersist_ReturnsFoundRecordAndSetCookie()
+        public void CampaignPhoneManagerApp_ProcessRequest_WithNoInputsNoDefaultTelephoneNumber_ReturnsLastResortPhoneNumber()
         {
             // Arrange
             // generate test data
-            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            var dataModel = new CampaignPhoneManagerModel();
+            dataModel.CampaignDetail =
+                   new List<CampaignDetail>()
+                   {
+                       new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                       new CampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 1111", CampaignCode = "testcode2" }
+                   };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var _dataProvider = TestRepository.GetRepository(testPhoneManagerData);
-
-            var _cookieProvider = MockProviders.MockCookieProvider(new CookieHolder()).Object;
-
-            var _queryStringProvider = new QueryStringProvider(MockProviders.MockQueryStringImplementation(new NameValueCollection()).Object);
-
-            var _referrerProvider = new ReferrerProvider(MockProviders.MockReferrerImplementation("").Object);
-
-            var _sessionProvider = MockProviders.MockSessionProvider(new OutputModel()).Object;
-
-            var _umbracoProvider = MockProviders.MockUmbracoProvider("").Object;
+            var AppParamHolder = new MockProviders.CampaignPhoneManagerAppParamHolder
+                (
+                    new CookieHolder(), // cookie
+                    testPhoneManagerData, // repository data
+                    new NameValueCollection(), // querystring
+                    "", // referrer
+                    new OutputModel(), // session
+                    "" // umbraco current page id
+                );
 
             // generate the required result
-            var expectedResult = new FinalResultModel()
-            {
-                OutputCookieHolder = new CookieHolder()
-                {
-                    Model =
-                    new OutputModel()
-                    {
-                        Id = "1201",
-                        TelephoneNumber = "0800 123 4567"
-                    }
-                },
-                OutputModelResult = new OutputModel()
-                {
-                    Id = "1201",
-                    TelephoneNumber = "0800 123 4567"
-                },
-                OutputResultSource = OutputSource.FoundRecordFromCriteria
-            };
 
-            CampaignPhoneManagerApp app = new CampaignPhoneManagerApp(_cookieProvider, _dataProvider, _queryStringProvider, _referrerProvider, _sessionProvider, _umbracoProvider);
+            CampaignPhoneManagerApp app = new CampaignPhoneManagerApp(AppParamHolder.CookieProvider, AppParamHolder.RepositoryProvider, AppParamHolder.QueryStringProvider, AppParamHolder.ReferrerProvider, AppParamHolder.SessionProvider, AppParamHolder.UmbracoProvider);
 
             //Act
             OutputModel actualResult = app.ProcessRequest();
 
             //Assert
-            Assert.AreEqual(retVal.OutputResultSource, expectedResult.OutputResultSource);
-            Assert.AreEqual(retVal.OutputModelResult.Id, expectedResult.OutputModelResult.Id);
-            Assert.AreEqual(retVal.OutputCookieHolder.Model.Id, expectedResult.OutputCookieHolder.Model.Id);
+            Assert.IsNull(actualResult.Id);
+            Assert.AreEqual(AppConstants.LastResortPhoneNumberPlaceholder, actualResult.TelephoneNumber);
+        }
+
+        [TestMethod]
+        public void CampaignPhoneManagerApp_ProcessRequest_WithNoInputsWithDefaultTelephoneNumber_ReturnsDefaultTelephoneNumber()
+        {
+            // Arrange
+            // generate test data
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail =
+                   new List<CampaignDetail>()
+                   {
+                       new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                       new CampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 1111", CampaignCode = "testcode2" }
+                   };
+            var testPhoneManagerData = dataModel.ToXmlString();
+
+            var AppParamHolder = new MockProviders.CampaignPhoneManagerAppParamHolder
+                (
+                    new CookieHolder(), // cookie
+                    testPhoneManagerData, // repository data
+                    new NameValueCollection(), // querystring
+                    "", // referrer
+                    new OutputModel(), // session
+                    "" // umbraco current page id
+                );
+
+            // generate the required result
+
+            CampaignPhoneManagerApp app = new CampaignPhoneManagerApp(AppParamHolder.CookieProvider, AppParamHolder.RepositoryProvider, AppParamHolder.QueryStringProvider, AppParamHolder.ReferrerProvider, AppParamHolder.SessionProvider, AppParamHolder.UmbracoProvider);
+
+            //Act
+            OutputModel actualResult = app.ProcessRequest();
+
+            //Assert
+            Assert.IsNull(actualResult.Id);
+            Assert.AreEqual("0800 000 0001", actualResult.TelephoneNumber);
+        }
+
+        [TestMethod]
+        public void CampaignPhoneManagerApp_ProcessRequest_WithCookie_WithFoundPhoneNumberWithPersist_ReturnsFoundRecordAndSetCookie()
+        {
+            // Arrange
+            // generate test data
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "0800 000 0001", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            dataModel.CampaignDetail =
+                   new List<CampaignDetail>()
+                   {
+                       new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                       new CampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 1111", CampaignCode = "testcode2" }
+                   };
+            var testPhoneManagerData = dataModel.ToXmlString();
+
+            var AppParamHolder = new MockProviders.CampaignPhoneManagerAppParamHolder
+                (
+                    new CookieHolder(), // cookie
+                    testPhoneManagerData, // repository data
+                    new NameValueCollection() { {"fsource", "testcode2" }, { "dummykey", "dummyvalue" } }, // querystring
+                    "", // referrer
+                    new OutputModel(), // session
+                    "" // umbraco current page id
+                );
+
+            // generate the required result
+            CampaignPhoneManagerApp app = new CampaignPhoneManagerApp(AppParamHolder.CookieProvider, AppParamHolder.RepositoryProvider, AppParamHolder.QueryStringProvider, AppParamHolder.ReferrerProvider, AppParamHolder.SessionProvider, AppParamHolder.UmbracoProvider);
+
+            //Act
+            OutputModel actualResult = app.ProcessRequest();
+
+            //Assert
+            Assert.AreEqual("1202", actualResult.Id);
+            Assert.AreEqual("0800 000 1111", actualResult.TelephoneNumber);
         }
     }
 }

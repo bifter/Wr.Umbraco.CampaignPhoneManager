@@ -16,7 +16,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -36,7 +36,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -56,7 +56,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -74,7 +74,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetDefaultSettings();
@@ -96,7 +96,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetCampaignDetailById("1202");
@@ -118,7 +118,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Providers.Storage.XPath
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            var method = TestRepository.GetRepository(testPhoneManagerData);
+            var method = MockProviders.Repository(testPhoneManagerData);
 
             // Act
             var act = method.GetCampaignDetailById("1203");

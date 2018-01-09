@@ -260,6 +260,7 @@
     <Compile Include="Extensions\PropertyExtensions.cs" />
     <Compile Include="Helpers\ENums.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Install\Setup.cs" />
     <Compile Include="Models\CookieHolder.cs" />
     <Compile Include="Models\CampaignPhoneManagerModel.cs" />
     <Compile Include="Models\FinalResultModel.cs" />

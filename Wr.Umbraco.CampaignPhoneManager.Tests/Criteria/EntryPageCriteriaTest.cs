@@ -13,7 +13,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
     public class EntryPageCriteriaTest
     {
         [TestMethod]
-        public void EntryPageCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNotEntryPage_ReturnsEmptyResults()
+        public void EntryPageCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNoEntryPage_ReturnsEmptyResults()
         {
             // Arrange
             // generate test data
@@ -21,7 +21,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {
@@ -45,10 +45,10 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="Homepage" } };
+            dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="umb://Homepage" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
-            IRepository _repository = TestRepository.GetRepository(testPhoneManagerData);
+            IRepository _repository = MockProviders.Repository(testPhoneManagerData);
 
             var criteriaParameters = new CriteriaParameterHolder()
             {

@@ -2,6 +2,7 @@
 using System.Web;
 using Umbraco.Core;
 using Umbraco.Web;
+using Wr.Umbraco.CampaignPhoneManager.Install;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Events
 {
@@ -9,10 +10,13 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
     {
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            UmbracoApplicationBase.ApplicationInit += PhoneManagerApplicationInit;
+            //if (!Setup.DoAllDocTypesExist())
+            //    Setup.CreateDocTypes();
+
+            UmbracoApplicationBase.ApplicationInit += CampaignPhoneManagerApplicationInit;
         }
 
-        private void PhoneManagerApplicationInit(object sender, EventArgs e)
+        private void CampaignPhoneManagerApplicationInit(object sender, EventArgs e)
         {
             var application = (HttpApplication)sender;
             application.PreRequestHandlerExecute += doCampaignPhoneManagerProcessing;
@@ -24,9 +28,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
             var umbracoContext = UmbracoContext.Current;
 
             if (umbracoContext?.PageId == null)
-            {
                 return;
-            }
 
             var phoneManagerResult = new CampaignPhoneManagerApp().ProcessRequest();
 
