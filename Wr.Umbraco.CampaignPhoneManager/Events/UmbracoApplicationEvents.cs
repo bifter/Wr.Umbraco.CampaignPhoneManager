@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
         private void CampaignPhoneManagerApplicationInit(object sender, EventArgs e)
         {
             var application = (HttpApplication)sender;
-            application.PostRequestHandlerExecute += doCampaignPhoneManagerProcessing;
+            application.PreRequestHandlerExecute += doCampaignPhoneManagerProcessing;
         }
 
         private void doCampaignPhoneManagerProcessing(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
             var phoneManagerResult = new CampaignPhoneManagerApp().ProcessRequest();
 
             // save the selected phone manager data in the IPublishedContent for use on the reqested page
-            umbracoContext.PublishedContentRequest.PublishedContent.CampaignPhoneManager(phoneManagerResult);
+            //umbracoContext.PublishedContentRequest.PublishedContent.CampaignPhoneManager(phoneManagerResult);
             
             
         }

@@ -56,9 +56,9 @@ namespace Wr.Umbraco.CampaignPhoneManager.Tests
             return mock;
         }*/
 
-        public static Mock<IQueryStringImplementation> QueryStringImplementation(NameValueCollection querystrings)
+        public static Mock<IQueryStringProvider> QueryStringImplementation(NameValueCollection querystrings)
         {
-            var mock = new Mock<IQueryStringImplementation>();
+            var mock = new Mock<IQueryStringProvider>();
 
             mock.Setup(x => x.GetQueryStrings()).Returns(querystrings);
 

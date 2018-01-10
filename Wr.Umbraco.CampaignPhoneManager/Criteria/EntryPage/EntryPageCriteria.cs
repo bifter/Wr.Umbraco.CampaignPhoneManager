@@ -11,18 +11,6 @@ namespace Wr.Umbraco.CampaignPhoneManager.Criteria
 
         public EntryPageCriteria() { }
 
-        /*public EntryPageCriteria(CriteriaParameterHolder criteriaParameters)
-        {
-            _criteriaParameters = criteriaParameters;
-            _repository = new XPathRepository();
-        }
-
-        public EntryPageCriteria(CriteriaParameterHolder criteriaParameters, IRepository repository)
-        {
-            _criteriaParameters = criteriaParameters;
-            _repository = repository;
-        }*/
-
         public List<CampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)
         {
             if (!string.IsNullOrEmpty(_criteriaParameters.RequestInfo_NotIncludingQueryStrings.EntryPage))

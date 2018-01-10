@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
-    public class HttpContextQueryStringImplementation : IQueryStringImplementation
+    public class HttpContextQueryStringImplementation : IQueryStringProvider
     {
         public NameValueCollection GetQueryStrings()
         {

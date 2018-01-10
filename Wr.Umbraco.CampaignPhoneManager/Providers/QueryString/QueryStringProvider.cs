@@ -6,14 +6,14 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
 {
     public class QueryStringProvider : IQueryStringProvider
     {
-        IQueryStringImplementation _queryStringImplementation;
+        IQueryStringProvider _queryStringImplementation;
 
         public QueryStringProvider()
         {
             _queryStringImplementation = new HttpContextQueryStringImplementation();
         }
 
-        public QueryStringProvider(IQueryStringImplementation queryStringImplementation)
+        public QueryStringProvider(IQueryStringProvider queryStringImplementation)
         {
             _queryStringImplementation = queryStringImplementation;
         }
