@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.Web;
 using System.Web.SessionState;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 
@@ -22,12 +25,21 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         {
             if (_session != null)
             {
+                var sessionKey = (!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session;
+                //Debug.WriteLine("Get Session sessionKey: " + sessionKey);
                 var sessionHolder = _session[AppConstants.SessionKeys.PM_Session];
                 if (sessionHolder != null)
                 {
-                    OutputModel returnResult = new OutputModel();
-                    returnResult = (OutputModel)_session[(!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session];
-                    return returnResult;
+                    try
+                    {
+                        OutputModel result = JsonConvert.DeserializeObject<OutputModel>(sessionHolder.ToString());
+                        Debug.WriteLine("GetSession: IsValid: " + result.IsValid());
+                        return result;
+                    }
+                    catch (JsonReaderException)
+                    {
+                        throw new ArgumentException($"Provided definition is not valid JSON: {sessionHolder.ToString()}");
+                    }
                 }
             }
             return null;
@@ -42,8 +54,18 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         {
             if (_session != null)
             {
-                _session.Add((!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session, model);
-                return true;
+                var sessionKey = (!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session;
+                try
+                {
+                    var jsonData = JsonConvert.SerializeObject(model);
+                    _session[sessionKey] = jsonData;
+                    Debug.WriteLine("SetSession: jsonData: " + jsonData);
+                    return true;
+                }
+                catch (JsonReaderException)
+                {
+                    throw new ArgumentException($"Object could not be serialized to JSON");
+                }
             }
             return false;
         }

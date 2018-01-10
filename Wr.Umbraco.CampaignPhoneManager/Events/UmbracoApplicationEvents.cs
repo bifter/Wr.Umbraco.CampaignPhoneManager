@@ -19,7 +19,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Events
         private void CampaignPhoneManagerApplicationInit(object sender, EventArgs e)
         {
             var application = (HttpApplication)sender;
-            application.PreRequestHandlerExecute += doCampaignPhoneManagerProcessing;
+            application.PostRequestHandlerExecute += doCampaignPhoneManagerProcessing;
         }
 
         private void doCampaignPhoneManagerProcessing(object sender, EventArgs e)

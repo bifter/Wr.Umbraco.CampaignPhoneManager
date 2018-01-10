@@ -148,6 +148,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             {
                 result.OutputModelResult = new OutputModel()
                 {
+                    Id = "D",
                     TelephoneNumber = _repository.GetDefaultSettings()?.DefaultPhoneNumber
                 };
                 result.OutputResultSource = OutputSource.DefaultNumberFromAdmin;
@@ -157,6 +158,7 @@ namespace Wr.Umbraco.CampaignPhoneManager
             // as a last resort, output placeholder phone number
             result.OutputModelResult = new OutputModel()
             {
+                Id = "P",
                 TelephoneNumber = AppConstants.LastResortPhoneNumberPlaceholder
             };
 

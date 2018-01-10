@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using Newtonsoft.Json;
+using System;
+using System.Web;
 using Wr.Umbraco.CampaignPhoneManager.Models;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Providers
@@ -26,22 +28,16 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
             var cookie = _cookieImplementation.GetCookie(AppConstants.CookieKeys.CookieMainKey);
             if (cookie != null)
             {
-                if (cookie.HasKeys)
+                var result = new CookieHolder();
+                result.Expires = cookie.Expires;
+                try
                 {
-                    if (!string.IsNullOrEmpty(cookie[AppConstants.CookieKeys.SubKey_TelephoneNumber])) // a phone number is present
-                    {
-                        var result = new CookieHolder();
-                        result.Expires = cookie.Expires;
-                        result.Model = new OutputModel()
-                        {
-                            Id = cookie[AppConstants.CookieKeys.SubKey_Id],
-                            TelephoneNumber = cookie[AppConstants.CookieKeys.SubKey_TelephoneNumber],
-                            CampaignCode = cookie[AppConstants.CookieKeys.SubKey_CampaignCode],
-                            AltMarketingCode = cookie[AppConstants.CookieKeys.SubKey_AltMarketingCode]
-                        };
-
-                        return result;
-                    }
+                    result.Model = JsonConvert.DeserializeObject<OutputModel>(cookie.Value);
+                    return result;
+                }
+                catch (JsonReaderException)
+                {
+                    throw new ArgumentException($"Provided definition is not valid JSON: {cookie.Value}");
                 }
             }
             return null;
@@ -54,13 +50,16 @@ namespace Wr.Umbraco.CampaignPhoneManager.Providers
         public void SetCookie(CookieHolder model)
         {
             HttpCookie cookie = new HttpCookie(AppConstants.CookieKeys.CookieMainKey);
-            cookie.Values[AppConstants.CookieKeys.SubKey_Id] = model.Model.Id;
-            cookie.Values[AppConstants.CookieKeys.SubKey_TelephoneNumber] = model.Model.TelephoneNumber;
-            cookie.Values[AppConstants.CookieKeys.SubKey_CampaignCode] = model.Model.CampaignCode;
-            cookie.Values[AppConstants.CookieKeys.SubKey_AltMarketingCode] = model.Model.AltMarketingCode;
             cookie.Expires = model.Expires;
-
-            _cookieImplementation.SetCookie(cookie);
+            try
+            {
+                cookie.Value = JsonConvert.SerializeObject(model.Model);
+                _cookieImplementation.SetCookie(cookie);
+            }
+            catch (JsonReaderException)
+            {
+                throw new ArgumentException($"Can't convert oject to JSON");
+            }
         }
     }
 }
