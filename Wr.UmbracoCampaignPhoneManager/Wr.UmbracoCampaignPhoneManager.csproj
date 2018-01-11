@@ -244,6 +244,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Plugins\UmbracoPersonalisationGroups\GetResourceForCriteria\campaignPhoneManager\definition.editor.controller.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Plugins\UmbracoPersonalisationGroups\GetResourceForCriteria\campaignPhoneManager\definition.editor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Plugins\UmbracoPersonalisationGroups\GetResourceForCriteria\campaignPhoneManager\definition.translator.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="App_Plugins\UmbracoPersonalisationGroups\package.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <BrowseToURL>/App_Plugins/UmbracoPersonalisationGroups/package.manifest</BrowseToURL>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -257,6 +270,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
+    <Compile Include="App_Config\MapConfig.cs" />
+    <Compile Include="App_Config\RouteConfig.cs" />
     <Compile Include="Criteria\AvailableCriteria.cs" />
     <Compile Include="Criteria\CriteriaParameterHolder.cs" />
     <Compile Include="Criteria\CriteriaProcessor.cs" />
@@ -278,9 +293,9 @@
     <Compile Include="Models\FinalResultModel.cs" />
     <Compile Include="Models\OutputModel.cs" />
     <Compile Include="CampaignPhoneManagerApp.cs" />
-    <Compile Include="Plugins\UmbracoPersonalisationGroups\CriteriaSetting.cs" />
-    <Compile Include="Plugins\UmbracoPersonalisationGroups\RouteConfig.cs" />
-    <Compile Include="Plugins\UmbracoPersonalisationGroups\UmbracoPersonalisationGroups_Criteria.cs" />
+    <Compile Include="Plugins\UmbracoPersonalisationGroups\CampaignPhoneManagerCriteriaSetting.cs" />
+    <Compile Include="Plugins\UmbracoPersonalisationGroups\CampaignPhoneManagerPersonalisationGroupCriteria.cs" />
+    <Compile Include="Plugins\UmbracoPersonalisationGroups\CampaignPhoneManagerPersonalisationGroupAjaxController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Cookie\HttpContextCookieImplementation.cs" />
     <Compile Include="Providers\Cookie\ICookieImplementation.cs" />

@@ -64,6 +64,10 @@ namespace Wr.UmbracoCampaignPhoneManager.Models
         [DefaultValue("")]
         public string Id { get; set; }
 
+        [XmlAttribute(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.NodeName)]
+        [DefaultValue("")]
+        public string NodeName { get; set; }
+
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.DoNotPersistAcrossVisits)]
         [DefaultValue(false)]
         public bool DoNotPersistAcrossVisits { get; set; }

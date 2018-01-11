@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Web;
+using System.Web.Routing;
 using Umbraco.Core;
 using Umbraco.Web;
+using Wr.UmbracoCampaignPhoneManager.App_Config;
 
 namespace Wr.UmbracoCampaignPhoneManager.Events
 {
@@ -9,6 +11,9 @@ namespace Wr.UmbracoCampaignPhoneManager.Events
     {
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            MapConfig.ConfigureAutoMapper();
+
             //if (!Setup.DoAllDocTypesExist())
             //    Setup.CreateDocTypes();
 
@@ -30,13 +35,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Events
                 return;
 
             var phoneManagerResult = new CampaignPhoneManagerApp().ProcessRequest();
-
-            // save the selected phone manager data in the IPublishedContent for use on the reqested page
-            //umbracoContext.PublishedContentRequest.PublishedContent.CampaignPhoneManager(phoneManagerResult);
-            
-            
         }
-
-
     }
 }

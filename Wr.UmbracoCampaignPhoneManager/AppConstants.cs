@@ -33,6 +33,7 @@
             public static class CampaignPhoneManagerModel_CampaignDetail
             {
                 public const string Id = "id";
+                public const string NodeName = "nodeName";
                 public const string DoNotPersistAcrossVisits = "doNotPersistAcrossVisits";
                 public const string TelephoneNumber = "telephoneNumber";
                 public const string PersistDurationOverride = "persistDurationOverride";

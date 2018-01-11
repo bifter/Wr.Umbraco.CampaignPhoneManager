@@ -1,7 +1,8 @@
 ﻿namespace Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
 {
-    public class CriteriaSetting
+    public class CampaignPhoneManagerCriteriaSetting
     {
         public string DocumentId { get; set; }
+        public string Title { get; set; }
     }
 }

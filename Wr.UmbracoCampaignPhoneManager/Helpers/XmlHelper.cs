@@ -88,9 +88,10 @@ namespace Wr.UmbracoCampaignPhoneManager
                 }
                 catch(Exception ex)
                 {
-
+                    System.Diagnostics.Debug.WriteLine("ERROR XPathNavigatorToModel: " + ex.Message);
                 }
             }
+                        
             return result;
         }
 

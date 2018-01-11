@@ -34,6 +34,12 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
             return _xpathImplementation.GetDataByXPath<CampaignDetail>(xpath); // add any matching records to the results
         }
 
+        public List<CampaignDetail> ListAllCampaignDetailRecords()
+        {
+            var xpath = xpath4CampaignDetailHolder.Replace("[{0}]", ""); // remove unnecessary placeholder chars
+            return _xpathImplementation.GetDataByXPath(xpath);
+        }
+
         /// <summary>
         /// Matching QueryString records from storage
         /// </summary>

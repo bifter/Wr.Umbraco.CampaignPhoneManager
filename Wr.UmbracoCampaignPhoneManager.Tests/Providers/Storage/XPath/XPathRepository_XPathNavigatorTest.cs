@@ -84,6 +84,28 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests.Providers.Storage.XPath
         }
 
         [TestMethod]
+        public void XPathRepository_GetXPathNavigator_ListAllCampaignDetailRecords_ReturnAllRecords()
+        {
+            // Arrange
+            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = null, DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
+            dataModel.CampaignDetail = new List<CampaignDetail>()
+                {
+                    new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
+                    new CampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 4567", CampaignCode = "testcode2" }
+                };
+
+            var testPhoneManagerData = dataModel.ToXmlString();
+
+            var method = MockProviders.Repository(testPhoneManagerData);
+
+            // Act
+            var act = method.ListAllCampaignDetailRecords();
+
+            // Assert
+            Assert.IsTrue(act.Count == 2);
+        }
+
+        [TestMethod]
         public void XPathRepository_GetXPathNavigator_GetCampaignDetailById_WithMatchingRecord_ReturnValid()
         {
             // Arrange

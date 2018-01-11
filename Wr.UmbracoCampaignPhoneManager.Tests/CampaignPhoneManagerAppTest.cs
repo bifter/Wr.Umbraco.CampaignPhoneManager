@@ -229,7 +229,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests
             OutputModel actualResult = app.ProcessRequest();
 
             //Assert
-            Assert.IsNull(actualResult.Id);
+            Assert.IsNotNull(actualResult.Id);
             Assert.AreEqual(AppConstants.LastResortPhoneNumberPlaceholder, actualResult.TelephoneNumber);
         }
 
@@ -265,7 +265,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests
             OutputModel actualResult = app.ProcessRequest();
 
             //Assert
-            Assert.IsNull(actualResult.Id);
+            Assert.IsNotNull(actualResult.Id);
             Assert.AreEqual("0800 000 0001", actualResult.TelephoneNumber);
         }
 
