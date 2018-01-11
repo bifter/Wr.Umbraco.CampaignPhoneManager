@@ -43,7 +43,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
             if (!string.IsNullOrEmpty(criteriaSetting.DocumentId))
             {
                 // get the actual document
-                var document = Umbraco.TypedContent();
+                //var document = Umbraco.TypedContent();
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
                 value = foundSession.Id;
             }
 
-            switch (sessionSetting.Match)
+            /*switch (sessionSetting.Match)
             {
                 case SessionSettingMatch.Exists:
                     return keyExists;
@@ -80,7 +80,8 @@ namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
 
                 default:
                     return false;
-            }
+            }*/
+            return false;
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
@@ -15,7 +12,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
                 url: "App_Plugins/UmbracoPersonalisationGroups/GetResourceForCriteria/campaignphonemanagercriteria/{fileName}",
                 defaults: new { controller = "Resource", action = "GetResourceForCriteria" });
 
-            routes.MapRoute(
+            /*routes.MapRoute(
                 name: "Core esources",
                 url: "App_Plugins/UmbracoPersonalisationGroups/GetResource/{fileName}",
                 defaults: new { controller = "Resource", action = "GetResource" });
@@ -24,7 +21,7 @@ namespace Wr.Umbraco.CampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
                 name: "Criteria methods",
                 url: "App_Plugins/UmbracoPersonalisationGroups/Criteria/{action}",
                 defaults: new { controller = "Criteria", action = "Index" });
-
+                */
         }
     }
 }
