@@ -42,7 +42,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests
         /// <returns></returns>
         public static string UpdateXpathForTesting(string xpath)
         {
-            return xpath.Replace("$ancestorOrSelf", "/");
+            return xpath.Replace("HOME_NODE_PLACEHOLDER", "");
         }
 
         /// <summary>

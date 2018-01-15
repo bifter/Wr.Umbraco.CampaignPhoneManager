@@ -1,9 +1,9 @@
 ﻿<div class="umb-panel" ng-controller="UmbracoPersonalisationGroups.CampaignPhoneManagerPersonalisationGroupCriteriaController">
     <div class="umb-panel-body no-header with-footer compact">
         <p>Please select the Campaign detail:</p>
-        <umb-control-group alias="DocumentId" label="Campaign">
-            <select ng-model="renderModel.DocumentId"
-                    ng-options="item as item for item in availableItems"></select>
+        <umb-control-group alias="Id" label="Campaign">
+            <select ng-model="renderModel.Id"
+                    ng-options="item.Name as item for item in availableItems"></select>
         </umb-control-group>
     </div>
     <div class="umb-panel-footer">

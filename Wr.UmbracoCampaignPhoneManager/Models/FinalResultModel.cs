@@ -29,7 +29,6 @@
     {
         ExisitingCookie,
         FoundRecordFromCriteria,
-        DefaultNumberFromAdmin,
         LastResortPlaceholder
     }
 }

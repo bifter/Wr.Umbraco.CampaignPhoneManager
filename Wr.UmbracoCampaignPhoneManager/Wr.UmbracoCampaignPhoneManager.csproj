@@ -270,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
+    <Compile Include="App_Config\AppSettingsConfig.cs" />
     <Compile Include="App_Config\MapConfig.cs" />
     <Compile Include="App_Config\RouteConfig.cs" />
     <Compile Include="Criteria\AvailableCriteria.cs" />
@@ -285,6 +286,7 @@
     <Compile Include="Extensions\GeneralExtensions.cs" />
     <Compile Include="Extensions\IPublishedContentExtensions.cs" />
     <Compile Include="Extensions\PropertyExtensions.cs" />
+    <Compile Include="Extensions\UmbracoConfigExtensions.cs" />
     <Compile Include="Helpers\ENums.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Install\Setup.cs" />
@@ -311,6 +313,7 @@
     <Compile Include="Providers\Session\ISessionProvider.cs" />
     <Compile Include="Providers\Session\SessionProvider.cs" />
     <Compile Include="Providers\Storage\IRepository.cs" />
+    <Compile Include="Providers\Storage\UmbracoContent\UmbracoContentRepository.cs" />
     <Compile Include="Providers\Storage\XPath\IXPathRepositoryImplementation_UmbracoXPathNavigator.cs" />
     <Compile Include="Providers\Storage\XPath\IXPathRepositoryImplementation.cs" />
     <Compile Include="Providers\Storage\XPath\XPathBaseSettings.cs" />

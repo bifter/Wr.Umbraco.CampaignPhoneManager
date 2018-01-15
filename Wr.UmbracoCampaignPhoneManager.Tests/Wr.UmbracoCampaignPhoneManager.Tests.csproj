@@ -251,11 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wr.UmbracoCampaignPhoneManager\Wr.UmbracoCampaignPhoneManager.csproj">
-      <Project>{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}</Project>
+      <Project>{39a904b2-50cd-46e0-acf8-91adc2748dba}</Project>
       <Name>Wr.UmbracoCampaignPhoneManager</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

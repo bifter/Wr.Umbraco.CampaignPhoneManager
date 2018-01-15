@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Umbraco.Core.Configuration;
 using Wr.UmbracoCampaignPhoneManager.Extensions;
 
 namespace Wr.UmbracoCampaignPhoneManager.Criteria
@@ -18,7 +19,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Criteria
         public static IEnumerable<ICampaignPhoneManagerCriteria> GetCriteriaList()
         {
             if (_criteriaList == null)
-                _criteriaList = CompileCriteriaList(true);
+                _criteriaList = CompileCriteriaList();
 
             return _criteriaList;
         }
@@ -26,20 +27,9 @@ namespace Wr.UmbracoCampaignPhoneManager.Criteria
         /// <summary>
         /// Discover the loaded assemblies of type 'ICampaignPhoneManagerCriteria', or use the hardcoded list for speed
         /// </summary>
-        private static IEnumerable<ICampaignPhoneManagerCriteria> CompileCriteriaList(bool useHardcoded = false)
+        private static IEnumerable<ICampaignPhoneManagerCriteria> CompileCriteriaList()
         {
-
-            if (useHardcoded)
-            {
-                var hardCodedList = new List<ICampaignPhoneManagerCriteria>()
-                {
-                    new QueryStringCriteria(),
-                    new ReferrerCriteria(),
-                    new EntryPageCriteria()
-                };
-                return hardCodedList;
-            }
-            else
+            if (UmbracoConfig.For.CampaignPhoneManager().DiscoverNewCriteria)
             {
                 var type = typeof(ICampaignPhoneManagerCriteria);
                 var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()
@@ -49,6 +39,16 @@ namespace Wr.UmbracoCampaignPhoneManager.Criteria
                     .Select(x => Activator.CreateInstance(x) as ICampaignPhoneManagerCriteria);
 
                 return criteriaClasses?.ToList();
+            }
+            else
+            {
+                var hardCodedList = new List<ICampaignPhoneManagerCriteria>()
+                {
+                    new QueryStringCriteria(),
+                    new ReferrerCriteria(),
+                    new EntryPageCriteria()
+                };
+                return hardCodedList;
             }
         }
     }

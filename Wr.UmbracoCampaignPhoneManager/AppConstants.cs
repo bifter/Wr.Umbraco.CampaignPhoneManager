@@ -17,14 +17,13 @@
             public const string SubKey_CampaignCode = "umbCPM_CC";
             public const string SubKey_AltMarketingCode = "umbCPM_AMC";
         }
-        
+
         public static class UmbracoDocTypeAliases
         {
             public static class CampaignPhoneManagerModel
             {
                 public const string CampaignPhoneManager = "campaignPhoneManager";
                 public const string DefaultCampaignQueryStringKey = "defaultCampaignQueryStringKey";
-                public const string DefaultPhoneNumber = "defaultPhoneNumber";
                 public const string DefaultPersistDurationInDays = "defaultPersistDurationInDays";
                 public const string GlobalDisableOverwritePersistingItems = "globalDisableOverwritePersistingItems";
                 public const string CampaignDetail = "campaignDetail";
@@ -44,7 +43,15 @@
                 public const string AltMarketingCode = "altMarketingCode";
                 public const string PriorityOrder = "priorityOrder";
                 public const string UseAltCampaignQueryStringKey = "useAltCampaignQueryStringKey";
+                public const string IsDefault = "isDefault";
             }
+        }
+
+        public static class ConfigKeys
+        {
+            private const string AppName = "campaignPhoneManager.";
+
+            public const string DiscoverNewCriteria = AppName + "DiscoverNewCriteria";
         }
     }
 }

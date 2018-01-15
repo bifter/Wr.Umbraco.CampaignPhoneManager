@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.XPath;
+using Umbraco.Core;
 using Umbraco.Web;
 using Wr.UmbracoCampaignPhoneManager.Models;
 
@@ -10,14 +11,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
     {
         public CampaignPhoneManagerModel LoadDefaultSettings(string xpath)
         {
-            
-            /*var navigatorResult = UmbracoContext.Current.ContentCache.GetXPathNavigator()
-                            .Select(xpath).Cast<XPathNavigator>().FirstOrDefault();
-
-            CampaignPhoneManagerModel result = XmlHelper.XPathNavigatorToModel<CampaignPhoneManagerModel>(navigatorResult);
-
-            System.Diagnostics.Debug.WriteLine("LoadDefaultSettings DefaultPhoneNumber: " + result.DefaultPhoneNumber);*/
-
             return GetDataByXPath<CampaignPhoneManagerModel>(xpath);
         }
 
@@ -57,11 +50,22 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
 
         private string UpdateXPathPrefix(string xpath)
         {
-            var currentNodeId = UmbracoContext.Current.PageId;
-            var result = xpath.Replace("$ancestorOrSelf", "//node[@id=" + currentNodeId + "]");
+            string homeTemplate = "//*[@id='{0}']";
+            string homeXpath = "";
+            var context = UmbracoContext.Current;
+            if (context.IsFrontEndUmbracoRequest)
+            {
+                var homeNodeId = UmbracoContext.Current.PublishedContentRequest.PublishedContent.Site().Id; // using homeNodeId is a workaround for $ancestorOrSelf not working
+                homeXpath = string.Format(homeTemplate, homeNodeId);
+            }
+            else
+            {
+                homeXpath = ""; // get all campaign detail records
+            }
+
+            var result = xpath.Replace("HOME_NODE_PLACEHOLDER", homeXpath);
+            //System.Diagnostics.Debug.WriteLine("UpdateXPathPrefix: " + result);
             return result;
         }
     }
-
-
 }

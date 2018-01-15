@@ -17,7 +17,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests.Criteria
         {
             // Arrange
             // generate test data
-            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
@@ -44,7 +44,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Tests.Criteria
         {
             // Arrange
             // generate test data
-            var dataModel = new CampaignPhoneManagerModel() { DefaultPhoneNumber = "", DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
+            var dataModel = new CampaignPhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
             dataModel.CampaignDetail = new List<CampaignDetail>() { new CampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="umb://Homepage" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 

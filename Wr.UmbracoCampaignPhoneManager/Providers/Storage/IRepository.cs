@@ -8,6 +8,8 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
     {
         CampaignPhoneManagerModel GetDefaultSettings();
 
+        CampaignDetail GetDefaultCampaignDetail(); // used when no matching criteria records found
+
         CampaignDetail GetCampaignDetailById(string id);
 
         List<CampaignDetail> ListAllCampaignDetailRecords();

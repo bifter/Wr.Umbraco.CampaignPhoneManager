@@ -53,6 +53,8 @@ namespace Wr.UmbracoCampaignPhoneManager.Install
 
                 ctModel.AddPropertyType(new PropertyType(UmbracoDataTypes.TextString) { Alias = AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey, Name = "Override campaign querystring key", Description = "Use this as the QueryString key instead of the default one.", Mandatory = false, SortOrder = 9 }, tabName);
 
+                ctModel.AddPropertyType(new PropertyType(UmbracoDataTypes.TrueFalse) { Alias = AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.IsDefault, Name = "Is Default", Description = "Use this if no other matching campaigns are found", Mandatory = false, SortOrder = 10 }, tabName);
+
                 cts.Save(ctModel);
             }
 
@@ -69,8 +71,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Install
                 ctModel.AddPropertyGroup(tabName);
 
                 ctModel.AddPropertyType(new PropertyType(UmbracoDataTypes.TextString) { Alias = AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultCampaignQueryStringKey, Name = "Campaign querystring key", Description = "The http request querystring key used by the marketing campaign", Mandatory = true, SortOrder = 1}, tabName);
-
-                ctModel.AddPropertyType(new PropertyType(UmbracoDataTypes.TextString) { Alias = AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPhoneNumber, Name = "Default phone number", Description = "Default number if no matches are found", Mandatory = true, SortOrder = 2 }, tabName);
 
                 ctModel.AddPropertyType(new PropertyType(UmbracoDataTypes.Numeric) { Alias = AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPersistDurationInDays, Name = "Default persist duration in days", Description = "The default number of days to persist the campaign for a customer", Mandatory = true, SortOrder = 3 }, tabName);
 

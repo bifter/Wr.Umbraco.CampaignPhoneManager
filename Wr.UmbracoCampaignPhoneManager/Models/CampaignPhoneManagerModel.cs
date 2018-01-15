@@ -17,10 +17,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Models
         [DefaultValue("")]
         public string DefaultCampaignQueryStringKey { get; set; }
 
-        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPhoneNumber)]
-        [DefaultValue("")]
-        public string DefaultPhoneNumber { get; set; }
-
         [XmlIgnore]
         private int _defaultPersistDurationInDays;
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultPersistDurationInDays)]
@@ -106,6 +102,10 @@ namespace Wr.UmbracoCampaignPhoneManager.Models
         [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.UseAltCampaignQueryStringKey)]
         [DefaultValue("")]
         public string UseAltCampaignQueryStringKey { get; set; }
+
+        [XmlElement(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.IsDefault)]
+        [DefaultValue(false)]
+        public bool IsDefault { get; set; }
 
         /// <summary>
         /// Checks if the PhoneNumber data is usable

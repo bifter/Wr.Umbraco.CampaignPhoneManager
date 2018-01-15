@@ -143,18 +143,6 @@ namespace Wr.UmbracoCampaignPhoneManager
                 return result;
             }
 
-            // check if a default phone number has been set in the admin system
-            if (!string.IsNullOrEmpty(_repository.GetDefaultSettings()?.DefaultPhoneNumber ?? string.Empty))
-            {
-                result.OutputModelResult = new OutputModel()
-                {
-                    Id = "D",
-                    TelephoneNumber = _repository.GetDefaultSettings()?.DefaultPhoneNumber
-                };
-                result.OutputResultSource = OutputSource.DefaultNumberFromAdmin;
-                return result;
-            }
-
             // as a last resort, output placeholder phone number
             result.OutputModelResult = new OutputModel()
             {

@@ -27,6 +27,13 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
             return _defaultSettings;
         }
 
+        public CampaignDetail GetDefaultCampaignDetail()
+        {
+            var selector = string.Format("{0}='1'", AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.IsDefault);
+            string xpath = string.Format(xpath4CampaignDetailHolder, selector);
+            return _xpathImplementation.GetDataByXPath<CampaignDetail>(xpath); // add any matching records to the results
+        }
+
         public CampaignDetail GetCampaignDetailById(string id)
         {
             var selector = string.Format("@{0}={1}", AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel_CampaignDetail.Id, id); // id is an attribute so prefixing @

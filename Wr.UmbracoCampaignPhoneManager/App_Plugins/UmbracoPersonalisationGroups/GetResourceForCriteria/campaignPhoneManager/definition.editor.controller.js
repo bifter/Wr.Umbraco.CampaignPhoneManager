@@ -23,8 +23,8 @@
         }
 
         $scope.saveAndClose = function () {
-            var serializedResult = "{ \"DocumentId\": \"" + $scope.renderModel.DocumentId + "\", " +
-                "\"Title\": \"" + $scope.renderModel.Title + "\" }";
+            var serializedResult = "{ \"Id\": \"" + $scope.renderModel.Id + "\", " +
+                "\"Name\": \"" + $scope.renderModel.Name + "\" }";
             $scope.submit(serializedResult);
         };
 

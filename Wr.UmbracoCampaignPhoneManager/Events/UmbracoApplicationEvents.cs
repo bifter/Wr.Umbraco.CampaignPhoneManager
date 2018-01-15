@@ -14,9 +14,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Events
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MapConfig.ConfigureAutoMapper();
 
-            //if (!Setup.DoAllDocTypesExist())
-            //    Setup.CreateDocTypes();
-
             UmbracoApplicationBase.ApplicationInit += CampaignPhoneManagerApplicationInit;
         }
 
