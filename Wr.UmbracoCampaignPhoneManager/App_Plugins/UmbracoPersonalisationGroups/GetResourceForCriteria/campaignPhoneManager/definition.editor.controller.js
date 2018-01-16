@@ -7,13 +7,10 @@
             $http.post("/App_Plugins/UmbracoPersonalisationGroups/CampaignPhoneManager/ListCampaignDetails")
                 .then(function (result) {
                     $scope.availableItems = result.data;
-                    /*if (result.data.length > 0 && !$scope.renderModel.groupName) {
-                        $scope.renderModel.groupName = result.data[0];
-                    }*/
                 });
         };
 
-        $scope.renderModel = {};
+        $scope.renderModel = { };
 
         initCampaignDetailList();
 
@@ -23,9 +20,13 @@
         }
 
         $scope.saveAndClose = function () {
-            var serializedResult = "{ \"Id\": \"" + $scope.renderModel.Id + "\", " +
-                "\"Name\": \"" + $scope.renderModel.Name + "\" }";
+            var serializedResult = "{ \"NodeId\": \"" + $scope.renderModel.NodeId + "\", " +
+                "\"Title\": \"" + $scope.renderModel.Title + "\" }";
             $scope.submit(serializedResult);
+        };
+
+        $scope.saveAndClose2 = function (data) {
+            alert(data.Title);
         };
 
     });

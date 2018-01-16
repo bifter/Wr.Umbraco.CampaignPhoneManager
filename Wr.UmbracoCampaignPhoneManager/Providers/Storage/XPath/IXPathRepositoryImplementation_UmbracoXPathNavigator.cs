@@ -64,7 +64,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers.Storage
             }
 
             var result = xpath.Replace("HOME_NODE_PLACEHOLDER", homeXpath);
-            //System.Diagnostics.Debug.WriteLine("UpdateXPathPrefix: " + result);
             return result;
         }
     }

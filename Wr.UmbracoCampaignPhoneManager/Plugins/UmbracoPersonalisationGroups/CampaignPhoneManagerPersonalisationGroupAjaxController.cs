@@ -19,20 +19,9 @@ namespace Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
             var _repository = new XPathRepository();
             var recs = _repository.ListAllCampaignDetailRecords();
 
-            var result = Mapper.Map<List<CampaignDetail>, List<AjaxCampaignDetailModel>>(recs);
+            var result = Mapper.Map<List<CampaignDetail>, List<CampaignPhoneManagerCriteriaSetting>>(recs);
 
             return Json(result, JsonRequestBehavior.DenyGet);
         }
-
-        public class AjaxCampaignDetailModel
-        {
-            public string Id { get; set; }
-            public string Name { get; set; }
-            public string Telephone { get; set; }
-            public string CampaignCode { get; set; }
-        }
-        
-
-
     }
 }

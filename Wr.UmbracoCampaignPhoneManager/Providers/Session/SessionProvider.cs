@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
 using System.Web;
 using System.Web.SessionState;
 using Wr.UmbracoCampaignPhoneManager.Models;
@@ -9,13 +8,8 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
 {
     public class SessionProvider : ISessionProvider
     {
-        HttpSessionState _session;
-
         // constructor
-        public SessionProvider()
-        {
-            _session = HttpContext.Current.Session;
-        }
+        public SessionProvider() { }
 
         /// <summary>
         /// Attempts to get the session
@@ -23,6 +17,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
         /// <returns>OutputModel data</returns>
         public OutputModel GetSession(string key = "")
         {
+            var _session = HttpContext.Current.Session;
             if (_session != null)
             {
                 var sessionKey = (!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session;
@@ -33,7 +28,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
                     try
                     {
                         OutputModel result = JsonConvert.DeserializeObject<OutputModel>(sessionHolder.ToString());
-                        Debug.WriteLine("GetSession: IsValid: " + result.IsValid());
+                        System.Diagnostics.Debug.WriteLine("GetSession: " + result.Id);
                         return result;
                     }
                     catch (JsonReaderException)
@@ -52,6 +47,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
         /// <returns>true if session saved</returns>
         public bool SetSession(OutputModel model, string key = "")
         {
+            var _session = HttpContext.Current.Session;
             if (_session != null)
             {
                 var sessionKey = (!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session;
@@ -59,7 +55,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
                 {
                     var jsonData = JsonConvert.SerializeObject(model);
                     _session[sessionKey] = jsonData;
-                    Debug.WriteLine("SetSession: jsonData: " + jsonData);
+                    System.Diagnostics.Debug.WriteLine("SetSession: " + jsonData);
                     return true;
                 }
                 catch (JsonReaderException)

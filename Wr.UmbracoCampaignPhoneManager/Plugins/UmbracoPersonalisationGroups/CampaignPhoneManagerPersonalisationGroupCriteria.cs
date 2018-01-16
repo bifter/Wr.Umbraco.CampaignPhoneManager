@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using Umbraco.Core;
 using Umbraco.Web;
 using Wr.UmbracoCampaignPhoneManager.Providers;
@@ -41,23 +42,24 @@ namespace Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
                 throw new ArgumentException($"Provided definition is not valid JSON: {definition}");
             }
 
-            if (!string.IsNullOrEmpty(criteriaSetting?.DocumentId))
+            if (!string.IsNullOrEmpty(criteriaSetting?.NodeId))
             {
-                // get the actual campaignDetail document Umbraco >= 7.6 method
-                if (!Udi.TryParse(criteriaSetting.DocumentId,  out Udi theId))
+                // get the actual campaignDetail document
+                Debug.WriteLine("Criteria NodeId: " + criteriaSetting.NodeId);
+                if (int.TryParse(criteriaSetting.NodeId, out int theId))
                 {
-                    return false;
-                }
-
-                var campaignDetailSelectednUmbracoPersonalisationGroups = new UmbracoHelper(UmbracoContext.Current).TypedContent(theId);
-                if (campaignDetailSelectednUmbracoPersonalisationGroups != null)
-                {
-                    var campaignSession = _sessionProvider.GetSession(); // check if there is a campaign phone manager session
-                    if (!string.IsNullOrEmpty(campaignSession?.Id))
+                    var campaignDetailSelectednUmbracoPersonalisationGroups = new UmbracoHelper(UmbracoContext.Current).TypedContent(theId);
+                    if (campaignDetailSelectednUmbracoPersonalisationGroups != null)
                     {
-                        if (campaignSession.Id == campaignDetailSelectednUmbracoPersonalisationGroups.Id.ToString()) // does the campaign session match the selected UmbracoPersonalisationGroups criteria
+                        var campaignSession = _sessionProvider.GetSession(); // check if there is a campaign phone manager session
+                        if (!string.IsNullOrEmpty(campaignSession?.Id))
                         {
-                            return true;
+                            Debug.WriteLine("Criteria sessionId: " + campaignSession.Id);
+                            if (campaignSession.Id == campaignDetailSelectednUmbracoPersonalisationGroups.Id.ToString()) // does the campaign session match the selected UmbracoPersonalisationGroups criteria
+                            {
+                                Debug.WriteLine("Criteria true!");
+                                return true;
+                            }
                         }
                     }
                 }
@@ -66,7 +68,7 @@ namespace Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups
             {
                 //throw new ArgumentNullException("key", "Campaign Phone Manager item not selected");
             }
-
+            Debug.WriteLine("Criteria failed");
             return false;
         }
     }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Umbraco.Core.Models;
 using Wr.UmbracoCampaignPhoneManager.Models;
-using static Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups.CampaignPhoneManagerPersonalisationGroupAjaxController;
+using Wr.UmbracoCampaignPhoneManager.Plugins.UmbracoPersonalisationGroups;
 
 namespace Wr.UmbracoCampaignPhoneManager.App_Config
 {
@@ -9,11 +8,9 @@ namespace Wr.UmbracoCampaignPhoneManager.App_Config
     {
         public static void ConfigureAutoMapper()
         {
-            Mapper.CreateMap<CampaignDetail, AjaxCampaignDetailModel>()
-                    .ForMember(x => x.Id, o => o.MapFrom(s => s.Id))
-                    .ForMember(x => x.Name, o => o.MapFrom(s => s.NodeName))
-                    .ForMember(x => x.Telephone, o => o.MapFrom(s => s.TelephoneNumber))
-                    .ForMember(x => x.CampaignCode, o => o.MapFrom(s => s.CampaignCode));
+            Mapper.CreateMap<CampaignDetail, CampaignPhoneManagerCriteriaSetting>()
+                    .ForMember(x => x.NodeId, o => o.MapFrom(s => s.Id))
+                    .ForMember(x => x.Title, o => o.MapFrom(s => s.NodeName + " : " + s.TelephoneNumber));
 
             /*Mapper.CreateMap<IPublishedContent, CampaignPhoneManagerModel>()
                 .ForMember(x => x.DefaultCampaignQueryStringKey, o => o.MapFrom(s => s.GetProperty(AppConstants.UmbracoDocTypeAliases.CampaignPhoneManagerModel.DefaultCampaignQueryStringKey).Value))
