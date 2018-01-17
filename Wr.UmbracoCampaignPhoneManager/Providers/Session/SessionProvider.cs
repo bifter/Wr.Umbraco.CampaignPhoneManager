@@ -21,14 +21,12 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
             if (_session != null)
             {
                 var sessionKey = (!string.IsNullOrEmpty(key)) ? key : AppConstants.SessionKeys.PM_Session;
-                //Debug.WriteLine("Get Session sessionKey: " + sessionKey);
                 var sessionHolder = _session[AppConstants.SessionKeys.PM_Session];
                 if (sessionHolder != null)
                 {
                     try
                     {
                         OutputModel result = JsonConvert.DeserializeObject<OutputModel>(sessionHolder.ToString());
-                        System.Diagnostics.Debug.WriteLine("GetSession: " + result.Id);
                         return result;
                     }
                     catch (JsonReaderException)
@@ -55,7 +53,6 @@ namespace Wr.UmbracoCampaignPhoneManager.Providers
                 {
                     var jsonData = JsonConvert.SerializeObject(model);
                     _session[sessionKey] = jsonData;
-                    System.Diagnostics.Debug.WriteLine("SetSession: " + jsonData);
                     return true;
                 }
                 catch (JsonReaderException)
