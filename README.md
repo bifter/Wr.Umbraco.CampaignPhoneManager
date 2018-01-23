@@ -21,7 +21,8 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 - <a href="#Personalisation-Groups-plugin">Personalisation Groups plugin</a>
 - <a href="#Extending">Extending</a>
 - <a href="#Acknowledgements">Acknowledgements</a>
-- <a href="#Version-History-Phone-Manager">Version History</a>
+- <a href="#Version-History---Phone-Manager">Version History</a>
+
 
 ## Installation
 
@@ -29,7 +30,6 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 Install the package through the Umbraco backoffice.
 
 1. [**NuGet Package**][NuGetPackage]  COMING SOON!
-	PM> Install-Package UmbracoCampaignPhoneManager
 
 Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
 
@@ -46,6 +46,7 @@ Note: As with the Nuget package you will need to install the package via our.umb
 The first step is to add one 'Phone Manager' document type to your content structure. It is recommended to add it once below your site homepage (if you have multiple sites, this would allow you to set up separate campaign details per site).
 You will probably also want to create a 'custom list view' on the 'Phone Manager' document type so you can see relevant phone details easily. Some useful field you could use are: pageTitle; telephoneNumber; campaingCode; isDefault.
 Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.
+
 
 ### Templates
 
@@ -66,6 +67,7 @@ If needed you can also display or use the folling properties:
 	@Model.Content.PhoneManager().AltMarketingCode
 ```
 
+
 ## Personalisation Groups plugin
 
 Supplied as a separate package, the Phone Manager Personalisation Groups plugin package adds a 'Phone Mananger' criteria for the [**Personalisation Groups package**][PersonalisationGroupsLink]. This will allow you to personalise your site based on which Phone Manager campaign a user is currently linked to.
@@ -78,7 +80,6 @@ You will need to have already installed the Phone Manager package and the [**Per
 Install the package through the Umbraco backoffice.
 
 1. [**NuGet Package**][NuGetPersonalisationPackage]  COMING SOON!
-	PM> Install-Package UmbracoCampaignPhoneManager
 
 Install the NuGet package in your Visual Studio project.
 
@@ -97,12 +98,14 @@ It is possible to extend the package with additional campaign criteria.
 - Create a class inheriting from IPhoneManagerCriteria.
 - Extend the currently used storage repository (the default is XPathRepository) with a method to select matching campaign detail records.
 - Add the following line to you web.config appSettings:
-	`<add key="phoneManager.DiscoverNewCriteria" value="true"/>` - this overrides the default method of finding any available criteria. 
+```<add key="phoneManager.DiscoverNewCriteria" value="true"/>``` 
 - Add some unit test methods to check your logic is correct :)
+
 
 ## Acknowledgements
 
 Inspiration from the [**Personalisation Groups package**][PersonalisationGroupsLink].
+
 
 ## Version History - Phone Manager
 
