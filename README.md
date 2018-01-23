@@ -21,7 +21,7 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 - <a href="#Personalisation-Groups-plugin">Personalisation Groups plugin</a>
 - <a href="#Extending">Extending</a>
 - <a href="#Acknowledgements">Acknowledgements</a>
-- <a href="#Version-History---Phone-Manager">Version History</a>
+- <a href="#Version-History">Version History</a>
 
 
 ## Installation
@@ -107,12 +107,14 @@ It is possible to extend the package with additional campaign criteria.
 Inspiration from the [**Personalisation Groups package**][PersonalisationGroupsLink].
 
 
-## Version History - Phone Manager
+## Version History
+
+### Phone Manager
 
 - 1.0.0
 	- Initial release
 
-## Version History - Personalisation Groups plugin
+### Personalisation Groups plugin
 
 - 1.0.0
 	- Initial release
