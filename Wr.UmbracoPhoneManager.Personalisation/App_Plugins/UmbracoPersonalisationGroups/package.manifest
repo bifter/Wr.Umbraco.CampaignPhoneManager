@@ -1,0 +1,6 @@
+﻿{
+    javascript: [
+        '~/App_Plugins/UmbracoPersonalisationGroups/GetResourceForCriteria/phoneManager/definition.editor.controller.js',
+        '~/App_Plugins/UmbracoPersonalisationGroups/GetResourceForCriteria/phoneManager/definition.translator.js'
+    ]    
+}

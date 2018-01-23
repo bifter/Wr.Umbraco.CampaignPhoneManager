@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>Wr.UmbracoPhoneManager.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Wr.UmbracoPhoneManager.dll</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Phone Manager</name>
+      <version>1.0</version>
+      <iconUrl />
+      <license url="http://opensource.org/licenses/MIT">MIT License</license>
+      <url>https://github.com/willroscoe/packageurl</url>
+      <requirements type="strict">
+        <major>7</major>
+        <minor>7</minor>
+        <patch>4</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Will Roscoe</name>
+      <website>https://github.com/willroscoe</website>
+    </author>
+    <readme><![CDATA[Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there. To setup add a 'Phone Manager' Document type under your homepage. Then add multiple 'Phone Manager - Campaign Details' records. You will then need to update any templates where you want the Telephone number (or other details of the campaign) displayed. ]]></readme>
+  </info>
+  <DocumentTypes>
+    <DocumentType>
+      <Info>
+        <Name>Phone Manager - Campaign detail</Name>
+        <Alias>phoneManagerCampaignDetail</Alias>
+        <Icon>icon-phone</Icon>
+        <Thumbnail>folder.png</Thumbnail>
+        <Description>Note: You must have at least one IsDefault record.</Description>
+        <AllowAtRoot>False</AllowAtRoot>
+        <IsListView>False</IsListView>
+        <Compositions />
+        <AllowedTemplates />
+        <DefaultTemplate />
+      </Info>
+      <Structure />
+      <GenericProperties>
+        <GenericProperty>
+          <Name>Overwrite persisting item</Name>
+          <Alias>overwritePersistingItem</Alias>
+          <Type>Umbraco.TrueFalse</Type>
+          <Definition>9c8b8d1a-5ca3-44c8-8755-075a8b7ad271</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>8</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[This number will overwrite an exisiting persistent number]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Do Not Persist Across Visits</Name>
+          <Alias>doNotPersistAcrossVisits</Alias>
+          <Type>Umbraco.TrueFalse</Type>
+          <Definition>bd50af5d-0c50-42f7-823d-7b3ec5d06aef</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>6</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[Persist this number across user sessions. i.e. using cookies]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Alt Marketing Code</Name>
+          <Alias>altMarketingCode</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>10d87acb-7414-42c8-a204-3de67526b5f6</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>11</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[Additional marketing code associated with this campaign]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Telephone number</Name>
+          <Alias>telephoneNumber</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>e78f131c-d421-4e91-83d0-5d63a292ee13</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>1</SortOrder>
+          <Mandatory>True</Mandatory>
+          <Description><![CDATA[The phone number to display]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Is Default</Name>
+          <Alias>isDefault</Alias>
+          <Type>Umbraco.TrueFalse</Type>
+          <Definition>8b86031a-5442-48a6-be6d-3b4da0e41de2</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>13</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[This is used if no other campaign are relevant.]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Entry page</Name>
+          <Alias>entryPage</Alias>
+          <Type>Umbraco.ContentPicker2</Type>
+          <Definition>dc97b9c5-e8df-4035-b831-59c779163f5d</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>5</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[If user enters the site on this url]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Override Campaign QueryString Key</Name>
+          <Alias>useAltCampaignQueryStringKey</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>ac4bed70-5459-4543-a78b-eb626e47ac89</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>12</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[Use this as the QueryString key instead of the default one.]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Campaign code</Name>
+          <Alias>campaignCode</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>30a68e18-f012-47b4-a9c3-b1c07a63ba4e</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>2</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[The marketing code sent as a querystring 'mc=' with the request]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Persist duration override</Name>
+          <Alias>persistDurationOverride</Alias>
+          <Type>Umbraco.Integer</Type>
+          <Definition>b3f2266a-0ebd-471d-9c6c-0b91e02d997b</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>7</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Validation>^[0-9]*$</Validation>
+          <Description><![CDATA[If persisting, for how many days?]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Referrer</Name>
+          <Alias>referrer</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>a6db9dbe-e6f0-4b57-93bd-a40f257665f1</Definition>
+          <Tab>Campaign detail</Tab>
+          <SortOrder>4</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[With the following referrer domains. E.g. with could be search engine domains. Use 'none' for direct entry.]]></Description>
+        </GenericProperty>
+      </GenericProperties>
+      <Tabs>
+        <Tab>
+          <Id>30</Id>
+          <Caption>Campaign detail</Caption>
+          <SortOrder>0</SortOrder>
+        </Tab>
+      </Tabs>
+    </DocumentType>
+    <DocumentType>
+      <Info>
+        <Name>Phone Manager</Name>
+        <Alias>phoneManager</Alias>
+        <Icon>icon-phone-ring color-orange</Icon>
+        <Thumbnail>folder.png</Thumbnail>
+        <Description>Add one per site under the homepage.</Description>
+        <AllowAtRoot>False</AllowAtRoot>
+        <IsListView>True</IsListView>
+        <Compositions />
+        <AllowedTemplates />
+        <DefaultTemplate />
+      </Info>
+      <Structure>
+        <DocumentType>phoneManagerCampaignDetail</DocumentType>
+      </Structure>
+      <GenericProperties>
+        <GenericProperty>
+          <Name>Disable OverwritePersistingItem globally</Name>
+          <Alias>globalDisableOverwritePersistingItems</Alias>
+          <Type>Umbraco.TrueFalse</Type>
+          <Definition>595c79d3-8382-43fc-b8de-87996ace05da</Definition>
+          <Tab>Settings</Tab>
+          <SortOrder>3</SortOrder>
+          <Mandatory>False</Mandatory>
+          <Description><![CDATA[Disable any campaign from overwriting persisting items. This is recommended if possible.]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Default persist duration in days</Name>
+          <Alias>defaultPersistDurationInDays</Alias>
+          <Type>Umbraco.Integer</Type>
+          <Definition>ca67e186-8d7e-4728-85c9-263cca3ca321</Definition>
+          <Tab>Settings</Tab>
+          <SortOrder>2</SortOrder>
+          <Mandatory>True</Mandatory>
+          <Validation>^[0-9]*$</Validation>
+          <Description><![CDATA[The default number of days to persist the campaign for a customer]]></Description>
+        </GenericProperty>
+        <GenericProperty>
+          <Name>Campaign querystring key</Name>
+          <Alias>defaultCampaignQueryStringKey</Alias>
+          <Type>Umbraco.Textbox</Type>
+          <Definition>fc22556e-4eaf-46bf-b293-8e60a23e6de7</Definition>
+          <Tab>Settings</Tab>
+          <SortOrder>0</SortOrder>
+          <Mandatory>True</Mandatory>
+          <Description><![CDATA[The http request querystring key used by the marketing campaign]]></Description>
+        </GenericProperty>
+      </GenericProperties>
+      <Tabs>
+        <Tab>
+          <Id>31</Id>
+          <Caption>Settings</Caption>
+          <SortOrder>0</SortOrder>
+        </Tab>
+      </Tabs>
+    </DocumentType>
+  </DocumentTypes>
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes>
+    <DataType Name="Phone Manager - Campaign detail -  Do Not Persist - TrueFalse" Id="Umbraco.TrueFalse" Definition="bd50af5d-0c50-42f7-823d-7b3ec5d06aef" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="378" Value="0" Alias="default" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Alt Marketing Code - Textbox" Id="Umbraco.Textbox" Definition="10d87acb-7414-42c8-a204-3de67526b5f6" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="375" Value="50" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Campaign code - Textbox" Id="Umbraco.Textbox" Definition="30a68e18-f012-47b4-a9c3-b1c07a63ba4e" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="380" Value="" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Entry page - Content Picker" Id="Umbraco.ContentPicker2" Definition="dc97b9c5-e8df-4035-b831-59c779163f5d" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="373" Value="0" Alias="showOpenButton" SortOrder="0" />
+        <PreValue Id="374" Value="umb://document/156f1933e3274dceb665110d62720d03" Alias="startNodeId" SortOrder="1" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Is Default - TrueFalse" Id="Umbraco.TrueFalse" Definition="8b86031a-5442-48a6-be6d-3b4da0e41de2" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="426" Value="" Alias="default" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Overwrite persisting number - TrueFalse" Id="Umbraco.TrueFalse" Definition="9c8b8d1a-5ca3-44c8-8755-075a8b7ad271" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="384" Value="" Alias="default" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Campaign detail - Persist duration - Numeric (1)" Id="Umbraco.Integer" Definition="b3f2266a-0ebd-471d-9c6c-0b91e02d997b" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="381" Value="0" Alias="min" SortOrder="0" />
+        <PreValue Id="382" Value="1" Alias="step" SortOrder="1" />
+        <PreValue Id="383" Value="60" Alias="max" SortOrder="2" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Referrer - Textbox" Id="Umbraco.Textbox" Definition="a6db9dbe-e6f0-4b57-93bd-a40f257665f1" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="385" Value="" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Telephone number - Textbox" Id="Umbraco.Textbox" Definition="e78f131c-d421-4e91-83d0-5d63a292ee13" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="379" Value="50" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Campaign detail - Use Alt Campaign QueryString Key - Textbox" Id="Umbraco.Textbox" Definition="ac4bed70-5459-4543-a78b-eb626e47ac89" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="376" Value="50" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Default Campaign QueryString - Textbox" Id="Umbraco.Textbox" Definition="fc22556e-4eaf-46bf-b293-8e60a23e6de7" DatabaseType="Nvarchar">
+      <PreValues>
+        <PreValue Id="403" Value="30" Alias="maxChars" SortOrder="0" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Default Persist Duration  InDays - Numeric" Id="Umbraco.Integer" Definition="ca67e186-8d7e-4728-85c9-263cca3ca321" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="370" Value="1" Alias="min" SortOrder="0" />
+        <PreValue Id="371" Value="1" Alias="step" SortOrder="1" />
+        <PreValue Id="372" Value="120" Alias="max" SortOrder="2" />
+      </PreValues>
+    </DataType>
+    <DataType Name="Phone Manager - Global Disable OverwritePersistingItems - TrueFalse" Id="Umbraco.TrueFalse" Definition="595c79d3-8382-43fc-b8de-87996ace05da" DatabaseType="Integer">
+      <PreValues>
+        <PreValue Id="420" Value="1" Alias="default" SortOrder="0" />
+      </PreValues>
+    </DataType>
+  </DataTypes>
+  <Actions>
+    <Action runat="install" alias="allowDocumentType" documentTypeAlias="phoneManagerCampaignDetail" parentDocumentTypeAlias="phoneManager" />
+    <Action runat="install" alias="allowDocumentType" documentTypeAlias="phoneManager" parentDocumentTypeAlias="home" />
+  </Actions>
+</umbPackage>

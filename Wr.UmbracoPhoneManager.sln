@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager", "Wr.UmbracoPhoneManager\Wr.UmbracoPhoneManager.csproj", "{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager.Tests", "Wr.UmbracoPhoneManager.Tests\Wr.UmbracoPhoneManager.Tests.csproj", "{549AC9FD-7202-4E16-BEF6-D6879ABE17DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{045888B4-9BD9-40E3-8E32-5C1521724408}"
+	ProjectSection(SolutionItems) = preProject
+		grunt_phonemanager.js = grunt_phonemanager.js
+		grunt_phonemanager_personalisation.js = grunt_phonemanager_personalisation.js
+		Gruntfile.js = Gruntfile.js
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "build", "build\", "{A5951E00-EED7-474A-AB9A-199DFCFE61ED}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50113"
+		Debug.AspNetCompiler.PhysicalPath = "build\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50113\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50113"
+		Release.AspNetCompiler.PhysicalPath = "build\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50113\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50113"
+		SlnRelativePath = "build\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "releases", "releases\", "{DA3BC902-6494-4F70-88A8-448B680062F0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50442"
+		Debug.AspNetCompiler.PhysicalPath = "releases\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50442\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50442"
+		Release.AspNetCompiler.PhysicalPath = "releases\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50442\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50442"
+		SlnRelativePath = "releases\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager.Personalisation", "Wr.UmbracoPhoneManager.Personalisation\Wr.UmbracoPhoneManager.Personalisation.csproj", "{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{549AC9FD-7202-4E16-BEF6-D6879ABE17DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549AC9FD-7202-4E16-BEF6-D6879ABE17DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549AC9FD-7202-4E16-BEF6-D6879ABE17DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549AC9FD-7202-4E16-BEF6-D6879ABE17DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5951E00-EED7-474A-AB9A-199DFCFE61ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5951E00-EED7-474A-AB9A-199DFCFE61ED}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA3BC902-6494-4F70-88A8-448B680062F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA3BC902-6494-4F70-88A8-448B680062F0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34EB4130-504F-4CE6-B021-9023C41CD446}
+	EndGlobalSection
+EndGlobal

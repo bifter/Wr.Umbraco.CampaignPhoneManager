@@ -1,0 +1,40 @@
+{
+  "name": "wr.umbracophonemanager.personalisation",
+  "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager",
+  "version": "1.0.0",
+  "description": "Phone Manager Personalisation Groups plugin is an Umbraco package to add a Phone Manager criteria item to the Personalisation Groups package. Using this it is possible to personalise your site based on the selected Phone Manager campaign.",
+  "readme": "This package requires both Phone Manager and Personalisation Groups packages to be installed before installing.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willroscoe/Wr.UmbracoPhoneManager.git"
+  },
+  "keywords": [
+    "Umbraco",
+    "Marketing",
+    "Campaign",
+    "Phone Manager",
+    "Telephone Manager",
+    "Personalisation Groups",
+    "Plugin"
+  ],
+  "author": {
+    "name": "Will Roscoe",
+    "url": "https://github.com/willroscoe"
+  },
+  "license": {
+    "name": "MIT",
+    "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/LICENSE.md"
+  },
+  "bugs": {
+    "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/issues"
+  },
+  "homepage": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/README.md",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-nuget": "^0.3.0",
+    "grunt-umbraco-package": "^1.0.0",
+    "grunt-zip": "^0.17.1"
+  }
+}

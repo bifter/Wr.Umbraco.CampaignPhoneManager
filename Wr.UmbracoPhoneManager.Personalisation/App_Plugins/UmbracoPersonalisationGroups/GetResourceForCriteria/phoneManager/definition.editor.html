@@ -1,0 +1,19 @@
+﻿<div class="umb-panel" ng-controller="UmbracoPersonalisationGroups.PhoneManagerPersonalisationGroupCriteriaController">
+    <div class="umb-panel-body no-header with-footer compact">
+        <p>Please select the Campaign:</p>
+         <select ng-model="renderModel"
+            ng-options="item as item.Title for item in availableItems"></select>
+    </div>
+    <div class="umb-panel-footer">
+        <div class="umb-el-wrap umb-panel-buttons">
+            <div class="btn-toolbar umb-btn-toolbar pull-right">
+                <a href ng-click="close()" class="btn btn-link">
+                    <localize key="general_cancel">Cancel</localize>
+                </a>
+                <a href ng-click="saveAndClose()" class="btn btn-primary">
+                    <localize key="buttons_save">Save</localize>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
