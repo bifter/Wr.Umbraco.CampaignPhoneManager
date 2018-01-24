@@ -32,7 +32,7 @@ Install the package through the Umbraco backoffice:
 - or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet (COMING SOON!):
-- '''>PM '''
+- ```>PM ```
 - [**NuGet Package**][NuGetPackage]  COMING SOON! Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
 
 [NuGetPackage]: https://github.com/willroscoe/UmbracoPhoneManager
@@ -76,17 +76,13 @@ Supplied as a separate package, the Phone Manager Personalisation Groups plugin 
 You will need to have already installed the Phone Manager package and the [**Personalisation Groups package**][PersonalisationGroupsLink] before installing the plugin package.
 
 Install the package through the Umbraco backoffice:
-- In Developer -> Packages backoffice. Search for 'Phone Manager', in Website utilities
+- In Developer -> Packages backoffice. Search for 'Phone Manager Personalisation Groups plugin', in Website utilities
 - or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-plugin**][UmbracoPersonalisationPackage]. Manually install via 'Install local' in your Umbraco package backoffice.
 - or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet (COMING SOON!):
-- '''>PM '''
+- ```>PM ```
 - [**NuGet Package**][NuGetPersonalisationPackage] - Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
-
-[NuGetPackage]: https://github.com/willroscoe/UmbracoPhoneManager
-[OurUmbraco]: https://our.umbraco.org/projects/website-utilities/phone-manager/
-[GitHubRelease]: https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco
 
 [NuGetPersonalisationPackage]: https://github.com/willroscoe/UmbracoPhoneManager
 [OurUmbracoPersonalisationPackage]: https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-plugin
