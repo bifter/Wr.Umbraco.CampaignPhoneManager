@@ -22,7 +22,7 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage
         public PhoneManagerModel GetDefaultSettings()
         {
             if (_defaultSettings == null)
-                _defaultSettings = _xpathImplementation.LoadDefaultSettings(xpath4DefaultCampaignPhoneManagerSettings);
+                _defaultSettings = _xpathImplementation.LoadDefaultSettings(xpath4DefaultPhoneManagerSettings);
 
             return _defaultSettings;
         }

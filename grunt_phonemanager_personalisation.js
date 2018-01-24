@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                     authorUrl: pkg.author.url,
                     readme: pkg.readme,
                     outputName: friendlyFilename + '.' + version + '.zip',
-                    requirements: {major: 7, minor: 7, patch: 4}
+                    requirements: {major: 7, minor: 6, patch: 0}
                 }
             }
         },

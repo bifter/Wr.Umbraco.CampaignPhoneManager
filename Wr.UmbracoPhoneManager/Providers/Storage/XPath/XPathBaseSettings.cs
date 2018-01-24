@@ -7,7 +7,7 @@
 
         public static string xpath4CampaignDetailHolder = string.Format("{0}{1}/{2}", baseXpath, AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager, AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManagerCampaignDetail) + "[{0}]";
 
-        public static string xpath4DefaultCampaignPhoneManagerSettings = string.Format("{0}{1}", baseXpath, AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager);
+        public static string xpath4DefaultPhoneManagerSettings = string.Format("{0}{1}", baseXpath, AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager);
 
     }
 }

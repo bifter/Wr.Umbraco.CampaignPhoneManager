@@ -18,7 +18,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = MockProviders.Repository(testPhoneManagerData);
@@ -45,7 +45,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer="google.co.uk" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer="google.co.uk" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = MockProviders.Repository(testPhoneManagerData);
@@ -72,7 +72,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
             {
                 new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
@@ -95,7 +95,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Assert
             Assert.IsNotNull(results);
             Assert.AreEqual(results.Count(), 1);
-            Assert.AreEqual(results.First().Id, dataModel.CampaignDetail.First().Id);
+            Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
         [TestMethod]
@@ -104,7 +104,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
             {
                 new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
@@ -127,7 +127,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Assert
             Assert.IsNotNull(results);
             Assert.AreEqual(results.Count(), 1);
-            Assert.AreEqual(results.First().Id, dataModel.CampaignDetail.First().Id);
+            Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
         [TestMethod]
@@ -136,7 +136,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
             {
                 new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "google.co.uk" },
                 new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
@@ -159,7 +159,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Assert
             Assert.IsNotNull(results);
             Assert.AreEqual(results.Count(), 1);
-            Assert.AreEqual(results.First().Id, dataModel.CampaignDetail.First().Id);
+            Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
         [TestMethod]
@@ -168,7 +168,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
             {
                 new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "www.google.co.uk" },
                 new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" }
@@ -199,7 +199,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
             {
                 new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", Referrer = "www.google.co.uk" },
                 new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "9909 999 9999", CampaignCode = "testcode2", Referrer = "google.com" },

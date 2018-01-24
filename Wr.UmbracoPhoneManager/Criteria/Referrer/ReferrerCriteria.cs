@@ -7,6 +7,9 @@ namespace Wr.UmbracoPhoneManager.Criteria
 {
     public class ReferrerCriteria : IPhoneManagerCriteria
     {
+        /// <summary>
+        /// For the selection of records that match the referrer passed with the request
+        /// </summary>
         public ReferrerCriteria () { }
 
         public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)

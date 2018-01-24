@@ -12,7 +12,7 @@
     <description>Phone Manager Personalisation Groups plugin is an Umbraco package to add a Phone Manager criteria item to the Personalisation Groups package. Using this it is possible to personalise your site based on the selected Phone Manager campaign.</description>
     <tags>Umbraco, Marketing, Campaign, Telephone Manager, Phone Manager, Personalisation Groups, plugin</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="7.7.4" />
+      <dependency id="UmbracoCms.Core" version="7.6.0" />
 	  <dependency id="Zone.UmbracoPersonalisationGroups" version="0.3.1" />
     </dependencies>
   </metadata>

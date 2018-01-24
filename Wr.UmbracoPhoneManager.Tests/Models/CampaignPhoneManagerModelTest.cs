@@ -10,7 +10,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
     public class CampaignPhoneManagerModelTest
     {
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_DefaultPersistDurationInDays_NotSet_AlwaysReturnsAPositiveInt()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_NotSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
             var model = new PhoneManagerModel();         
@@ -23,7 +23,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_DefaultPersistDurationInDays_ZeroNumberSet_AlwaysReturnsAPositiveInt()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_ZeroNumberSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
             var model = new PhoneManagerModel();
@@ -37,7 +37,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_DefaultPersistDurationInDays_MinusNumberSet_AlwaysReturnsAPositiveInt()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_MinusNumberSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
             var model = new PhoneManagerModel();
@@ -51,7 +51,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_DefaultPersistDurationInDays_ValidNumberSet_ReturnsValidNumber()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_ValidNumberSet_ReturnsValidNumber()
         {
             // Arrange
             var model = new PhoneManagerModel();
@@ -65,7 +65,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_IsValid_InputNotValid_ReturnsFalse()
+        public void Model_PhoneManagerModel_CampaignDetailTest_IsValid_InputNotValid_ReturnsFalse()
         {
             // Arrange
             var model = new PhoneManagerCampaignDetail();
@@ -78,7 +78,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_IsValid_InputValid_ReturnsTrue()
+        public void Model_PhoneManagerModel_CampaignDetailTest_IsValid_InputValid_ReturnsTrue()
         {
             // Arrange
             var model = new PhoneManagerCampaignDetail() { TelephoneNumber = "0800" };
@@ -91,7 +91,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_NoInput_ReturnsFalse()
+        public void Model_PhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_NoInput_ReturnsFalse()
         {
             // Arrange
             var model = new PhoneManagerCampaignDetail();
@@ -104,7 +104,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_ValidInput_ReturnsTrue()
+        public void Model_PhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_ValidInput_ReturnsTrue()
         {
             // Arrange
             var model = new PhoneManagerCampaignDetail() { TelephoneNumber = "0800", DoNotPersistAcrossVisits = false };
@@ -117,7 +117,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
+        public void Model_PhoneManagerModel_CampaignDetailTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerCampaignDetail>();
@@ -127,7 +127,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_AllXmlElementNamesAreUnique_ReturnsTrue()
+        public void Model_PhoneManagerModel_CampaignDetailTest_AllXmlElementNamesAreUnique_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerCampaignDetail>();
@@ -137,7 +137,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignDetailTest_XmlElementNameMatchPropertyName_ReturnsTrue()
+        public void Model_PhoneManagerModel_CampaignDetailTest_XmlElementNameMatchPropertyName_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerCampaignDetail>();
@@ -147,7 +147,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerModel>();
@@ -157,7 +157,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_AllXmlElementNamesAreUnique_ReturnsTrue()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_AllXmlElementNamesAreUnique_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerModel>();
@@ -167,7 +167,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
         }
 
         [TestMethod]
-        public void Model_CampaignPhoneManagerModel_CampaignPhoneManagerModelTest_XmlElementNameMatchPropertyName_ReturnsTrue()
+        public void Model_PhoneManagerModel_PhoneManagerModelTest_XmlElementNameMatchPropertyName_ReturnsTrue()
         {
             // Arrange / Act
             var result = GetCustomPropertyInfo<PhoneManagerModel>();

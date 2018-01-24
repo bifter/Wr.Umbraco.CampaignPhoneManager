@@ -12,7 +12,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         {
             // Arrange
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
@@ -31,7 +31,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         {
             // Arrange
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
 
             var testPhoneManagerData = dataModel.ToXmlString();
 
@@ -51,7 +51,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         {
             // Arrange
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
                 {
                     new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
                     new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 4567", CampaignCode = "testcode2" }
@@ -73,7 +73,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         {
             // Arrange
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
                 {
                     new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
                     new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 4567", CampaignCode = "testcode2" }
@@ -95,7 +95,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         {
             // Arrange
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 0 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>()
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>()
                 {
                     new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" },
                     new PhoneManagerCampaignDetail() { Id = "1202", TelephoneNumber = "0800 000 4567", CampaignCode = "testcode2" }
@@ -109,7 +109,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
             var act = method.GetCampaignDetailById("1203");
 
             // Assert
-            Assert.IsNull(act.Id);
+            Assert.IsNull(act);
         }
     }
 }

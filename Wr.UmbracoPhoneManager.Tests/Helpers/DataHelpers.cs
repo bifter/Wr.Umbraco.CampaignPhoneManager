@@ -42,7 +42,7 @@ namespace Wr.UmbracoPhoneManager.Tests
         /// <returns></returns>
         public static string UpdateXpathForTesting(string xpath)
         {
-            return xpath.Replace("HOME_NODE_PLACEHOLDER", "");
+            return xpath.Replace("HOME_NODE_PLACEHOLDER", "").Replace("isDefault='1'", "isDefault='true'");
         }
 
         /// <summary>

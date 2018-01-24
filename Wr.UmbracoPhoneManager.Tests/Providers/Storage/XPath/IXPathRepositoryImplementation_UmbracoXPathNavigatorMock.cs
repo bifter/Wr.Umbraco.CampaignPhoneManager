@@ -38,7 +38,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage
 
             T result = XmlHelper.XPathNavigatorToModel<T>(navigatorResult);
 
-            return (result != null) ? result : new T();
+            return result;
         }
 
 
@@ -52,7 +52,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage
 
             List<PhoneManagerCampaignDetail> result = XmlHelper.XPathNavigatorToModel(navigatorResult);
 
-            return (result != null) ? result.ToList() : new List<PhoneManagerCampaignDetail>();
+            return (result != null) ? result.ToList() : null;
         }
     }
 }

@@ -9,16 +9,16 @@ namespace Wr.UmbracoPhoneManager.Events
     {
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            UmbracoApplicationBase.ApplicationInit += CampaignPhoneManagerApplicationInit;
+            UmbracoApplicationBase.ApplicationInit += PhoneManagerApplicationInit;
         }
 
-        private void CampaignPhoneManagerApplicationInit(object sender, EventArgs e)
+        private void PhoneManagerApplicationInit(object sender, EventArgs e)
         {
             var application = (HttpApplication)sender;
-            application.PreRequestHandlerExecute += doCampaignPhoneManagerProcessing;
+            application.PreRequestHandlerExecute += doPhoneManagerProcessing;
         }
 
-        private void doCampaignPhoneManagerProcessing(object sender, EventArgs e)
+        private void doPhoneManagerProcessing(object sender, EventArgs e)
         {
             var umbracoContext = UmbracoContext.Current;
 

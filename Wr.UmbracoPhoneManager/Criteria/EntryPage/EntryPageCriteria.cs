@@ -6,6 +6,9 @@ namespace Wr.UmbracoPhoneManager.Criteria
 {
     public class EntryPageCriteria : IPhoneManagerCriteria
     {
+        /// <summary>
+        /// For the selection of records that match the first page the user hits
+        /// </summary>
         public EntryPageCriteria() { }
 
         public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)

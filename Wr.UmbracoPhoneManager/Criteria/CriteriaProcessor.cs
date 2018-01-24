@@ -5,6 +5,9 @@ using Wr.UmbracoPhoneManager.Providers.Storage;
 
 namespace Wr.UmbracoPhoneManager.Criteria
 {
+    /// <summary>
+    /// Compiles matching records from all the available criteria. If none found then return the default record (a record with isDefault set)
+    /// </summary>
     public class CriteriaProcessor
     {
         private readonly IRepository _repository;

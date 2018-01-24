@@ -18,7 +18,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = MockProviders.Repository(testPhoneManagerData);
@@ -45,7 +45,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Arrange
             // generate test data
             var dataModel = new PhoneManagerModel() { DefaultCampaignQueryStringKey = "fsource", DefaultPersistDurationInDays = 32 };
-            dataModel.CampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="umb://Homepage" } };
+            dataModel.PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>() { new PhoneManagerCampaignDetail() { Id = "1201", TelephoneNumber = "0800 123 4567", CampaignCode = "testcode", EntryPage="umb://Homepage" } };
             var testPhoneManagerData = dataModel.ToXmlString();
 
             IRepository _repository = MockProviders.Repository(testPhoneManagerData);
@@ -53,7 +53,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             var criteriaParameters = new CriteriaParameterHolder()
             {
                 CleansedQueryStrings = null,
-                RequestInfo_NotIncludingQueryStrings = new PhoneManagerCampaignDetail() { EntryPage = dataModel.CampaignDetail.First().EntryPage }
+                RequestInfo_NotIncludingQueryStrings = new PhoneManagerCampaignDetail() { EntryPage = dataModel.PhoneManagerCampaignDetail.First().EntryPage }
             };
 
             var criteria = new EntryPageCriteria();
@@ -64,7 +64,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             // Assert
             Assert.IsNotNull(results);
             Assert.AreEqual(results.Count(), 1);
-            Assert.AreEqual(results.First().EntryPage, dataModel.CampaignDetail.First().EntryPage);
+            Assert.AreEqual(results.First().EntryPage, dataModel.PhoneManagerCampaignDetail.First().EntryPage);
         }
     }
 }

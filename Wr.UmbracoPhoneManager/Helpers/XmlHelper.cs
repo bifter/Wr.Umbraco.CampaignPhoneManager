@@ -58,7 +58,7 @@ namespace Wr.UmbracoPhoneManager
                 {
                     var tmp = (PhoneManagerModel)serializer.Deserialize(textResult);
                     if (tmp != null)
-                        result = tmp.CampaignDetail;
+                        result = tmp.PhoneManagerCampaignDetail;
                 }
                 catch (Exception ex)
                 {

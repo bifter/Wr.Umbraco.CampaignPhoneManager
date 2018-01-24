@@ -42,7 +42,10 @@ namespace Wr.UmbracoPhoneManager
             _umbracoProvider = umbracoProvider;
         }
 
-        // Methods
+        /// <summary>
+        /// Taking the current request, find a relevant Phone Manager record to display to the user
+        /// </summary>
+        /// <returns></returns>
         public OutputModel ProcessRequest()
         {
             // check for active phone manager session
@@ -61,7 +64,7 @@ namespace Wr.UmbracoPhoneManager
             }
 
             // try and find a relevant phone number from the phone manager records based on the criteria's. Null if none found
-            var foundRecord = (lookForMatchingRecord) ? FindMatchingPhoneManagerPhoneNumberUsingGatheredRequestInfo() : new PhoneManagerCampaignDetail();
+            var foundRecord = (lookForMatchingRecord) ? FindMatchingPhoneManagerPhoneNumberUsingGatheredRequestInfo() : null;
 
             // pass all available data into the method which decides which data to use
             var logicBox = ProcessAllPotentialCandidatePhoneNumbers(exisitingCookie, foundRecord);

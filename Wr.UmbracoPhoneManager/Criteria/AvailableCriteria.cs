@@ -25,7 +25,7 @@ namespace Wr.UmbracoPhoneManager.Criteria
         }
 
         /// <summary>
-        /// Discover the loaded assemblies of type 'ICampaignPhoneManagerCriteria', or use the hardcoded list for speed
+        /// Discover the loaded assemblies of type 'IPhoneManagerCriteria', or use the hardcoded list for speed
         /// </summary>
         private static IEnumerable<IPhoneManagerCriteria> CompileCriteriaList()
         {

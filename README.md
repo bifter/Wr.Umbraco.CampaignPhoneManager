@@ -17,38 +17,36 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 ## Links
 
 - <a href="#installation">Installation</a>
-- <a href="#Implementing">Implementing</a>
-- <a href="#Personalisation-Groups-plugin">Personalisation Groups plugin</a>
-- <a href="#Extending">Extending</a>
-- <a href="#Acknowledgements">Acknowledgements</a>
-- <a href="#Version-History">Version History</a>
+- <a href="#implementing">Implementing</a>
+- <a href="#personalisation-groups-plugin">Personalisation Groups plugin</a>
+- <a href="#extending">Extending</a>
+- <a href="#acknowledgements">Acknowledgements</a>
+- <a href="#version-history">Version History</a>
 
 
 ## Installation
 
-1. [**Umbraco package**][UmbracoPackage]  Recommended!
-Install the package through the Umbraco backoffice.
+1. Install the package through the Umbraco backoffice. By any of these ways:
+- In Developer -> Packages backoffice. Search for 'Phone Manager', in Website utilities
+- or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager**][OurUmbraco]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/Wr.UmbracoPhoneManager**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 1. [**NuGet Package**][NuGetPackage]  COMING SOON!
-
 Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
 
-1. [**ZIP file**][GitHubRelease]  
-Note: As with the Nuget package you will need to install the package via our.umbraco.org in order to get the required Document Types and Data Types.
-
 [NuGetPackage]: https://github.com/willroscoe/Wr.UmbracoPhoneManager
-[UmbracoPackage]: https://github.com/willroscoe/Wr.UmbracoPhoneManager
+[OurUmbraco]: https://our.umbraco.org/projects/website-utilities/phone-manager/
 [GitHubRelease]: https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/releases/umbraco
 
 
 ## Implementing
 
-The first step is to add one 'Phone Manager' document type to your content structure. It is recommended to add it once below your site homepage (if you have multiple sites, this would allow you to set up separate campaign details per site).
+The first step is to add one 'Phone Manager' document type to your content structure. It is recommended to add it once below your site homepage(s) (if you have multiple sites, you can add it to all your sites to allow you to set up separate campaign details per site). **You might need to update your homepage(s) content type permissions to allow 'Phone Manager' as a child.**
 You will probably also want to create a 'custom list view' on the 'Phone Manager' document type so you can see relevant phone details easily. Some useful field you could use are: pageTitle; telephoneNumber; campaingCode; isDefault.
-Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.
+Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. **Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.**
+Finally you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
 
-
-### Templates
+### Setup Templates
 
 You will then need to update any templates or views where you want the telephone number displayed. You can do this to any content which inherits from IPublishedContent. The package extends IPublishedContent to include the following detail:
 - Telephone number for the campaign
@@ -70,23 +68,26 @@ If needed you can also display or use the folling properties:
 
 ## Personalisation Groups plugin
 
-Supplied as a separate package, the Phone Manager Personalisation Groups plugin package adds a 'Phone Mananger' criteria for the [**Personalisation Groups package**][PersonalisationGroupsLink]. This will allow you to personalise your site based on which Phone Manager campaign a user is currently linked to.
+Supplied as a separate package, the Phone Manager Personalisation Groups plugin package adds 'Phone Mananger' as a new criteria for the [**Personalisation Groups package**][PersonalisationGroupsLink]. This will allow you to personalise your site based on which Phone Manager campaign a user is currently linked to.
 
 [PersonalisationGroupsLink]: https://our.umbraco.org/projects/website-utilities/personalisation-groups/
 
 You will need to have already installed the Phone Manager package and the [**Personalisation Groups package**][PersonalisationGroupsLink] before installing the plugin package.
 
-1. [**Umbraco package**][UmbracoPersonalisationPackage]  Recommended!
-Install the package through the Umbraco backoffice.
+1. Install the package through the Umbraco backoffice. By any of these ways:
+- In Developer -> Packages backoffice. Search for 'Phone Manager', in Website utilities
+- or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-plugin**][UmbracoPersonalisationPackage]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/Wr.UmbracoPhoneManager**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 1. [**NuGet Package**][NuGetPersonalisationPackage]  COMING SOON!
+Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
 
-Install the NuGet package in your Visual Studio project.
-
-1. [**ZIP file**][GitHubPersonalisationRelease]  
+[NuGetPackage]: https://github.com/willroscoe/Wr.UmbracoPhoneManager
+[OurUmbraco]: https://our.umbraco.org/projects/website-utilities/phone-manager/
+[GitHubRelease]: https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/releases/umbraco
 
 [NuGetPersonalisationPackage]: https://github.com/willroscoe/Wr.UmbracoPhoneManager
-[UmbracoPersonalisationPackage]: https://github.com/willroscoe/Wr.UmbracoPhoneManager
+[OurUmbracoPersonalisationPackage]: https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-plugin
 [GitHubPersonalisationRelease]: https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/releases/umbraco
 
 

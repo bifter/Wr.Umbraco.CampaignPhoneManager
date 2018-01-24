@@ -34,7 +34,7 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage
                 System.Diagnostics.Debug.WriteLine("navigatorResult is Null!");
             }
 
-            return (result != null) ? result : new T();
+            return result;
         }
 
         public List<PhoneManagerCampaignDetail> GetDataByXPath(string xpath)
@@ -44,7 +44,7 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage
 
             List<PhoneManagerCampaignDetail> result = XmlHelper.XPathNavigatorToModel(navigatorResult);
 
-            return (result != null) ? result.ToList() : new List<PhoneManagerCampaignDetail>();
+            return (result != null) ? result.ToList() : null;
         }
 
         private string UpdateXPathPrefix(string xpath)

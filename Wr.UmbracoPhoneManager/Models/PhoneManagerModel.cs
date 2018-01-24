@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Wr.UmbracoPhoneManager.Models
 {
     /// <summary>
-    /// Must match the campaignPhoneManager umbraco doctype
+    /// Must match the phoneManager umbraco doctype
     /// </summary>
 
     [Serializable()]
@@ -41,11 +42,11 @@ namespace Wr.UmbracoPhoneManager.Models
         public bool GlobalDisableOverwritePersistingItems { get; set; }
 
         [XmlElement(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManagerCampaignDetail)]
-        public List<PhoneManagerCampaignDetail> CampaignDetail { get; set; }
+        public List<PhoneManagerCampaignDetail> PhoneManagerCampaignDetail { get; set; }
 
         public PhoneManagerModel()
         {
-            CampaignDetail = new List<PhoneManagerCampaignDetail>();
+            PhoneManagerCampaignDetail = new List<PhoneManagerCampaignDetail>();
         }
     }
 

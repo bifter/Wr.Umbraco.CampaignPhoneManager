@@ -16,8 +16,8 @@
       <url>https://github.com/willroscoe/packageurl</url>
       <requirements type="strict">
         <major>7</major>
-        <minor>7</minor>
-        <patch>4</patch>
+        <minor>6</minor>
+        <patch>0</patch>
       </requirements>
     </package>
     <author>
@@ -290,5 +290,6 @@
   <Actions>
     <Action runat="install" alias="allowDocumentType" documentTypeAlias="phoneManagerCampaignDetail" parentDocumentTypeAlias="phoneManager" />
     <Action runat="install" alias="allowDocumentType" documentTypeAlias="phoneManager" parentDocumentTypeAlias="home" />
+    <Action runat="install" alias="allowDocumentType" documentTypeAlias="phoneManager" parentDocumentTypeAlias="Home" />
   </Actions>
 </umbPackage>

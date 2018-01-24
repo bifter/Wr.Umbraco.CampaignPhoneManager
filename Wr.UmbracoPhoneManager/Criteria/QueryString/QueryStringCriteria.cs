@@ -6,6 +6,9 @@ namespace Wr.UmbracoPhoneManager.Criteria
 {
     public class QueryStringCriteria : IPhoneManagerCriteria
     {
+        /// <summary>
+        /// For the selection of records that match the querystrings passed with the request
+        /// </summary>
         public QueryStringCriteria() { }
 
         public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)
