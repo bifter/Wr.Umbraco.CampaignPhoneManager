@@ -1,12 +1,12 @@
 {
   "name": "wr.umbracophonemanager",
-  "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager",
+  "url": "https://github.com/willroscoe/UmbracoPhoneManager",
   "version": "1.0.0",
   "description": "Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there.",
   "readme": "Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/willroscoe/Wr.UmbracoPhoneManager.git"
+    "url": "git+https://github.com/willroscoe/UmbracoPhoneManager.git"
   },
   "keywords": [
     "Umbraco",
@@ -21,12 +21,12 @@
   },
   "license": {
     "name": "MIT",
-    "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/LICENSE.md"
+    "url": "https://github.com/willroscoe/UmbracoPhoneManager/blob/master/LICENSE.md"
   },
   "bugs": {
-    "url": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/issues"
+    "url": "https://github.com/willroscoe/UmbracoPhoneManager/issues"
   },
-  "homepage": "https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/README.md",
+  "homepage": "https://github.com/willroscoe/UmbracoPhoneManager/blob/master/README.md",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.1.0",

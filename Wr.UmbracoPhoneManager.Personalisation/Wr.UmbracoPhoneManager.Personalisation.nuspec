@@ -6,7 +6,7 @@
     <title>Umbraco Phone Manager Personalisation Groups plugin</title>
     <authors>Will Roscoe</authors>
     <owners>Will Roscoe</owners>
-    <licenseUrl>https://github.com/willroscoe/Wr.UmbracoPhoneManager/blob/master/LICENSE.md</licenseUrl>
+    <licenseUrl>https://github.com/willroscoe/UmbracoPhoneManager/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Phone Manager Personalisation Groups plugin is an Umbraco package to add a Phone Manager criteria item to the Personalisation Groups package. Using this it is possible to personalise your site based on the selected Phone Manager campaign.</description>

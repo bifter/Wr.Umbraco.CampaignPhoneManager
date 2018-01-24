@@ -13,7 +13,7 @@
       <version>1.0</version>
       <iconUrl />
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
-      <url>https://github.com/willroscoe/packageurl</url>
+      <url>https://github.com/willroscoe/UmbracoPhoneManager</url>
       <requirements type="strict">
         <major>7</major>
         <minor>6</minor>
@@ -22,7 +22,7 @@
     </package>
     <author>
       <name>Will Roscoe</name>
-      <website>https://github.com/willroscoe</website>
+      <website>https://github.com/willroscoe/UmbracoPhoneManager</website>
     </author>
     <readme><![CDATA[Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there. To setup add a 'Phone Manager' Document type under your homepage. Then add multiple 'Phone Manager - Campaign Details' records. You will then need to update any templates where you want the Telephone number (or other details of the campaign) displayed. ]]></readme>
   </info>
