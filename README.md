@@ -1,6 +1,8 @@
 Umbraco Phone Manager + Personalisation Groups plugin
 =====================================================
 
+
+
 **Umbraco Phone Manager** is an Umbraco package to manage and display marketing campaign phone numbers on your site to your visitors. Based on various criteria, a relevant telephone number can be automatically displayed to each user visiting your website based on how they got there.
 
 The package is designed for organisations who use multiple telephone numbers to track the marketing source of a visitor.
@@ -43,11 +45,16 @@ or via NuGet:
 ## Implementing
 
 The first step is to add one 'Phone Manager' document type to your content structure. It is recommended to add it once below your site homepage(s) (if you have multiple sites, you can add it to all your sites to allow you to set up separate campaign details per site). **You might need to update your homepage(s) content type permissions to allow 'Phone Manager' as a child.**
-You will probably also want to create a 'custom list view' on the 'Phone Manager' document type so you can see relevant phone details easily. Some useful field you could use are: pageTitle; telephoneNumber; campaingCode; isDefault.
-Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. **Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.**
-Finally you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
+You will probably also want to create a 'custom list view' on the 'Phone Manager' document type so you can see relevant phone details easily. Some useful field you could use are: telephoneNumber; campaingCode; isDefault.
 
 ![Phone Manager overview](/assets/phonemanager.jpg?raw=true "Phone Manager overview")
+
+Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. **Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.**
+
+![Phone Manager detail](/assets/campaigndetail.jpg?raw=true "Phone Manager detail")
+
+Finally, you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
+
 
 ### Setup Templates
 
