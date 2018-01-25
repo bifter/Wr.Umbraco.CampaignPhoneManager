@@ -24,7 +24,7 @@
       <name>Will Roscoe</name>
       <website>https://github.com/willroscoe/UmbracoPhoneManager</website>
     </author>
-    <readme><![CDATA[Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there. To setup add a 'Phone Manager' Document type under your homepage. Then add multiple 'Phone Manager - Campaign Details' records. You will then need to update any templates where you want the Telephone number (or other details of the campaign) displayed. ]]></readme>
+    <readme><![CDATA[Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there. For setup instructions and to inspect the source code, visit: https://github.com/willroscoe/UmbracoPhoneManager]]></readme>
   </info>
   <DocumentTypes>
     <DocumentType>
@@ -120,7 +120,7 @@
           <Tab>Campaign detail</Tab>
           <SortOrder>2</SortOrder>
           <Mandatory>False</Mandatory>
-          <Description><![CDATA[The marketing code sent as a querystring 'mc=' with the request]]></Description>
+          <Description><![CDATA[The marketing code sent as a querystring with the request]]></Description>
         </GenericProperty>
         <GenericProperty>
           <Name>Persist duration override</Name>
