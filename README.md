@@ -53,7 +53,8 @@ Then add a new Campaign detail record for each possible user. You must include a
 
 ![Phone Manager detail](/assets/campaigndetail.jpg?raw=true "Phone Manager detail")
 
-Finally, you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
+
+**Finally**, you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
 
 
 ### Setup Templates
