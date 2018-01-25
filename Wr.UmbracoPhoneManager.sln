@@ -80,6 +80,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "assets", "assets\", "{DA90C
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50969"
+		SlnRelativePath = "assets\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
