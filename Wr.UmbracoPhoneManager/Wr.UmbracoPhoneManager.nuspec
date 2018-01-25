@@ -8,6 +8,7 @@
     <owners>Will Roscoe</owners>
     <licenseUrl>https://github.com/willroscoe/UmbracoPhoneManager/blob/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/willroscoe/UmbracoPhoneManager</projectUrl>
+    <iconUrl>https://github.com/willroscoe/UmbracoPhoneManager/raw/master/assets/umbracophonemanager_icon64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there.</description>
     <tags>Umbraco, Marketing, Campaign, Telephone Manager, Phone Manager</tags>
