@@ -35,7 +35,7 @@ Install the package through the Umbraco backoffice:
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManager```
-- [**NuGet Package**][NuGetPackage]  Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
+- or manually download the [**NuGet Package**][NuGetPackage]  Install the NuGet package in your Visual Studio project. Please note that required Document Types and Data Types are not included in the Nuget Package so it is recommended to install the Package from our.umbraco.org before installing the Nuget package.
 
 [NuGetPackage]: https://www.nuget.org/packages/UmbracoPhoneManager/
 [OurUmbraco]: https://our.umbraco.org/projects/website-utilities/phone-manager/
@@ -94,7 +94,7 @@ Install the package through the Umbraco backoffice:
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManagerPersonalisationGroupsPlugin```
-- [**NuGet Package**][NuGetPersonalisationPackage] - Install the NuGet package in your Visual Studio project.
+- or manually download the [**NuGet Package**][NuGetPersonalisationPackage] - Install the NuGet package in your Visual Studio project.
 
 [NuGetPersonalisationPackage]: https://www.nuget.org/packages/UmbracoPhoneManagerPersonalisationGroupsPlugin/
 [OurUmbracoPersonalisationPackage]: https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin/
