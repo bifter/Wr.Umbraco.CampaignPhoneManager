@@ -47,6 +47,8 @@ You will probably also want to create a 'custom list view' on the 'Phone Manager
 Then add a new Campaign detail record for each possible user. You must include a Telephone number in each record. **Please note that you will need to add a 'default' record (with 'IsDefault' checked) to cater for any general site visitors who are not coming from a campaign.**
 Finally you need to set a start node for the **'Phone Manager - Campaign detail - Entry page - Content Picker'** data type (in Developer -> Data Types). Choose your Homepage node.
 
+![Phone Manager overview](/assets/phonemanager.jpg?raw=true "Phone Manager overview")
+
 ### Setup Templates
 
 You will then need to update any templates or views where you want the telephone number displayed. You can do this to any content which inherits from IPublishedContent. The package extends IPublishedContent to include the following detail:
@@ -70,6 +72,8 @@ If needed you can also display or use the folling properties:
 ## Personalisation Groups plugin
 
 Supplied as a separate package, the Phone Manager Personalisation Groups plugin package adds 'Phone Mananger' as a new criteria for the [**Personalisation Groups package**][PersonalisationGroupsLink]. This will allow you to personalise your site based on which Phone Manager campaign a user is currently linked to.
+
+![Phone Manager Personalisation Groups plugin](/assets/personalisationplugin.jpg?raw=true "Phone Manager Personalisation Groups plugin")
 
 [PersonalisationGroupsLink]: https://our.umbraco.org/projects/website-utilities/personalisation-groups/
 
