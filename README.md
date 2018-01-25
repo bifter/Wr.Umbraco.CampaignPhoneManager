@@ -29,7 +29,7 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 Install the package through the Umbraco backoffice:
 - In Developer -> Packages backoffice. Search for 'Phone Manager', in Website utilities
 - or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager**][OurUmbraco]. Manually install via 'Install local' in your Umbraco package backoffice.
-- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManager```
@@ -78,7 +78,7 @@ You will need to have already installed the Phone Manager package and the [**Per
 Install the package through the Umbraco backoffice:
 - In Developer -> Packages backoffice. Search for 'Phone Manager Personalisation Groups plugin', in Website utilities
 - or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin/**][OurUmbracoPersonalisationPackage]. Manually install via 'Install local' in your Umbraco package backoffice.
-- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManagerPersonalisationGroupsPlugin```
