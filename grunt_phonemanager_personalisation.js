@@ -15,9 +15,6 @@ module.exports = function (grunt) {
     // get the root path of the project
     var projectRoot = pkg.name + '/';
 
-    // Get the version of the package
-    var version = "1.0.0";
-
     grunt.initConfig({
         pkg: pkg,
         clean: {
@@ -54,7 +51,7 @@ module.exports = function (grunt) {
                 src: [
                     tempProjectFolderPath + '**/*.*'
                 ],
-                dest: 'releases/github/' + friendlyFilename + '.' + version + '.zip'
+                dest: 'releases/github/' + friendlyFilename + '.' + pkg.version + '.zip'
             }
         },
         umbracoPackage: {
@@ -63,14 +60,15 @@ module.exports = function (grunt) {
                 dest: 'releases/umbraco',
                 options: {
                     name: friendlyName,
-                    version: version,
+                    version: pkg.version,
                     url: pkg.url,
+                    iconUrl: 'https://raw.githubusercontent.com/willroscoe/UmbracoPhoneManager/master/assets/umbracophonemanager_icon64.png',
                     license: pkg.license.name,
                     licenseUrl: pkg.license.url,
                     author: pkg.author.name,
                     authorUrl: pkg.author.url,
                     readme: pkg.readme,
-                    outputName: friendlyFilename + '.' + version + '.zip',
+                    outputName: friendlyFilename + '.' + pkg.version + '.zip',
                     requirements: {major: 7, minor: 6, patch: 0}
                 }
             }

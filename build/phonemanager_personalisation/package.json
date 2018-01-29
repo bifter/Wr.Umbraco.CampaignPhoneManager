@@ -1,7 +1,7 @@
 {
   "name": "wr.umbracophonemanager.personalisation",
   "url": "https://github.com/willroscoe/UmbracoPhoneManager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Phone Manager Personalisation Groups plugin is an Umbraco package to add a Phone Manager criteria item to the Personalisation Groups package. Using this it is possible to personalise your site based on the selected Phone Manager campaign.",
   "readme": "This package requires both Phone Manager and Personalisation Groups packages to be installed before installing. For setup instructions and to inspect the source code, visit: https://github.com/willroscoe/UmbracoPhoneManager",
   "repository": {

@@ -1,7 +1,7 @@
 {
   "name": "wr.umbracophonemanager",
   "url": "https://github.com/willroscoe/UmbracoPhoneManager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there.",
   "readme": "Umbraco Phone Manager is an Umbraco package to manage and display marketing campaign phone numbers on your site to your customers. Based on various criteria, a relevant telephone number can be automatically displayed to each customer visiting your website based on how they got there.",
   "repository": {

@@ -15,6 +15,10 @@ namespace Wr.UmbracoPhoneManager.Personalisation
             return null;
         }
 
+        /// <summary>
+        /// Returns a list of all Phone Manager campaign details. If this is a multiple site umbraco system then this will return records from all sites. With this in mind it would be worth including a prefix in the phone manager detila to specify which site the phone number details is for.
+        /// </summary>
+        /// <returns></returns>
         public JsonResult ListCampaignDetails()
         {
             var _repository = new XPathRepository();
