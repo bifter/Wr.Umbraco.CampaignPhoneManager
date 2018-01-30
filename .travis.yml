@@ -4,5 +4,5 @@ install:
   - nuget restore Wr.UmbracoPhoneManager.sln
   - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release solution-name.sln
+  - xbuild /p:Configuration=Release Wr.UmbracoPhoneManager.sln
   - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./Wr.UmbracoPhoneManager.Tests/bin/Release/Wr.UmbracoPhoneManager.Tests.dll
