@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using Wr.UmbracoPhoneManager.Models;
 
 namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
 {
-    [TestClass]
+    [TestFixture]
     public class XPathRepository_XPathNavigatorTest
     {
-        [TestMethod]
+        [Test]
         public void XPathRepository_GetXPathNavigator_CheckDefaultSettings_WithAllProperties_ReturnValid()
         {
             // Arrange
@@ -26,7 +26,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
             Assert.IsTrue(act.DefaultPersistDurationInDays == dataModel.DefaultPersistDurationInDays);
         }
 
-        [TestMethod]
+        [Test]
         public void XPathRepository_GetXPathNavigator_CheckDefaultSettings_WithDefaultValueForMissingPropertyDefaultPersistDurationInDays_ReturnValid()
         {
             // Arrange
@@ -46,7 +46,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
         }
 
 
-        [TestMethod]
+        [Test]
         public void XPathRepository_GetXPathNavigator_ListAllCampaignDetailRecords_ReturnAllRecords()
         {
             // Arrange
@@ -68,7 +68,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
             Assert.IsTrue(act.Count == 2);
         }
 
-        [TestMethod]
+        [Test]
         public void XPathRepository_GetXPathNavigator_GetCampaignDetailById_WithMatchingRecord_ReturnValid()
         {
             // Arrange
@@ -90,7 +90,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Providers.Storage.XPath
             Assert.AreEqual("1202", act.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void XPathRepository_GetXPathNavigator_GetCampaignDetailById_WithNoMatchingRecord_ReturnNull()
         {
             // Arrange

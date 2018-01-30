@@ -1,19 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using Wr.UmbracoPhoneManager.Criteria;
 using Wr.UmbracoPhoneManager.Models;
 using Wr.UmbracoPhoneManager.Providers.Storage;
-using Wr.UmbracoPhoneManager.Tests.Providers.Storage;
-using static Wr.UmbracoPhoneManager.XmlHelper;
 
 namespace Wr.UmbracoPhoneManager.Tests.Criteria
 {
-    [TestClass]
+    [TestFixture]
     public class QueryStringCriteriaTest
     {
-        [TestMethod]
+        [Test]
         public void QueryStringCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNullQS_ReturnsEmptyResults()
         {
             // Arrange
@@ -40,7 +38,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);
         }
 
-        [TestMethod]
+        [Test]
         public void QueryStringCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNonMatchingQS_ReturnsEmptyResults()
         {
             // Arrange
@@ -67,7 +65,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);      
         }
 
-        [TestMethod]
+        [Test]
         public void QueryStringCriteria_GetMatchingRecordsFromPhoneManagerTest_WithMatchingQS_ReturnsCorrectResults()
         {
             // Arrange
@@ -95,7 +93,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.First().CampaignCode, dataModel.PhoneManagerCampaignDetail.First().CampaignCode);
         }
 
-        [TestMethod]
+        [Test]
         public void QueryStringCriteria_GetMatchingRecordsFromPhoneManagerTest_WithMatchingAltQS_ReturnsCorrectResults()
         {
             // Arrange

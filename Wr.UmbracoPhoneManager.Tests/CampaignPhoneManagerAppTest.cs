@@ -1,17 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Wr.UmbracoPhoneManager.Models;
-using Wr.UmbracoPhoneManager.Providers;
-using Wr.UmbracoPhoneManager.Tests.Providers.Storage;
 
 namespace Wr.UmbracoPhoneManager.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class PhoneManagerAppTest
     {
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessAllPotentialCandidatePhoneNumbers_WithNoCookie_WithNoFoundPhoneNumber_WithNoDefaultPhonenumber_ReturnsLastResortPhoneNumber()
         {
             // Arrange
@@ -31,17 +28,18 @@ namespace Wr.UmbracoPhoneManager.Tests
             };
 
             PhoneManager target = new PhoneManager(null, _dataProvider, null, null, null, null);
-            PrivateObject obj = new PrivateObject(target);
+            //PrivateObject obj = new PrivateObject(target); // MS Test
 
             //Act
-            FinalResultModel retVal = (FinalResultModel)obj.Invoke("ProcessAllPotentialCandidatePhoneNumbers", new object[] { new CookieHolder(), new PhoneManagerCampaignDetail() });
+            FinalResultModel retVal = target.ProcessAllPotentialCandidatePhoneNumbers(new CookieHolder(), new PhoneManagerCampaignDetail());
+            //FinalResultModel retVal = (FinalResultModel)obj.Invoke("ProcessAllPotentialCandidatePhoneNumbers", new object[] { new CookieHolder(), new PhoneManagerCampaignDetail() }); // MS Test
 
             //Assert
             Assert.AreEqual(retVal.OutputResultSource, correctResult.OutputResultSource);
             Assert.AreEqual(retVal.OutputModelResult.TelephoneNumber, correctResult.OutputModelResult.TelephoneNumber);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessAllPotentialCandidatePhoneNumbers_WithNoCookie_WithFoundPhoneNumber_ReturnsFoundPhoneNumber()
         {
             // Arrange
@@ -62,17 +60,16 @@ namespace Wr.UmbracoPhoneManager.Tests
             };
 
             PhoneManager target = new PhoneManager(null, _dataProvider, null, null, null, null);
-            PrivateObject obj = new PrivateObject(target);
-
+            
             //Act
-            FinalResultModel retVal = (FinalResultModel)obj.Invoke("ProcessAllPotentialCandidatePhoneNumbers", new object[] { new CookieHolder(), foundRecord });
+            FinalResultModel retVal = target.ProcessAllPotentialCandidatePhoneNumbers(new CookieHolder(), foundRecord );
 
             //Assert
             Assert.AreEqual(retVal.OutputResultSource, correctResult.OutputResultSource);
             Assert.AreEqual(retVal.OutputModelResult.TelephoneNumber, correctResult.OutputModelResult.TelephoneNumber);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessAllPotentialCandidatePhoneNumbers_WithCookie_WithFoundPhoneNumberNoPersist_ReturnsCookie()
         {
             // Arrange
@@ -105,17 +102,16 @@ namespace Wr.UmbracoPhoneManager.Tests
             };
 
             PhoneManager target = new PhoneManager(null, _dataProvider, null, null, null, null);
-            PrivateObject obj = new PrivateObject(target);
 
             //Act
-            FinalResultModel retVal = (FinalResultModel)obj.Invoke("ProcessAllPotentialCandidatePhoneNumbers", new object[] { _cookie, foundRecord });
+            FinalResultModel retVal = target.ProcessAllPotentialCandidatePhoneNumbers(_cookie, foundRecord);
 
             //Assert
             Assert.AreEqual(retVal.OutputResultSource, correctResult.OutputResultSource);
             Assert.AreEqual(retVal.OutputModelResult.Id, correctResult.OutputModelResult.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessAllPotentialCandidatePhoneNumbers_WithCookie_WithFoundPhoneNumberWithPersist_ReturnsFoundRecordAndSetCookie()
         {
             // Arrange
@@ -157,10 +153,9 @@ namespace Wr.UmbracoPhoneManager.Tests
             };
 
             PhoneManager target = new PhoneManager(null, _dataProvider, null, null, null, null);
-            PrivateObject obj = new PrivateObject(target);
 
             //Act
-            FinalResultModel retVal = (FinalResultModel)obj.Invoke("ProcessAllPotentialCandidatePhoneNumbers", new object[] { _cookie, foundRecord });
+            FinalResultModel retVal = target.ProcessAllPotentialCandidatePhoneNumbers(_cookie, foundRecord);
 
             //Assert
             Assert.AreEqual(retVal.OutputResultSource, correctResult.OutputResultSource);
@@ -168,7 +163,7 @@ namespace Wr.UmbracoPhoneManager.Tests
             Assert.AreEqual(retVal.OutputCookieHolder.Model.Id, correctResult.OutputCookieHolder.Model.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessRequest_WithNoInputsNoDefaultTelephoneNumber_ReturnsLastResortPhoneNumber()
         {
             // Arrange
@@ -204,7 +199,7 @@ namespace Wr.UmbracoPhoneManager.Tests
             Assert.AreEqual(AppConstants.LastResortPhoneNumberPlaceholder, actualResult.TelephoneNumber);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessRequest_WithNoInputsWithDefaultTelephoneNumber_ReturnsDefaultTelephoneNumber()
         {
             // Arrange
@@ -241,7 +236,7 @@ namespace Wr.UmbracoPhoneManager.Tests
             Assert.AreEqual("1203", actualResult.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void PhoneManagerApp_ProcessRequest_WithCookie_WithFoundPhoneNumberWithPersist_ReturnsFoundRecordAndSetCookie()
         {
             // Arrange

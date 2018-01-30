@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Wr.UmbracoPhoneManager.Criteria;
 using Wr.UmbracoPhoneManager.Models;
 using Wr.UmbracoPhoneManager.Providers;
 using Wr.UmbracoPhoneManager.Providers.Storage;
+
+[assembly: InternalsVisibleTo("Wr.UmbracoPhoneManager.Tests")] // allow for nunit testing of private methods
 
 namespace Wr.UmbracoPhoneManager
 {
@@ -101,7 +104,7 @@ namespace Wr.UmbracoPhoneManager
         /// <summary>
         /// Pass all available available PhoneNumber records to decide finally which PhoneNumber to use
         /// </summary>
-        private FinalResultModel ProcessAllPotentialCandidatePhoneNumbers(CookieHolder exisitingCookie, PhoneManagerCampaignDetail foundRecord)
+        internal FinalResultModel ProcessAllPotentialCandidatePhoneNumbers(CookieHolder exisitingCookie, PhoneManagerCampaignDetail foundRecord)
         {
             FinalResultModel result = new FinalResultModel();
 

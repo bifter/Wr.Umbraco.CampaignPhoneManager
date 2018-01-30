@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -6,10 +6,10 @@ using Wr.UmbracoPhoneManager.Models;
 
 namespace Wr.UmbracoPhoneManager.Tests.Models
 {
-    [TestClass]
+    [TestFixture]
     public class CampaignPhoneManagerModelTest
     {
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_NotSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
@@ -22,7 +22,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_ZeroNumberSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
@@ -36,7 +36,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_MinusNumberSet_AlwaysReturnsAPositiveInt()
         {
             // Arrange
@@ -50,7 +50,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_DefaultPersistDurationInDays_ValidNumberSet_ReturnsValidNumber()
         {
             // Arrange
@@ -64,7 +64,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.AreEqual(10, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_IsValid_InputNotValid_ReturnsFalse()
         {
             // Arrange
@@ -77,7 +77,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_IsValid_InputValid_ReturnsTrue()
         {
             // Arrange
@@ -90,7 +90,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_NoInput_ReturnsFalse()
         {
             // Arrange
@@ -103,7 +103,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_IsValidToSaveAsCookie_ValidInput_ReturnsTrue()
         {
             // Arrange
@@ -116,7 +116,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
         {
             // Arrange / Act
@@ -126,7 +126,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result.ElementNameCount == result.PropertyCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_AllXmlElementNamesAreUnique_ReturnsTrue()
         {
             // Arrange / Act
@@ -136,7 +136,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result.PropertyCount == result.UniqueXmlNames.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_CampaignDetailTest_XmlElementNameMatchPropertyName_ReturnsTrue()
         {
             // Arrange / Act
@@ -146,7 +146,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result.PropertyCount == result.PropertyNameMatchingElementNameCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_NumberOfPropertiesSameAsNumberOfXmlElementNames_ReturnsTrue()
         {
             // Arrange / Act
@@ -156,7 +156,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result.ElementNameCount == result.PropertyCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_AllXmlElementNamesAreUnique_ReturnsTrue()
         {
             // Arrange / Act
@@ -166,7 +166,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsTrue(result.PropertyCount == result.UniqueXmlNames.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_PhoneManagerModel_PhoneManagerModelTest_XmlElementNameMatchPropertyName_ReturnsTrue()
         {
             // Arrange / Act

@@ -1,17 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 using Wr.UmbracoPhoneManager.Models;
 
 namespace Wr.UmbracoPhoneManager.Tests.Models
 {
-    [TestClass]
+    [TestFixture]
     public class OutputModelTest
     {
-        [TestMethod]
+        [Test]
         public void Model_OutputModel_IsValidTest_NotSet_ReturnsFalse()
         {
             // Arrange
@@ -24,13 +19,12 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsFalse(result);
         }
 
-        [DataTestMethod]
-        [DataRow("", "")]
-        [DataRow(null, null)]
-        [DataRow("1", "")]
-        [DataRow("1", null)]
-        [DataRow("", "0800 232 4353")]
-        [DataRow(null, "0800 232 4353")]
+        [TestCase("", "")]
+        [TestCase(null, null)]
+        [TestCase("1", "")]
+        [TestCase("1", null)]
+        [TestCase("", "0800 232 4353")]
+        [TestCase(null, "0800 232 4353")]
         public void Model_OutputModel_IsValidTest_NotValid_ReturnsFalse(string id, string phonenumber)
         {
             // Arrange
@@ -43,7 +37,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Models
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void Model_OutputModel_IsValidTest_InputValid_ReturnsTrue()
         {
             // Arrange

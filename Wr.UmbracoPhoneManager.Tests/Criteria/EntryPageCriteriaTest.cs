@@ -1,18 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Wr.UmbracoPhoneManager.Criteria;
 using Wr.UmbracoPhoneManager.Models;
 using Wr.UmbracoPhoneManager.Providers.Storage;
-using Wr.UmbracoPhoneManager.Tests.Providers.Storage;
-using static Wr.UmbracoPhoneManager.XmlHelper;
 
 namespace Wr.UmbracoPhoneManager.Tests.Criteria
 {
-    [TestClass]
+    [TestFixture]
     public class EntryPageCriteriaTest
     {
-        [TestMethod]
+        [Test]
         public void EntryPageCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNoEntryPage_ReturnsEmptyResults()
         {
             // Arrange
@@ -39,7 +37,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);
         }
 
-        [TestMethod]
+        [Test]
         public void EntryPageCriteria_GetMatchingRecordsFromPhoneManagerTest_WithMatchingEntryPage_ReturnsMatchingResult()
         {
             // Arrange

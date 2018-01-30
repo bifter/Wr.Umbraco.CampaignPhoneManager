@@ -47,15 +47,6 @@ namespace Wr.UmbracoPhoneManager.Tests
             return mock;
         }
 
-        /*public static Mock<IQueryStringProvider> QueryStringProvider(NameValueCollection model)
-        {
-            var mock = new Mock<IQueryStringProvider>();
-
-            mock.Setup(x => x.GetQueryStrings()).Returns(model);
-
-            return mock;
-        }*/
-
         public static Mock<IQueryStringProvider> QueryStringImplementation(NameValueCollection querystrings)
         {
             var mock = new Mock<IQueryStringProvider>();
@@ -64,15 +55,6 @@ namespace Wr.UmbracoPhoneManager.Tests
 
             return mock;
         }
-
-        /*public static Mock<IReferrerProvider> MockReferrerProvider(string model)
-        {
-            var mock = new Mock<IReferrerProvider>();
-
-            mock.Setup(x => x.GetReferrerOrNone()).Returns(model);
-
-            return mock;
-        }*/
 
         public static Mock<IReferrerImplementation> ReferrerImplementation(string model)
         {

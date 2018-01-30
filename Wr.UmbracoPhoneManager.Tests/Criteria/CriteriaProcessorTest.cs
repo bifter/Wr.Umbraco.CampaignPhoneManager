@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Wr.UmbracoPhoneManager.Criteria;
@@ -7,10 +7,10 @@ using Wr.UmbracoPhoneManager.Providers.Storage;
 
 namespace Wr.UmbracoPhoneManager.Tests.Criteria
 {
-    [TestClass]
+    [TestFixture]
     public class CriteriaProcessorTest
     { 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithNoData_ReturnsEmptyResults()
         {
             // Arrange
@@ -36,7 +36,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.IsNull(results);
         }
 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithNoMatchingData_ButWithDefault_ReturnsDefaultRecord()
         {
             // Arrange
@@ -67,7 +67,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual("1202", results.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithMatchingData_CampaignCode_ReturnsValidResult()
         {
             // Arrange
@@ -99,7 +99,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Id, "1202");
         }
 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithMatchingData_Referrer_ReturnsValidResult()
         {
             // Arrange
@@ -131,7 +131,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Id, "1302");
         }
 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithMatchingData_EntryPage_ReturnsValidResult()
         {
             // Arrange
@@ -163,7 +163,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Id, "1203");
         }
 
-        [TestMethod]
+        [Test]
         public void CriteriaProcessor_GetMatchingRecordsFromPhoneManagerTest_WithMatchingData_EntryPageAndCampaignCodeAndReferrer_ReturnsValidResult()
         {
             // Arrange

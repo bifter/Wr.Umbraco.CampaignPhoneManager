@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager", "Wr.UmbracoPhoneManager\Wr.UmbracoPhoneManager.csproj", "{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}"
 EndProject
@@ -9,10 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{045888B4-9BD9-40E3-8E32-5C1521724408}"
 	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
 		grunt_phonemanager.js = grunt_phonemanager.js
 		grunt_phonemanager_personalisation.js = grunt_phonemanager_personalisation.js
 		Gruntfile.js = Gruntfile.js
 		LICENSE.md = LICENSE.md
+		package.json = package.json
 		README.md = README.md
 	EndProjectSection
 EndProject

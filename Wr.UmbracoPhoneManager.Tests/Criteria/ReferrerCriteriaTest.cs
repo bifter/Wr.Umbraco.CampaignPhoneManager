@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Wr.UmbracoPhoneManager.Criteria;
@@ -9,10 +9,10 @@ using static Wr.UmbracoPhoneManager.XmlHelper;
 
 namespace Wr.UmbracoPhoneManager.Tests.Criteria
 {
-    [TestClass]
+    [TestFixture]
     public class ReferrerCriteriaTest
     {
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNoReferrer_ReturnsEmptyResults()
         {
             // Arrange
@@ -39,7 +39,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithNoMatchingReferrer_ReturnsEmptyResults()
         {
             // Arrange
@@ -66,7 +66,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithExtactMatchingReferrer_ReturnsCorrectResult()
         {
             // Arrange
@@ -98,7 +98,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainMatchingReferrer_ReturnsCorrectResult()
         {
             // Arrange
@@ -130,7 +130,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainMatchingReferrer_ReturnsCorrectResult()
         {
             // Arrange
@@ -162,7 +162,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.First().Id, dataModel.PhoneManagerCampaignDetail.First().Id);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainNotMatchingReferrer_ReturnsNoResult()
         {
             // Arrange
@@ -193,7 +193,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Criteria
             Assert.AreEqual(results.Count(), 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ReferrerCriteria_GetMatchingRecordsFromPhoneManagerTest_WithTopTierDomainAndSubDomainWithMatchingReferrerAndCloseMatch_ReturnsCorrectResult()
         {
             // Arrange

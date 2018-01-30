@@ -1,18 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Specialized;
 using System.Linq;
 using static Wr.UmbracoPhoneManager.Helpers.ENums;
 
 namespace Wr.UmbracoPhoneManager.Tests.Extensions
 {
-    [TestClass]
+    [TestFixture]
     public class GeneralExtensionTest
     {
-        [DataTestMethod]
-        [DataRow("thisissafe", ProviderType.Referrer)]
-        [DataRow("thisissafe.com", ProviderType.Referrer)]
-        [DataRow("thisissafe", ProviderType.QueryString)]
-        [DataRow("thisissafecom", ProviderType.QueryString)]
+        [TestCase("thisissafe", ProviderType.Referrer)]
+        [TestCase("thisissafe.com", ProviderType.Referrer)]
+        [TestCase("thisissafe", ProviderType.QueryString)]
+        [TestCase("thisissafecom", ProviderType.QueryString)]
         public void GeneralExtension_ToSafeStringTest_SafeString_ReturnsSameString(string input, ProviderType providerType)
         {
             // Arrange & Act
@@ -22,11 +21,10 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
             Assert.AreEqual(cleanString, input);
         }
 
-        [DataTestMethod]
-        [DataRow("th/isi'='0'nots.af!e", "thisi0nots.afe", ProviderType.Referrer)]
-        [DataRow("thisi'='0's nots.afe", "thisi0snots.afe", ProviderType.Referrer)]
-        [DataRow("th/isis'='0'no.ts!afe", "thisis0notsafe", ProviderType.QueryString)]
-        [DataRow("thisis'='0'no.tsa fe", "thisis0notsafe", ProviderType.QueryString)]
+        [TestCase("th/isi'='0'nots.af!e", "thisi0nots.afe", ProviderType.Referrer)]
+        [TestCase("thisi'='0's nots.afe", "thisi0snots.afe", ProviderType.Referrer)]
+        [TestCase("th/isis'='0'no.ts!afe", "thisis0notsafe", ProviderType.QueryString)]
+        [TestCase("thisis'='0'no.tsa fe", "thisis0notsafe", ProviderType.QueryString)]
         public void GeneralExtension_ToSafeStringTest_UnsafeString_ReturnsSafeString(string input, string correctResult, ProviderType providerType)
         {
             // Arrange & Act
@@ -36,7 +34,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
             Assert.AreEqual(cleanString, correctResult);
         }
 
-        [TestMethod]
+        [Test]
         public void GeneralExtension_ToSafeCollectionTest_Referrer_SafeCollection_ReturnsSameCollection()
         {
             // Arrange
@@ -51,7 +49,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
                 cleanCollection.AllKeys.ToDictionary(k => k, k => collection[k]));
         }
 
-        [TestMethod]
+        [Test]
         public void GeneralExtension_ToSafeCollectionTest_Referrer_UnSafeCollection_ReturnsExpectedCollection()
         {
             // Arrange
@@ -66,7 +64,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
                 cleanCollection.AllKeys.ToDictionary(k => k, k => expectedCollection[k]));
         }
 
-        [TestMethod]
+        [Test]
         public void GeneralExtension_ToSafeCollectionTest_QueryString_SafeCollection_ReturnsSameCollection()
         {
             // Arrange
@@ -81,7 +79,7 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
                 cleanCollection.AllKeys.ToDictionary(k => k, k => collection[k]));
         }
 
-        [TestMethod]
+        [Test]
         public void GeneralExtension_ToSafeCollectionTest_QueryString_UnSafeCollection_ReturnsExpectedCollection()
         {
             // Arrange
@@ -95,6 +93,5 @@ namespace Wr.UmbracoPhoneManager.Tests.Extensions
                 expectedCollection.AllKeys.ToDictionary(k => k, k => cleanCollection[k]),
                 cleanCollection.AllKeys.ToDictionary(k => k, k => expectedCollection[k]));
         }
-
     }
 }
