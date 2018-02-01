@@ -1,6 +1,9 @@
 version: 1.0.{build}
 skip_tags: true
 image: Visual Studio 2017
+environment:
+  matrix:
+    - CLI_VERSION: Latest
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
