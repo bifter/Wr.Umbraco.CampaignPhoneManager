@@ -1,4 +1,4 @@
-Umbraco Phone Manager &middot; ![version](https://img.shields.io/badge/version-1.0.1-orange.svg) + Personalisation Groups plugin &middot; ![version](https://img.shields.io/badge/version-1.0.1-orange.svg)
+Umbraco Phone Manager &middot; ![version](https://img.shields.io/badge/version-1.0.2-orange.svg) + Personalisation Groups plugin &middot; ![version](https://img.shields.io/badge/version-1.0.2-orange.svg)
 =====================================================
 
 **Umbraco Phone Manager** is an Umbraco package to manage and display marketing campaign phone numbers on your site to your visitors. Based on various criteria, a relevant telephone number can be automatically displayed to each user visiting your website based on how they got there.
@@ -44,6 +44,9 @@ or via NuGet:
 
 The first step is to add one 'Phone Manager' document type to your content structure. It is recommended to add it once below your site homepage(s) (if you have multiple sites, you can add it to all your sites to allow you to set up separate campaign details per site). **You might need to update your homepage(s) content type permissions to allow 'Phone Manager' as a child.**
 You will probably also want to create a 'custom list view' on the 'Phone Manager' document type so you can see relevant phone details easily. Some useful field you could use are: telephoneNumber; campaingCode; isDefault. You will also want to hide the Phone Manager item from your font-end navigation menu/site map!
+
+**Note:** If you want to place the Phone Manager in the root of you Umbraco site (i.e. above the homepage) you will need to add the following line to you web.config appSettings:
+```<add key="phoneManager.EnablePhoneManagerInRoot" value="true"/>```
 
 ![Phone Manager overview](/assets/phonemanager.jpg?raw=true "Phone Manager overview")
 

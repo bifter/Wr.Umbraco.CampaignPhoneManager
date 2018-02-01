@@ -48,6 +48,7 @@
             private const string AppName = "phoneManager.";
 
             public const string DiscoverNewCriteria = AppName + "DiscoverNewCriteria";
+            public const string EnablePhoneManagerInRoot = AppName + "EnablePhoneManagerInRoot";
         }
     }
 }

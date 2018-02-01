@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Wr.UmbracoPhoneManager.Criteria;
 using Wr.UmbracoPhoneManager.Models;
 using Wr.UmbracoPhoneManager.Providers;
 using Wr.UmbracoPhoneManager.Providers.Storage;
-
-[assembly: InternalsVisibleTo("Wr.UmbracoPhoneManager.Tests")] // allow for nunit testing of private methods
 
 namespace Wr.UmbracoPhoneManager
 {

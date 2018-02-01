@@ -1,0 +1,45 @@
+version: 1.0.{build}
+skip_tags: true
+image: Visual Studio 2017
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+before_build:
+- cmd: nuget restore Wr.UmbracoPhoneManager.sln
+build:
+  publish_nuget: false
+  include_nuget_references: true
+  verbosity: minimal
+after_build:
+- ps: >-
+    (Get-Content Wr.UmbracoPhoneManager\umbraco_package.xml) -replace "<version>(.+)</version>", "<version>2.2.2</version>" | Out-File -Encoding "UTF8" Wr.UmbracoPhoneManager\umbraco_package.xml
+
+    (Get-Content Wr.UmbracoPhoneManager.Personalisation\umbraco_package.xml) -replace "<version>(.+)</version>", "<version>3.3.3</version>" | Out-File -Encoding "UTF8" Wr.UmbracoPhoneManager.Personalisation\umbraco_package.xml
+
+    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager-{version}.zip"
+
+    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager.Personalisation\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager.personalisation-{version}.zip"
+
+test:
+  assemblies:
+    only:
+    - Wr.UmbracoPhoneManager.Tests.dll
+artifacts:
+- path: umbracophonemanager.*.zip
+
+deploy:
+   # GitHub Deployment for releases
+  - provider: GitHub
+    release: umbracophonemanager-$(appveyor_build_version)
+    description: 'New package release'
+    auth_token:
+      secure: GqeklPXh42vjMD2mAyNF+eMwujH+h/Lr2bYH5BeRZTEX8npSLpAh09/PdeZYgiqU
+    artifact: /.*\.zip/            # upload all Zip packages to release assets
+    draft: false
+    prerelease: false
+    on:
+      branch: master
+      appveyor_repo_tag: true        # deploy on tag push only

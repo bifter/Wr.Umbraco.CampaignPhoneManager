@@ -1,0 +1,4 @@
+﻿{
+  "dlls": [ "bin/Wr.UmbracoPhoneManager.dll" ],
+  "packageXmlTemplate": "umbraco_package.xml"
+}

@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     var friendlyName = ["Phone Manager", "Phone Manager Personalisation Groups plugin"];
     var friendlyFilename = ["umbracophonemanager", "umbracophonemanager.personalisationgroups"];
     var packageName = ["wr.umbracophonemanager", "wr.umbracophonemanager.personalisation"];
-    var version = ["1.0.1", "1.0.1"];
+    var version = ["1.0.2", "1.0.2"];
 
     var buildFolderName = ["phonemanager", "phonemanager_personalisation"];
     var tempFolderPath = "releases/temp/";
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
                     licenseUrl: pkg.license.url,
                     author: pkg.author.name,
                     authorUrl: pkg.author.url,
-                    manifest: 'build/' + buildFolderName[0] + '/package.xml',
+                    manifest: 'Wr.UmbracoPhoneManager/umbraco_package.xml',
                     outputName: friendlyFilename[0] + '.' + version[0] + '.zip'
                 }
             },
@@ -94,14 +94,13 @@ module.exports = function (grunt) {
                     name: friendlyName[1],
                     version: version[1],
                     url: pkg.url,
-                    iconUrl: 'https://raw.githubusercontent.com/willroscoe/UmbracoPhoneManager/master/assets/umbracophonemanager_icon64.png',
                     license: pkg.license.name,
                     licenseUrl: pkg.license.url,
                     author: pkg.author.name,
                     authorUrl: pkg.author.url,
-                    readme: "This package requires both Phone Manager and Personalisation Groups packages to be installed before installing. For setup instructions and to inspect the source code, visit: https://github.com/willroscoe/UmbracoPhoneManager",
-                    outputName: friendlyFilename[1] + '.' + version[1] + '.zip',
-                    requirements: { type: 'strict', major: 7, minor: 6, patch: 0 }
+                    manifest: 'Wr.UmbracoPhoneManager.Personalisation/umbraco_package.xml',
+                    outputName: friendlyFilename[1] + '.' + version[1] + '.zip'
+                    
                 }
             }
         },

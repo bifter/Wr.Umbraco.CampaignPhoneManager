@@ -1,0 +1,5 @@
+﻿{
+  "dlls": [ "bin/wr.umbracophonemanager.personalisation.dll" ],
+  "packageXmlTemplate": "umbraco_package.xml",
+  "includeFoldersOrFiles": [ "App_Plugins/UmbracoPersonalisationGroups/package.manifest" ]
+}

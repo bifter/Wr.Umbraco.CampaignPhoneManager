@@ -10,10 +10,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{045888B4-9BD9-40E3-8E32-5C1521724408}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
-		grunt_phonemanager.js = grunt_phonemanager.js
-		grunt_phonemanager_personalisation.js = grunt_phonemanager_personalisation.js
+		appveyor.yml = appveyor.yml
 		Gruntfile.js = Gruntfile.js
 		LICENSE.md = LICENSE.md
+		localpackagertest.ps1 = localpackagertest.ps1
 		package.json = package.json
 		README.md = README.md
 	EndProjectSection

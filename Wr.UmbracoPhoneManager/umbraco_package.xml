@@ -10,7 +10,7 @@
   <info>
     <package>
       <name>Phone Manager</name>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <iconUrl>https://raw.githubusercontent.com/willroscoe/UmbracoPhoneManager/master/assets/umbracophonemanager_icon64.png</iconUrl>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
       <url>https://github.com/willroscoe/UmbracoPhoneManager</url>
