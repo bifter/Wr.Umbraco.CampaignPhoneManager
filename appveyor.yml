@@ -67,7 +67,7 @@ artifacts:
 deploy:
    # GitHub Deployment for releases
   - provider: GitHub
-    repository: UmbTest
+    repository: willroscoe/UmbTest
     release: $(appveyor_build_version)
     description: 'New package release'
     auth_token:
