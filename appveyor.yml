@@ -58,10 +58,10 @@ artifacts:
 - path: '**\UmbracoPhoneManager*.nupkg'
   name: nuget packages
 
-- path: '**\AssemblyInfo.cs'
+- path: 'Wr.UmbracoPhoneManager\Properties\AssemblyInfo.cs'
   name: assemblyinfo
 
-- path: '**\umbraco_package.xml'
+- path: 'Wr.UmbracoPhoneManager\umbraco_package.xml'
   name: umb package xml
 
 deploy:
