@@ -1,21 +1,41 @@
-version: 1.0.{build}
-skip_tags: true
+version: 1.0.0.{build}
+
 image: Visual Studio 2017
+
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+# Do not build on tags (GitHub and BitBucket)
+skip_tags: true
+
+# Start builds on tags only (GitHub and BitBucket)
+skip_non_tags: false
+
 environment:
   matrix:
     - CLI_VERSION: Latest
+
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+
+cache:
+- packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+
 before_build:
 - cmd: nuget restore Wr.UmbracoPhoneManager.sln
+
 build:
-  publish_nuget: false
+  publish_nuget: true
   include_nuget_references: true
   verbosity: minimal
+
 after_build:
 - ps: >-
     (Get-Content Wr.UmbracoPhoneManager\umbraco_package.xml) -replace "<version>(.+)</version>", "<version>${env:APPVEYOR_BUILD_VERSION}</version>" | Out-File -Encoding "UTF8" Wr.UmbracoPhoneManager\umbraco_package.xml
@@ -26,23 +46,45 @@ after_build:
 
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager.Personalisation\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager.personalisation-{version}.zip"
 
+    copy-item Wr.UmbracoPhoneManager\UmbracoPhoneManager.nupkg releases\nuget\UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg
+
+    copy-item Wr.UmbracoPhoneManager.Personalisation\UmbracoPhoneManagerPersonalisationGroupsPlugin.nupkg releases\nuget\UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg
+
 test:
   assemblies:
     only:
     - Wr.UmbracoPhoneManager.Tests.dll
+
 artifacts:
-- path: umbracophonemanager.*.zip
+- path: releases\umbraco\umbracophonemanager.*.$(appveyor_build_version).zip
+  name: umbraco packages
+- path: 'releases\**\*.$(appveyor_build_version).nupkg'
+  name: nuget packages
+- path: '**\AssemblyInfo.cs'
+  name: assemblyinfo
+- path: '**\umbraco_package.xml'
+  name: umb package xml
 
 deploy:
    # GitHub Deployment for releases
   - provider: GitHub
-    release: umbracophonemanager-$(appveyor_build_version)
+    repository: UmbTest
+    release: $(appveyor_build_version)
     description: 'New package release'
     auth_token:
       secure: GqeklPXh42vjMD2mAyNF+eMwujH+h/Lr2bYH5BeRZTEX8npSLpAh09/PdeZYgiqU
-    artifact: /.*\.zip/            # upload all Zip packages to release assets
+    artifact: umbraco packages, nuget packages, assemblyinfo, umb package xml         # upload all Zip packages to release assets
     draft: false
     prerelease: false
     on:
       branch: master
-      appveyor_repo_tag: true        # deploy on tag push only
+      appveyor_repo_tag: false        # deploy on tag push only
+
+notifications:
+- provider: Slack
+  auth_token:
+    secure: buvlNNG1gsj/tCAm8nJAqyD8XX2QpkOwHR1xmQCDWhcfHQFKSrejy0lQWS/jhzxRYzsUG2G5A+WMMj+lXdFDHvTJA8aoBwxNXA+N1aoaeG4=
+  channel: '#ci-builds'
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
