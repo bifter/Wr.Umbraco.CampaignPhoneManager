@@ -46,15 +46,19 @@ after_build:
 
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager.Personalisation\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager.personalisation-{version}.zip"
 
+    copy-item UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg releases\nuget\UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg
+
+    copy-item UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg releases\nuget\UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg
+
 test:
   assemblies:
     only:
     - Wr.UmbracoPhoneManager.Tests.dll
 
 artifacts:
-- path: releases\umbraco\umbracophonemanager.*.$(appveyor_build_version).zip
+- path: releases\umbraco\umbracophonemanager.*.zip
   name: umbraco packages
-- path: '**\*.nupkg'
+- path: releases\nuget\*.nupkg'
   name: nuget packages
 - path: '**\AssemblyInfo.cs'
   name: assemblyinfo
@@ -68,7 +72,7 @@ deploy:
     release: $(appveyor_build_version)
     description: 'New package release'
     auth_token:
-      secure: GqeklPXh42vjMD2mAyNF+eMwujH+h/Lr2bYH5BeRZTEX8npSLpAh09/PdeZYgiqU
+      secure: +WQIHXHxdNFy3CQ2ItEubL7hOFj0triuSW0g6Sim2PZS9vI7iTNbDjpSyZmO2EcU
     artifact: umbraco packages, nuget packages, assemblyinfo, umb package xml         # upload all Zip packages to release assets
     draft: false
     prerelease: false
