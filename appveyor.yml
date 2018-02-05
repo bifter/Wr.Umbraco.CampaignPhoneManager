@@ -54,10 +54,13 @@ test:
 artifacts:
 - path: releases\umbraco\umbracophonemanager.*.zip
   name: umbraco packages
-- path: '**\*.nupkg'
+
+- path: '**\UmbracoPhoneManager*.nupkg'
   name: nuget packages
+
 - path: '**\AssemblyInfo.cs'
   name: assemblyinfo
+
 - path: '**\umbraco_package.xml'
   name: umb package xml
 
