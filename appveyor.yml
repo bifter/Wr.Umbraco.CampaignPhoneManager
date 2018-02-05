@@ -46,9 +46,9 @@ after_build:
 
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager.Personalisation\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager.personalisation-{version}.zip"
 
-    copy-item Wr.UmbracoPhoneManager\UmbracoPhoneManager.nupkg releases\nuget\UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg
+    copy-item Wr.UmbracoPhoneManager\UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg releases\nuget\UmbracoPhoneManager.${env:APPVEYOR_BUILD_VERSION}.nupkg
 
-    copy-item Wr.UmbracoPhoneManager.Personalisation\UmbracoPhoneManagerPersonalisationGroupsPlugin.nupkg releases\nuget\UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg
+    copy-item Wr.UmbracoPhoneManager.Personalisation\UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg releases\nuget\UmbracoPhoneManagerPersonalisationGroupsPlugin.${env:APPVEYOR_BUILD_VERSION}.nupkg
 
 test:
   assemblies:
@@ -58,7 +58,7 @@ test:
 artifacts:
 - path: releases\umbraco\umbracophonemanager.*.$(appveyor_build_version).zip
   name: umbraco packages
-- path: 'releases\**\*.$(appveyor_build_version).nupkg'
+- path: 'releases\**\*.nupkg'
   name: nuget packages
 - path: '**\AssemblyInfo.cs'
   name: assemblyinfo

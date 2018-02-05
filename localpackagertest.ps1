@@ -7,3 +7,5 @@
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager-{version}.zip"
 
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set Wr.UmbracoPhoneManager.Personalisation\umbraco_package_settings.json -out "..\releases\umbraco\umbracophonemanager.personalisation-{version}.zip"
+
+	nuget pack  Wr.UmbracoPhoneManager\Wr.UmbracoPhoneManager.nuspec -OutputDirectory ..\releases\nuget\
