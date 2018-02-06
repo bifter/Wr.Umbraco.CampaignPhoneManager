@@ -51,9 +51,6 @@ artifacts:
 - path: umbracophonemanager*.zip
   name: umbraco packages
 
-- path: UmbracoPhoneManager*.nupkg
-  name: nuget packages
-
 deploy:
    # GitHub Deployment for releases
   - provider: GitHub

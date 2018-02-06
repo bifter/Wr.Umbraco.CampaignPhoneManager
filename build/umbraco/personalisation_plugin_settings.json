@@ -2,5 +2,5 @@
   "projectRoot": "../../Wr.UmbracoPhoneManager.Personalisation",
   "dlls": [ "/bin/wr.umbracophonemanager.personalisation.dll" ],
   "packageXmlTemplate": "personalisation_plugin_package.xml",
-  "includeFoldersOrFiles": [ "/App_Plugins/UmbracoPersonalisationGroups" ]
+  "includeFoldersOrFiles": [ "/App_Plugins/UmbracoPersonalisationGroups/package.manifest" ]
 }
