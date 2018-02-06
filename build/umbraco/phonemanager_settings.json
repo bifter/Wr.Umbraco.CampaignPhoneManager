@@ -1,0 +1,5 @@
+﻿{
+  "projectRoot": "../../Wr.UmbracoPhoneManager",
+  "dlls": [ "/bin/Wr.UmbracoPhoneManager.dll" ],
+  "packageXmlTemplate": "phonemanager_package.xml"
+}

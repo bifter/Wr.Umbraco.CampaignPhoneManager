@@ -62,16 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="umbraco_package_settings.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="umbraco_package.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Wr.UmbracoPhoneManager.nuspec" />
   </ItemGroup>
   <ItemGroup>
