@@ -38,9 +38,9 @@ build:
 
 after_build:
 - ps: >-
-    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\phonemanager_settings.json -out "..\artifacts\umbracophonemanager-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
+    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\phonemanager_settings.json -out "..\umbracophonemanager-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
 
-    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\personalisation_plugin_settings.json -out "..\artifacts\umbracophonemanager.personalisation-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
+    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\personalisation_plugin_settings.json -out "..\umbracophonemanager.personalisation-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
 
 test:
   assemblies:
@@ -48,7 +48,7 @@ test:
     - Wr.UmbracoPhoneManager.Tests.dll
 
 artifacts:
-- path: artifacts\umbracophonemanager*.zip
+- path: umbracophonemanager*.zip
   name: umbraco packages
 
 - path: UmbracoPhoneManager*.nupkg
