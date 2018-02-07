@@ -1,4 +1,4 @@
-# <img height="80" src="assets/umbracophonemanager_icon64.png " style="margin-bottom: 5px" alt="Umbraco Phone Manager" title="Umbraco Phone Manager"> Umbraco Phone Manager + Personalisation Groups plugin
+## <img height="60" src="assets/umbracophonemanager_icon64.png " style="margin-bottom: 5px" align="middle" alt="Umbraco Phone Manager" title="Umbraco Phone Manager"> Umbraco Phone Manager + Personalisation Groups plugin
 
  [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)
  [![NuGet release](https://img.shields.io/nuget/v/UmbracoPhoneManager.svg)](https://www.nuget.org/packages/UmbracoPhoneManager)
