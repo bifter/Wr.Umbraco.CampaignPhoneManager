@@ -1,6 +1,9 @@
 # Umbraco Phone Manager + Personalisation Groups plugin
 
- [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)  [![NuGet release](https://img.shields.io/nuget/v/UmbracoPhoneManager.svg)](https://www.nuget.org/packages/UmbracoPhoneManager)  [![Join the chat at https://gitter.im/willroscoe/UmbracoPhoneManager](https://badges.gitter.im/willroscoe/UmbracoPhoneManager.svg)](https://gitter.im/willroscoe/UmbracoPhoneManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+ [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)
+ [![NuGet release](https://img.shields.io/nuget/v/UmbracoPhoneManager.svg)](https://www.nuget.org/packages/UmbracoPhoneManager)
+ [![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/website-utilities/phone-manager/)
+ [![Join the chat at https://gitter.im/willroscoe/UmbracoPhoneManager](https://badges.gitter.im/willroscoe/UmbracoPhoneManager.svg)](https://gitter.im/willroscoe/UmbracoPhoneManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
 **Umbraco Phone Manager** is an Umbraco package to manage and display marketing campaign phone numbers on your site to your visitors. Based on various criteria, a relevant telephone number can be automatically displayed to each user visiting your website based on how they got there.
 
