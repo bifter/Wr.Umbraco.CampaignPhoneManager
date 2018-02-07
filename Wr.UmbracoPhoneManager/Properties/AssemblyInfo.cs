@@ -33,6 +33,7 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.2.0")]
 [assembly: AssemblyFileVersion("1.0.2.0")]
+[assembly: AssemblyInformationalVersion("1.0.2")]
 
 // allow for unit testing of private methods
 [assembly: InternalsVisibleTo("Wr.UmbracoPhoneManager.Tests")]

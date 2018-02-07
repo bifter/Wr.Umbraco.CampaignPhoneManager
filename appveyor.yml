@@ -1,4 +1,4 @@
-version: 1.0.{build}
+version: 1.0.{build}-beta
 
 image: Visual Studio 2017
 
@@ -55,6 +55,7 @@ deploy:
    # GitHub Deployment for releases
   - provider: GitHub
     repository: willroscoe/UmbTest
+    tag: $(appveyor_build_version)
     release: UmbracoPhoneManager $(appveyor_build_version)
     description: 'New package release'
     auth_token:
