@@ -1,6 +1,6 @@
 # Umbraco Phone Manager + Personalisation Groups plugin
 
-[![Join the chat at https://gitter.im/willroscoe/UmbracoPhoneManager](https://badges.gitter.im/willroscoe/UmbracoPhoneManager.svg)](https://gitter.im/willroscoe/UmbracoPhoneManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)
+ [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)  [![Join the chat at https://gitter.im/willroscoe/UmbracoPhoneManager](https://badges.gitter.im/willroscoe/UmbracoPhoneManager.svg)](https://gitter.im/willroscoe/UmbracoPhoneManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
 **Umbraco Phone Manager** is an Umbraco package to manage and display marketing campaign phone numbers on your site to your visitors. Based on various criteria, a relevant telephone number can be automatically displayed to each user visiting your website based on how they got there.
 
@@ -30,7 +30,7 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 Install the package through the Umbraco backoffice:
 - In Developer -> Packages backoffice. Search for 'Phone Manager', in Website utilities
 - or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager**][OurUmbraco]. Manually install via 'Install local' in your Umbraco package backoffice.
-- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/releases**][GitHubRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManager```
@@ -38,7 +38,7 @@ or via NuGet:
 
 [NuGetPackage]: https://www.nuget.org/packages/UmbracoPhoneManager/
 [OurUmbraco]: https://our.umbraco.org/projects/website-utilities/phone-manager/
-[GitHubRelease]: https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco
+[GitHubRelease]: https://github.com/willroscoe/UmbracoPhoneManager/releases
 
 
 ## Implementing
@@ -92,7 +92,7 @@ You will need to have already installed the Phone Manager package and the [**Per
 Install the package through the Umbraco backoffice:
 - In Developer -> Packages backoffice. Search for 'Phone Manager Personalisation Groups plugin', in Website utilities
 - or download the package as a zip from [**https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin/**][OurUmbracoPersonalisationPackage]. Manually install via 'Install local' in your Umbraco package backoffice.
-- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/releases**][GitHubPersonalisationRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
 
 or via NuGet:
 - ```PM> Install-Package UmbracoPhoneManagerPersonalisationGroupsPlugin```
@@ -100,7 +100,7 @@ or via NuGet:
 
 [NuGetPersonalisationPackage]: https://www.nuget.org/packages/UmbracoPhoneManagerPersonalisationGroupsPlugin/
 [OurUmbracoPersonalisationPackage]: https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin/
-[GitHubPersonalisationRelease]: https://github.com/willroscoe/UmbracoPhoneManager/blob/master/releases/umbraco
+[GitHubPersonalisationRelease]: https://github.com/willroscoe/UmbracoPhoneManager/releases
 
 
 ## Extending
@@ -123,6 +123,8 @@ Inspiration from the [**Personalisation Groups package**][PersonalisationGroupsL
 ## Version History
 
 ### Phone Manager
+- 1.0.2
+	- Allow Phone Manager in content root
 - 1.0.1
 	- Remove unnecessary dependancies
 	- Added umbraco package icon
@@ -130,6 +132,8 @@ Inspiration from the [**Personalisation Groups package**][PersonalisationGroupsL
 	- Initial release
 
 ### Personalisation Groups plugin
+- 1.0.2
+	- Update dependency
 - 1.0.1
 	- Remove unnecessary dependancies
 	- Added umbraco package icon
