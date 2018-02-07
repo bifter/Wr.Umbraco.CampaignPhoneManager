@@ -1,4 +1,4 @@
-# Umbraco Phone Manager
+![Phone Manager overview](/assets/phonemanager_icon.jpg?raw=true "Phone Manager") # Umbraco Phone Manager
 ## + Personalisation Groups plugin
 
  [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)
