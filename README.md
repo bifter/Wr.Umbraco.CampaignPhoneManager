@@ -26,7 +26,6 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 - <a href="#personalisation-groups-plugin">Personalisation Groups plugin</a>
 - <a href="#extending">Extending</a>
 - <a href="#acknowledgements">Acknowledgements</a>
-- <a href="#version-history">Version History</a>
 
 
 ## Installation
@@ -122,24 +121,3 @@ It is possible to extend the package with additional campaign criteria.
 ## Acknowledgements
 
 Inspiration from the [**Personalisation Groups package**][PersonalisationGroupsLink].
-
-
-## Version History
-
-### Phone Manager
-- 1.0.2
-	- Allow Phone Manager in content root
-- 1.0.1
-	- Remove unnecessary dependancies
-	- Added umbraco package icon
-- 1.0.0
-	- Initial release
-
-### Personalisation Groups plugin
-- 1.0.2
-	- Update dependency
-- 1.0.1
-	- Remove unnecessary dependancies
-	- Added umbraco package icon
-- 1.0.0
-	- Initial release
