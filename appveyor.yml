@@ -1,4 +1,4 @@
-version: 1.0.{build}-beta
+version: 1.0.{build}
 
 image: Visual Studio 2017
 
@@ -17,6 +17,20 @@ skip_non_tags: false
 #environment:
 #  matrix:
 #    - CLI_VERSION: Latest
+
+# Ignore testing a commit if only .md files or assets have changed
+# Or if various strings are found in the commit message: updated readme, update readme, update docs, update version, update appveyor
+skip_commits:
+  files:
+    - appveyor.yml
+    - '**/*.md'
+    - assets/**/*
+
+  message: /updated readme.*|update readme.*s|update docs.*|update version.*|update appveyor.*/
+
+# There's no need to alter the build number for a Pull Request (PR) since they don't modify anything
+pull_requests:
+  do_not_increment_build_number: true
 
 assembly_info:
   patch: true
@@ -54,7 +68,7 @@ artifacts:
 deploy:
    # GitHub Deployment for releases
   - provider: GitHub
-    repository: willroscoe/UmbTest
+    repository: willroscoe/UmbracoPhoneManager
     tag: $(appveyor_build_version)
     release: UmbracoPhoneManager $(appveyor_build_version)
     description: 'New package release'
@@ -68,13 +82,13 @@ deploy:
       #appveyor_repo_tag: true        # deploy on tag push only
 
   # NuGet Deployment for releases
-  #- provider: NuGet
-  #  server: 
-  #  api_key:
-  #    secure: MKkarPmFf0Ym0j3bBQ5cw9H+H6FUw2Fe8+UEletLQ4l1mXHmuXT4UXvwYPh4yREu
-  #  artifact: /.*\.nupkg/
-  #  on:
-  #    branch: master
+  - provider: NuGet
+    server: 
+    api_key:
+      secure: MKkarPmFf0Ym0j3bBQ5cw9H+H6FUw2Fe8+UEletLQ4l1mXHmuXT4UXvwYPh4yREu
+    artifact: /.*\.nupkg/
+    on:
+      branch: master
   #    appveyor_repo_tag: true
 
 notifications:
