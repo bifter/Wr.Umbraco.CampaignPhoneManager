@@ -9,11 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{045888B4-9BD9-40E3-8E32-5C1521724408}"
 	ProjectSection(SolutionItems) = preProject
-		.travis.yml = .travis.yml
 		appveyor.yml = appveyor.yml
 		Gruntfile.js = Gruntfile.js
 		LICENSE.md = LICENSE.md
-		localpackagertest.ps1 = localpackagertest.ps1
 		package.json = package.json
 		README.md = README.md
 	EndProjectSection
