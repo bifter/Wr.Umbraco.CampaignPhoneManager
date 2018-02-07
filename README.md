@@ -1,6 +1,8 @@
 Umbraco Phone Manager &middot; ![version](https://img.shields.io/badge/version-1.0.2-orange.svg) + Personalisation Groups plugin &middot; ![version](https://img.shields.io/badge/version-1.0.2-orange.svg)
 =====================================================
 
+[![Join the chat at https://gitter.im/willroscoe/UmbracoPhoneManager](https://badges.gitter.im/willroscoe/UmbracoPhoneManager.svg)](https://gitter.im/willroscoe/UmbracoPhoneManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 **Umbraco Phone Manager** is an Umbraco package to manage and display marketing campaign phone numbers on your site to your visitors. Based on various criteria, a relevant telephone number can be automatically displayed to each user visiting your website based on how they got there.
 
 The package is designed for organisations who use multiple telephone numbers to track the marketing source of a visitor.
