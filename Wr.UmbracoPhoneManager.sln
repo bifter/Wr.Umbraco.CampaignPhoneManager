@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager", "Wr.UmbracoPhoneManager\Wr.UmbracoPhoneManager.csproj", "{39A904B2-50CD-46E0-ACF8-91ADC2748DBA}"
 EndProject
@@ -62,6 +62,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "assets", "assets\", "{DA90C
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wr.UmbracoPhoneManager.UmbFormsFieldTypes", "Wr.UmbracoPhoneManager.UmbFormsFieldTypes\Wr.UmbracoPhoneManager.UmbFormsFieldTypes.csproj", "{AF0C18D9-7465-4186-9D6E-E93FF7FB88B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{B4A9A5EC-3E5F-4035-B4F2-8B5051155274}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA90C24E-48B8-450B-B8CD-B5179FEC3FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA90C24E-48B8-450B-B8CD-B5179FEC3FA2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0C18D9-7465-4186-9D6E-E93FF7FB88B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0C18D9-7465-4186-9D6E-E93FF7FB88B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0C18D9-7465-4186-9D6E-E93FF7FB88B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0C18D9-7465-4186-9D6E-E93FF7FB88B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

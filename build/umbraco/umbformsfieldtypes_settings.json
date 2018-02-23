@@ -1,0 +1,6 @@
+﻿{
+  "projectRoot": "../../Wr.UmbracoPhoneManager.UmbFormsFieldTypes",
+  "dlls": [ "/bin/wr.umbracophonemanager.umbformsfieldtypes.dll" ],
+  "packageXmlTemplate": "umbformsfieldtypes_package.xml",
+  "includeFoldersOrFiles": [ "/App_Plugins/UmbracoForms/Backoffice/Common/FieldTypes/PhoneManagerAltMarketingCode.html", "/App_Plugins/UmbracoForms/Backoffice/Common/FieldTypes/PhoneManagerCampaignCode.html", "/App_Plugins/UmbracoForms/Backoffice/Common/FieldTypes/PhoneManagerTelephone.html", "/Views/Partials/Forms/Themes/default/Fieldtypes/FieldType.PhoneManagerAltMarketingCode.cshtml", "/Views/Partials/Forms/Themes/default/Fieldtypes/FieldType.PhoneManagerCampaignCode.cshtml", "/Views/Partials/Forms/Themes/default/Fieldtypes/FieldType.PhoneManagerTelephone.cshtml", "/Views/Partials/Forms/Fieldtypes/FieldType.PhoneManagerAltMarketingCode.cshtml", "/Views/Partials/Forms/Fieldtypes/FieldType.PhoneManagerCampaignCode.cshtml", "/Views/Partials/Forms/Fieldtypes/FieldType.PhoneManagerTelephone.cshtml" ]
+}

@@ -1,4 +1,4 @@
-## <img height="60" src="assets/umbracophonemanager_icon64.png " style="margin-bottom: 5px" align="middle" alt="Umbraco Phone Manager" title="Umbraco Phone Manager"> Umbraco Phone Manager + Personalisation Groups plugin
+## <img height="60" src="assets/umbracophonemanager_icon64.png " style="margin-bottom: 5px" align="middle" alt="Umbraco Phone Manager" title="Umbraco Phone Manager"> Umbraco Phone Manager + Personalisation Groups plugin + Umbraco Forms Field types
 
  [![Build status](https://ci.appveyor.com/api/projects/status/a82kjskuk249tx5r?svg=true)](https://ci.appveyor.com/project/willroscoe/umbracophonemanager)
  [![NuGet release](https://img.shields.io/nuget/v/UmbracoPhoneManager.svg)](https://www.nuget.org/packages/UmbracoPhoneManager)
@@ -22,6 +22,7 @@ The telephone number (and some campaign detail properties) the visitor gets is p
 - <a href="#installation">Installation</a>
 - <a href="#implementing">Implementing</a>
 - <a href="#personalisation-groups-plugin">Personalisation Groups plugin</a>
+- <a href="#umbraco-forms-field-types">Umbraco Forms Field types</a>
 - <a href="#extending">Extending</a>
 - <a href="#acknowledgements">Acknowledgements</a>
 
@@ -102,6 +103,26 @@ or via NuGet:
 [NuGetPersonalisationPackage]: https://www.nuget.org/packages/UmbracoPhoneManagerPersonalisationGroupsPlugin/
 [OurUmbracoPersonalisationPackage]: https://our.umbraco.org/projects/website-utilities/phone-manager-personalisation-groups-plugin/
 [GitHubPersonalisationRelease]: https://github.com/willroscoe/UmbracoPhoneManager/releases
+
+
+## Umbraco Forms Field types
+
+Supplied as separate package, it adds 3 hidden field types that you can use with your forms: TelephoneNumber, Campaign Code, and Alt Marketing Code.
+
+You will need Umbraco Forms v6.0.6 installed.
+
+Install the package through the Umbraco backoffice:
+- In Developer -> Packages backoffice. Search for 'Phone Manager Field types for Umbraco Forms', in 'Backoffice extensions'
+- or download the package as a zip from [**https://our.umbraco.org/projects/backoffice-extensions/phone-manager-field-types-for-umbraco-forms/**][OurUmbracoFieldTypes]. Manually install via 'Install local' in your Umbraco package backoffice.
+- or download the package as a zip from this project's GitHub page [**https://github.com/willroscoe/UmbracoPhoneManager/releases**][GitHubFieldTypesRelease]. Manually install via 'Install local' in your Umbraco package backoffice.
+
+or via NuGet:
+- ```PM> Install-Package UmbracoPhoneManagerFieldtypesForUmbracoForms```
+- or manually download the [**NuGet Package**][NuGetFieldTypes] - Install the NuGet package in your Visual Studio project.
+
+[NuGetFieldTypes]: https://www.nuget.org/packages/UmbracoPhoneManagerFieldtypesForUmbracoForms
+[OurUmbracoFieldTypes]: https://our.umbraco.org/projects/backoffice-extensions/phone-manager-field-types-for-umbraco-forms/
+[GitHubFieldTypesRelease]: https://github.com/willroscoe/UmbracoPhoneManager/releases
 
 
 ## Extending

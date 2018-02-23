@@ -26,7 +26,7 @@ skip_commits:
     - '**/*.md'
     - assets/**/*
 
-  message: /updated readme.*|update readme.*s|update docs.*|update version.*|update appveyor.*/
+  message: /updated readme.*|update readme.*|update docs.*|update version.*|update appveyor.*/
 
 # There's no need to alter the build number for a Pull Request (PR) since they don't modify anything
 pull_requests:
@@ -56,6 +56,7 @@ after_build:
 
     build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\personalisation_plugin_settings.json -out "..\umbracophonemanager.personalisation-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
 
+    build\tools\UmbracoTools\Wr.UmbracoTools.Packager.exe -set build\umbraco\umbformsfieldtypes_settings.json -out "..\umbracophonemanager.umbformsfieldtypes-{version}.zip" -ver ${env:APPVEYOR_BUILD_VERSION}
 test:
   assemblies:
     only:
