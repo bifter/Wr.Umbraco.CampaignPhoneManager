@@ -109,7 +109,7 @@ or via NuGet:
 
 Supplied as separate package, it adds 3 hidden field types that you can use with your forms: TelephoneNumber, Campaign Code, and Alt Marketing Code.
 
-You will need Umbraco Forms v6.0.6 installed.
+You will need Umbraco Forms => v6.0.6 installed (note: to date only tested with v6.0.6).
 
 Install the package through the Umbraco backoffice:
 - In Developer -> Packages backoffice. Search for 'Phone Manager Field types for Umbraco Forms', in 'Backoffice extensions'
