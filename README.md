@@ -16,6 +16,8 @@ The criteria include:
 
 The telephone number (and some campaign detail properties) the visitor gets is persisted by default for their current session, but this can be extended (via cookie) for a set number of days (specified in the settings), so every time they return to the site they see the original telephone number, irrespective of how they get to your site in future. It is also possible to override an exisiting persisting campaign cookie if required.
 
+Phone Manager performs its checks to select a relevant telephone number only on the first request in a new browser session - this is then stored in a session object for the remainder of the user's current session.
+
 
 ## Links
 
