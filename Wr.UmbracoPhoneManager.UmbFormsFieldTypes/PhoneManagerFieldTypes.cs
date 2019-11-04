@@ -1,5 +1,6 @@
 ﻿using System;
 using Umbraco.Forms.Core;
+using Umbraco.Forms.Core.Enums;
 
 namespace Wr.UmbracoPhoneManager.UmbFormsFieldTypes
 {

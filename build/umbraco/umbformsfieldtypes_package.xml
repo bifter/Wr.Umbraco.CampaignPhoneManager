@@ -10,13 +10,13 @@
   <info>
     <package>
       <name>Phone Manager Field types for Umbraco Forms</name>
-      <version>1.0.2</version>
+      <version>8.0.1</version>
       <iconUrl>https://raw.githubusercontent.com/willroscoe/UmbracoPhoneManager/master/assets/umbracophonemanager_icon64.png</iconUrl>
       <license url="http://opensource.org/licenses/MIT">MIT License</license>
       <url>https://github.com/willroscoe/UmbracoPhoneManager</url>
       <requirements>
-        <major>7</major>
-        <minor>6</minor>
+        <major>8</major>
+        <minor>1</minor>
         <patch>0</patch>
       </requirements>
     </package>
@@ -25,7 +25,7 @@
       <website>https://github.com/willroscoe/UmbracoPhoneManager</website>
     </author>
     <readme>
-      <![CDATA[This package adds Phone Manager Field types to Umbraco Forms. It requires both Phone Manager and Umbraco Forms to be installed before installing. Source code available from: https://github.com/willroscoe/UmbracoPhoneManager]]>
+      <![CDATA[This package adds Phone Manager Field types to Umbraco Forms. It requires both Phone Manager v8.1+ and Umbraco Forms v8.1+ to be installed before installing. Source code available from: https://github.com/willroscoe/UmbracoPhoneManager]]>
     </readme>
   </info>
   <DocumentTypes />

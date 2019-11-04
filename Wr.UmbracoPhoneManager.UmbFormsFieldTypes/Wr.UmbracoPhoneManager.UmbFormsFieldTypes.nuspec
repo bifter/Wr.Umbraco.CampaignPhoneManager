@@ -13,8 +13,8 @@
     <description>This package adds Phone Manager Field types to Umbraco Forms.</description>
     <tags>Umbraco Forms Phone Manager Fieldtypes</tags>
     <dependencies>
-      <dependency id="UmbracoForms.Core" version="6.0.6" />
-	  <dependency id="Wr.UmbracoPhoneManager" version="1.0.2" />
+      <dependency id="UmbracoForms.Core" version="8.2.0" />
+	  <dependency id="Wr.UmbracoPhoneManager" version="8.0.1" />
     </dependencies>
   </metadata>
 </package>

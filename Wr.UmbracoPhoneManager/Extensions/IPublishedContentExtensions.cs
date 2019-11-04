@@ -1,6 +1,6 @@
 ﻿namespace Umbraco.Web
 {
-    using Umbraco.Core.Models;
+    using Umbraco.Core.Models.PublishedContent;
     using Wr.UmbracoPhoneManager.Models;
     using Wr.UmbracoPhoneManager.Providers;
 
