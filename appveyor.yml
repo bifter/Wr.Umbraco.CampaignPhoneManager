@@ -40,7 +40,7 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 cache:
-- packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+#- packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 
 before_build:
 - cmd: nuget restore Wr.UmbracoPhoneManager.sln
@@ -74,7 +74,7 @@ deploy:
     release: UmbracoPhoneManager $(appveyor_build_version)
     description: 'Allow Phone Manager in content root'
     auth_token:
-      secure: +WQIHXHxdNFy3CQ2ItEubL7hOFj0triuSW0g6Sim2PZS9vI7iTNbDjpSyZmO2EcU
+      secure: 9JsyY72D34T18UiX5d44wy+AmN+aHYfRGdMkwCTCVpB95mMn1tWQQJ5win8NqrEB
     artifact: /.*\.nupkg/, /.*\.zip/         # upload all Zip packages to release assets
     draft: false
     prerelease: false
@@ -86,7 +86,7 @@ deploy:
   - provider: NuGet
     server: 
     api_key:
-      secure: MKkarPmFf0Ym0j3bBQ5cw9H+H6FUw2Fe8+UEletLQ4l1mXHmuXT4UXvwYPh4yREu
+      secure: hCwJWuhLxThkbneICQhtMQonX1vJ/UbREiYH/qHmTOnR868Sf4irQcthUawsLHLO
     artifact: /.*\.nupkg/
     on:
       branch: master
