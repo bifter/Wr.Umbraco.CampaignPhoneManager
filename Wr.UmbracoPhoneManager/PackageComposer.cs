@@ -7,6 +7,7 @@ using Umbraco.Web.Composing;
 using Umbraco.Core.Services.Implement;
 using Umbraco.Web;
 using Umbraco.Core.Composing;
+using Wr.UmbracoPhoneManager.Providers.Storage;
 
 namespace Wr.UmbracoPhoneManager
 {
@@ -15,6 +16,7 @@ namespace Wr.UmbracoPhoneManager
         public void Compose(Composition composition)
         {
             composition.Components().Append<PhoneManagerApplicationInitComponent>();
+            composition.Register<IPhoneManagerService, PhoneManagerService>(Lifetime.Request);
         }
 
         public class PhoneManagerApplicationInitComponent : IComponent

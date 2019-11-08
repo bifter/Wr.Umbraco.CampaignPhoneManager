@@ -11,7 +11,7 @@ namespace Wr.UmbracoPhoneManager.Criteria
         /// </summary>
         public QueryStringCriteria() { }
 
-        public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)
+        public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IPhoneManagerService _iphoneManagerService)
         {
             List<PhoneManagerCampaignDetail> foundRecords = new List<PhoneManagerCampaignDetail>();
 
@@ -19,18 +19,18 @@ namespace Wr.UmbracoPhoneManager.Criteria
 
             if (cleansedQueryStrings?.HasKeys() ?? false)
             {
-                var foundDefaultCampaignQSValue = cleansedQueryStrings[_repository.GetDefaultSettings().DefaultCampaignQueryStringKey] ?? string.Empty;
+                var foundDefaultCampaignQSValue = cleansedQueryStrings[_iphoneManagerService.GetDefaultSettings().DefaultCampaignQueryStringKey] ?? string.Empty;
 
                 if (!string.IsNullOrEmpty(foundDefaultCampaignQSValue))
                 {
-                    foundRecords.AddRange(_repository.GetMatchingCriteriaRecords_QueryString_UsingDefaultCampaignQSKey(
+                    foundRecords.AddRange(_iphoneManagerService.GetMatchingCriteriaRecords_QueryString_UsingDefaultCampaignQSKey(
                         foundDefaultCampaignQSValue,
                         AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.CampaignCode,
                         AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.UseAltCampaignQueryStringKey, cleansedQueryStrings
                         ));
                 }
 
-                foundRecords.AddRange(_repository.GetMatchingCriteriaRecords_QueryString_UsingAltCampaignQueryStringKey(
+                foundRecords.AddRange(_iphoneManagerService.GetMatchingCriteriaRecords_QueryString_UsingAltCampaignQueryStringKey(
                         AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.CampaignCode,
                         AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.UseAltCampaignQueryStringKey, cleansedQueryStrings
                         ));

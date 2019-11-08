@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Core.Configuration;
+using Wr.UmbracoPhoneManager.App_Config;
 using Wr.UmbracoPhoneManager.Extensions;
 
 namespace Wr.UmbracoPhoneManager.Criteria
@@ -29,7 +30,9 @@ namespace Wr.UmbracoPhoneManager.Criteria
         /// </summary>
         private static IEnumerable<IPhoneManagerCriteria> CompileCriteriaList()
         {
-            if (UmbracoConfig.For.PhoneManager().DiscoverNewCriteria)
+            AppSettingsConfig appSettingsConfig = new AppSettingsConfig();
+
+            if (appSettingsConfig.DiscoverNewCriteria)
             {
                 var type = typeof(IPhoneManagerCriteria);
                 var criteriaClasses = AppDomain.CurrentDomain.GetAssemblies()

@@ -12,12 +12,12 @@ namespace Wr.UmbracoPhoneManager.Criteria
         /// </summary>
         public ReferrerCriteria () { }
 
-        public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IRepository _repository)
+        public List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder _criteriaParameters, IPhoneManagerService _iphoneManagerService)
         {
             var safeReferrer = _criteriaParameters.RequestInfo_NotIncludingQueryStrings.Referrer.ToSafeString(ProviderType.Referrer);
             if (!string.IsNullOrEmpty(safeReferrer))
             {
-                return _repository.GetMatchingCriteriaRecords_Referrer(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.Referrer, safeReferrer);
+                return _iphoneManagerService.GetMatchingCriteriaRecords_Referrer(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.Referrer, safeReferrer);
             }
 
             return new List<PhoneManagerCampaignDetail>();

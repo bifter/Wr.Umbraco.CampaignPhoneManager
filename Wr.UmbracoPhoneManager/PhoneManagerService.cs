@@ -5,14 +5,20 @@ using System.Linq;
 using System.Web;
 using Umbraco.Web;
 using Wr.UmbracoPhoneManager.Models;
+using Wr.UmbracoPhoneManager.Providers.Storage;
 
-namespace Wr.UmbracoPhoneManager.Providers.Storage.UmbracoContent
+namespace Wr.UmbracoPhoneManager
 {
-    /// <summary>
-    /// NOT IN USE
-    /// </summary>
-    public class UmbracoContentRepository : IRepository
+    public class PhoneManagerService : IPhoneManagerService
     {
+
+        private readonly IPublishedContentQuery _contentQuery;
+
+        public PhoneManagerService(IPublishedContentQuery contentQuery)
+        {
+            _contentQuery = contentQuery;
+        }
+
         private PhoneManagerModel _defaultSettings;
 
         public PhoneManagerCampaignDetail GetCampaignDetailById(string id)
@@ -30,9 +36,9 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage.UmbracoContent
 
         private PhoneManagerModel LoadDefaultSettings()
         {
-            var temp = Umbraco.Web.Composing.Current.UmbracoContext.PublishedRequest.PublishedContent.Root().Descendant(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager);
-            var result = Mapper.Map<Umbraco.Core.Models.IPublishedContent, PhoneManagerModel>(temp);
-            return result;
+            var siteRoot = _contentQuery.ContentAtRoot().FirstOrDefault();
+            var phoneManagerSection = (PhoneManagerModel)siteRoot?.FirstChild(f => f.ContentType.Alias == AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager) ?? null;
+            return phoneManagerSection;
         }
 
         public List<PhoneManagerCampaignDetail> GetMatchingCriteriaRecords_QueryString_UsingAltCampaignQueryStringKey(string campaignCodeAlias, string altCampaignQueryStringKeyAlias, NameValueCollection cleansedQueryStrings)

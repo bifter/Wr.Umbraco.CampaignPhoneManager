@@ -2,14 +2,13 @@
 using Wr.UmbracoPhoneManager.Criteria;
 using Wr.UmbracoPhoneManager.Models;
 using Wr.UmbracoPhoneManager.Providers;
-using Wr.UmbracoPhoneManager.Providers.Storage;
 
 namespace Wr.UmbracoPhoneManager
 {
     public class PhoneManager
     {
         private ICookieProvider _cookieProvider;
-        private readonly IRepository _repository;
+        private readonly IPhoneManagerService _phoneManagerService;
         private readonly QueryStringProvider _querystringProvider;
         private readonly ReferrerProvider _referrerProvider;
         private ISessionProvider _sessionProvider;
@@ -23,19 +22,20 @@ namespace Wr.UmbracoPhoneManager
         /// </summary>
         public PhoneManager()
         {
+            _phoneManagerService = Umbraco.Web.Composing.Current.Factory.GetInstanceFor<IPhoneManagerService, PhoneManagerService>();
+
             // default providers/repository
             _cookieProvider = new CookieProvider(new HttpContextCookieImplementation());
-            _repository = new XPathRepository();
             _querystringProvider = new QueryStringProvider(new HttpContextQueryStringImplementation());
             _referrerProvider = new ReferrerProvider(new HttpContextReferrerImplementation());
             _sessionProvider = new SessionProvider();
             _umbracoProvider = new UmbracoProvider();
         }
 
-        public PhoneManager(ICookieProvider cookieProvider, IRepository repository, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
+        public PhoneManager(ICookieProvider cookieProvider, IPhoneManagerService phoneManagerService, QueryStringProvider querystringProvider, ReferrerProvider referrerProvider, ISessionProvider sessionProvider, IUmbracoProvider umbracoProvider)
         {
             _cookieProvider = cookieProvider;
-            _repository = repository;
+            _phoneManagerService = phoneManagerService;
             _querystringProvider = querystringProvider;
             _referrerProvider = referrerProvider;
             _sessionProvider = sessionProvider;
@@ -58,7 +58,7 @@ namespace Wr.UmbracoPhoneManager
 
             // if there is a valid cookie and the GlobalDisableOverwritePersistingItems admin setting is set then we don't need to look  For matching records in the system, we can just use the cookie info.
             bool lookForMatchingRecord = true;
-            if ((exisitingCookie?.Model?.IsValid() ?? false) && (_repository.GetDefaultSettings()?.GlobalDisableOverwritePersistingItems ?? false))
+            if ((exisitingCookie?.Model?.IsValid() ?? false) && (_phoneManagerService.GetDefaultSettings()?.GlobalDisableOverwritePersistingItems ?? false))
             {
                 lookForMatchingRecord = false;
             }
@@ -95,7 +95,7 @@ namespace Wr.UmbracoPhoneManager
                     }
             };
 
-            return new CriteriaProcessor(criteriaParameters, _repository).GetMatchingRecordFromPhoneManager();
+            return new CriteriaProcessor(criteriaParameters, _phoneManagerService).GetMatchingRecordFromPhoneManager();
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Wr.UmbracoPhoneManager
                 {
                     result.OutputCookieHolder = new CookieHolder()
                     {
-                        Expires = DateTime.Today.AddDays((foundRecord.PersistDurationOverride > 0) ? foundRecord.PersistDurationOverride : _repository.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
+                        Expires = DateTime.Today.AddDays((foundRecord.PersistDurationOverride > 0) ? foundRecord.PersistDurationOverride : _phoneManagerService.GetDefaultSettings()?.DefaultPersistDurationInDays ?? 0), // persist duration in days - if foundRecord has persistDurationOverride set then use that, otherwise use the default admin setting
                         Model = result.OutputModelResult
                     };
                 }

@@ -10,12 +10,12 @@ namespace Wr.UmbracoPhoneManager.Criteria
     /// </summary>
     public class CriteriaProcessor
     {
-        private readonly IRepository _repository;
+        private readonly IPhoneManagerService _phoneManagerService;
         private readonly CriteriaParameterHolder _criteriaParameters;
 
-        public CriteriaProcessor(CriteriaParameterHolder criteriaParameters, IRepository repository) // override default data provider
+        public CriteriaProcessor(CriteriaParameterHolder criteriaParameters, IPhoneManagerService phoneManagerService) // override default data provider
         {
-            _repository = repository;
+            _phoneManagerService = phoneManagerService;
             _criteriaParameters = criteriaParameters;
         }
 
@@ -25,7 +25,7 @@ namespace Wr.UmbracoPhoneManager.Criteria
 
             foreach (var item in AvailableCriteria.GetCriteriaList())
             {
-                foundRecords.AddRange(item.GetMatchingRecordsFromPhoneManager(_criteriaParameters, _repository));
+                foundRecords.AddRange(item.GetMatchingRecordsFromPhoneManager(_criteriaParameters, _phoneManagerService));
             }
 
             if (foundRecords.Count > 0)
@@ -41,7 +41,7 @@ namespace Wr.UmbracoPhoneManager.Criteria
             }
             else
             {
-                var found = _repository.GetDefaultCampaignDetail();
+                var found = _phoneManagerService.GetDefaultCampaignDetail();
                 if (found != null)
                 {
                     found.DoNotPersistAcrossVisits = true; // as we are using this detail as the default, we don't want to allow it to persist across vists

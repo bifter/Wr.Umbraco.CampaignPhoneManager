@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.XPath;
 using Umbraco.Core.Configuration;
 using Umbraco.Web;
+using Wr.UmbracoPhoneManager.App_Config;
 using Wr.UmbracoPhoneManager.Extensions;
 using Wr.UmbracoPhoneManager.Models;
 
@@ -10,6 +11,8 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage
 {
     public class IXPathRepositoryImplementation_UmbracoXPathNavigator : IXPathRepositoryImplementation
     {
+
+        private AppSettingsConfig appSettingsConfig = new AppSettingsConfig(); 
         public PhoneManagerModel LoadDefaultSettings(string xpath)
         {
             return GetDataByXPath<PhoneManagerModel>(xpath);
@@ -54,7 +57,7 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage
             string homeTemplate = "//*[@id='{0}']";
             string homeXpath = "";
             var context = UmbracoContext.Current;
-            if (context.IsFrontEndUmbracoRequest && !UmbracoConfig.For.PhoneManager().EnablePhoneManagerInRoot)
+            if (context.IsFrontEndUmbracoRequest && !appSettingsConfig.EnablePhoneManagerInRoot)
             {
                 var homeNodeId = context.PublishedContentRequest.PublishedContent.Site().Id; // using homeNodeId is a workaround for $ancestorOrSelf not working
                 homeXpath = string.Format(homeTemplate, homeNodeId);

@@ -1,5 +1,6 @@
 ﻿using System;
 using Umbraco.Core;
+using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace Wr.UmbracoPhoneManager.Providers
@@ -8,18 +9,15 @@ namespace Wr.UmbracoPhoneManager.Providers
     {
         public string GetCurrentPageId()
         {
-            var umbracoContext = UmbracoContext.Current;
-            int pageId = umbracoContext?.PageId ?? 0;
-
-            string result = string.Empty;
-
-            var node = ApplicationContext.Current.Services.ContentService.GetById(pageId); // get current page object
-            if (node != null)
+            var publishContent = (IContent)Umbraco.Web.Composing.Current.UmbracoHelper.AssignedContentItem;
+            int pageId = publishContent?.Id ?? 0;
+            
+            if (publishContent != null)
             {
                 try
                 {
-                    result = node.GetUdi().ToString(); // this version for Umbraco 7.6.0+ - Use Udi
-                    return result;
+                    var udi = publishContent.GetUdi().ToString();
+                    return udi;
                 }
                 catch(Exception ex)
                 {

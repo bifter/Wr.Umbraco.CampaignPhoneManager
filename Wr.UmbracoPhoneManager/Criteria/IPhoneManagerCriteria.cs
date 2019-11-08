@@ -6,6 +6,6 @@ namespace Wr.UmbracoPhoneManager.Criteria
 {
     public interface IPhoneManagerCriteria
     {
-        List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder criteriaParameters, IRepository repository);
+        List<PhoneManagerCampaignDetail> GetMatchingRecordsFromPhoneManager(CriteriaParameterHolder criteriaParameters, IPhoneManagerService phoneManagerService);
     }
 }
