@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
+using Umbraco.Core.Mapping;
+using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Wr.UmbracoPhoneManager.Models;
 
@@ -30,10 +32,41 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage.UmbracoContent
 
         private PhoneManagerModel LoadDefaultSettings()
         {
-            var temp = Umbraco.Web.Composing.Current.UmbracoContext.PublishedRequest.PublishedContent.Root().Descendant(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager);
-            var result = Mapper.Map<Umbraco.Core.Models.IPublishedContent, PhoneManagerModel>(temp);
-            return result;
+            var phoneManagerIPub = Umbraco.Web.Composing.Current.UmbracoContext.PublishedRequest.PublishedContent.Root().Descendant(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManager);
+            return MapIPublishedContentToPhoneManagerModel(phoneManagerIPub);
         }
+
+        private PhoneManagerModel MapIPublishedContentToPhoneManagerModel(IPublishedContent model)
+        {
+            PhoneManagerModel result = new PhoneManagerModel();
+            result.DefaultCampaignQueryStringKey = model.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.DefaultCampaignQueryStringKey).ToString();
+            result.DefaultPersistDurationInDays = Convert.ToInt32(model.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.DefaultPersistDurationInDays));
+            result.GlobalDisableOverwritePersistingItems = Convert.ToBoolean(model.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.GlobalDisableOverwritePersistingItems));
+
+            var campaignDetailItems = model.Value<IEnumerable<IPublishedContent>>(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel.PhoneManagerCampaignDetail);
+            foreach(var item in campaignDetailItems)
+            {
+                PhoneManagerCampaignDetail newCD = new PhoneManagerCampaignDetail();
+                newCD.Id = item.Id.ToString();
+                newCD.NodeName = item.Name;
+                newCD.Referrer = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.Referrer).ToString();
+                newCD.AltMarketingCode = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.AltMarketingCode).ToString();
+                newCD.CampaignCode = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.CampaignCode).ToString();
+                newCD.DoNotPersistAcrossVisits = Convert.ToBoolean(item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.DoNotPersistAcrossVisits));
+                newCD.EntryPage = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.EntryPage).ToString();
+                newCD.IsDefault = Convert.ToBoolean(item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.IsDefault));
+                newCD.OverwritePersistingItem = Convert.ToBoolean(item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.OverwritePersistingItem));
+                newCD.PersistDurationOverride = Convert.ToInt32(item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.PersistDurationOverride));
+                newCD.PriorityOrder = Convert.ToInt32(item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.PriorityOrder));
+                newCD.TelephoneNumber = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.TelephoneNumber).ToString();
+                newCD.UseAltCampaignQueryStringKey = item.Value(AppConstants.UmbracoDocTypeAliases.PhoneManagerModel_PhoneManagerCampaignDetail.UseAltCampaignQueryStringKey).ToString();
+                result.PhoneManagerCampaignDetail.Add(newCD);
+            }
+
+            return result;
+
+        }
+
 
         public List<PhoneManagerCampaignDetail> GetMatchingCriteriaRecords_QueryString_UsingAltCampaignQueryStringKey(string campaignCodeAlias, string altCampaignQueryStringKeyAlias, NameValueCollection cleansedQueryStrings)
         {
@@ -57,12 +90,13 @@ namespace Wr.UmbracoPhoneManager.Providers.Storage.UmbracoContent
 
         public List<PhoneManagerCampaignDetail> ListAllCampaignDetailRecords()
         {
-            throw new NotImplementedException();
+            return _defaultSettings.PhoneManagerCampaignDetail.ToList();
         }
 
         public PhoneManagerCampaignDetail GetDefaultCampaignDetail()
         {
-            throw new NotImplementedException();
+            PhoneManagerCampaignDetail result = new PhoneManagerCampaignDetail();
+            return _defaultSettings.PhoneManagerCampaignDetail.Where(x => x.IsDefault).FirstOrDefault();
         }
     }
 }
